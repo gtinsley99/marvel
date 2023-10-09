@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import SplashScreen from './components/splashScreen.js';
 import './App.css';
+import Homepage from './Pages/Homepage';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)  
+        }, 3000)
+  },[]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {loading ? <SplashScreen /> : (
+      <div className='homepage'>
+        <Homepage />
+      </div>
+      )}
     </div>
   );
 }
