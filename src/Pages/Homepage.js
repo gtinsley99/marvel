@@ -9,8 +9,7 @@ const Homepage = () => {
     return (
         <div className="homepage">
             <h1>Title</h1>
-            <Description/>
-
+            <Description className="descHome"/>
             <button className="charBtn">Explore the characters</button>
         </div>
     )
