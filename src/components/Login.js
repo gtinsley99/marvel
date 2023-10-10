@@ -1,21 +1,54 @@
 import { useState } from "react";
 import React from "react";
 import axios from "axios";
+import "./Login.css";
 
-const LoginComponent = ({ onLogin }) => {
+const LoginComponent = (props) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-    const handleLogin = async () => {
-        try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, { username:username, password:password });
-            const token = response.data.token;
-            onLogin(token);
-        } catch (error) {
-            console.log('Username or password is incorrect', error.response.data);
-        }
+    const handleLogin = async (event) => {
+            event.preventDefault();
+           try { 
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, { 
+               method: "POST",
+               headers: {
+                    "Content-Type": 'application/json'
+               },
+               body: JSON.stringify({
+                username: username,
+                password: password
+               }) 
+            
+            }); 
+            // props.setUser(console)
+            const data = await response.json()
+            console.log(data)
+            if (data.message === "User logged in"){
+                props.setCookie("jwt_token", data.user.token, { maxAge: 604800, path: "/"})
+                console.log(props.cookie)
+            } else {
+                props.removeCookie("jwt-token")
+            }
+            setUsername('');
+            setPassword('');
+            } catch (error) {
+                console.log(error)
+            }
     };
+    
+    // const handleLogin = () => {
+    //     // Simulate authentication with predefined credentials
+    //     if (username === 'user' && password === 'password') {
+    //       // Successful login logic
+    //       alert('Login successful!');
+    //     } else {
+    //       // Failed login logic
+    //       setError('Login failed. Please check your credentials.');
+    //     }
+    //   };
 
     return (
         <div>
