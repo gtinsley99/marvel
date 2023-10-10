@@ -1,0 +1,10 @@
+.popular {
+  border: 1px solid black;
+  width: 80%;
+  margin: 30px auto;
+}
+
+.popular-holder {
+  display: flex;
+  justify-content: space-around;
+}
