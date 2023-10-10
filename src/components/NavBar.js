@@ -7,20 +7,22 @@ import "./NavBar.css";
 
 const NavBar = () => {
   return (
-    <nav>
-      <Link to="/profile">
-        <AccountCircleIcon className="navbar-icon" />
-      </Link>
-      <Link to="/characters">
-        <ExploreIcon className="navbar-icon" />
-      </Link>
-      <Link to="/">
-        <HomeIcon className="navbar-icon" />
-      </Link>
-      <Link to="/login">
-        <button className="button">Log In</button>
-      </Link>
-    </nav>
+    <div className="nav-wrapper">
+      <nav>
+        <Link to="/profile">
+          <AccountCircleIcon className="navbar-icon" />
+        </Link>
+        <Link to="/characters">
+          <ExploreIcon className="navbar-icon" />
+        </Link>
+        <Link to="/">
+          <HomeIcon className="navbar-icon" />
+        </Link>
+        <Link to="/login">
+          <button className="button">Log In</button>
+        </Link>
+      </nav>
+    </div>
   );
 };
 

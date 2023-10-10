@@ -1,7 +1,7 @@
 import { useState } from "react"; // import useState
 // import components to use
-import CharcterCard from "../components/CharcterCard";
 import Popular from "../components/Popular";
+import ModalTab from "../components/Modal";
 
 const Characters = () => {
   const [characterList] = useState([
@@ -15,6 +15,7 @@ const Characters = () => {
     "deadpool",
     "scarlet witch",
   ]);
+
   return (
     <>
       <div>
@@ -23,7 +24,7 @@ const Characters = () => {
       {/* Map the characters from the character list into cards */}
       <div className="card-container">
         {characterList.map((char, index) => {
-          return <CharcterCard name={char} key={index} />;
+          return <ModalTab name={char} key={index} />;
         })}
       </div>
     </>
