@@ -1,6 +1,6 @@
 import { useState } from "react";
-import CharcterCard from "./CharcterCard";
 import "./Popular.css";
+import ModalTab from "./Modal";
 
 const Popular = () => {
   const [popularCharacters] = useState([
@@ -13,7 +13,7 @@ const Popular = () => {
       <h2> Popular Characters</h2>
       <div className="popular-holder">
         {popularCharacters.map((char, index) => {
-          return <CharcterCard name={char} key={index} />;
+          return <ModalTab name={char} key={index} />;
         })}
       </div>
     </div>
