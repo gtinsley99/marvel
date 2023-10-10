@@ -1,0 +1,23 @@
+.Username {
+    font-size: 20px;
+}
+
+.button-holder button {
+    background-color: #6b52a5;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px #1e1534;
+}
+
+.button-holder button:hover {
+    cursor: pointer;
+
+}
+
+.button-holder button:active {
+    transform: translateY(3px);
+    box-shadow: none;
+}
