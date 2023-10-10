@@ -49,7 +49,7 @@ const CharcterCard = (props) => {
   );
 
   return (
-    <div className="character-card">
+    <div className="character-card" onClick={props.onClick}>
       {/* Character image */}
       <img src={Placeholder} alt="character" />
       {/* Character Name */}
