@@ -18,6 +18,9 @@
 .character-card img {
   width: 100%;
 }
+.icon-holder {
+  position: relative;
+}
 
 .favorite-icon {
   transform: scale(1.4);
@@ -26,4 +29,15 @@
 
 .clicked {
   color: #ff2400;
+}
+
+.tool-tip {
+  position: absolute;
+  top: 0;
+  left: 54%;
+  color: #ffffff;
+  background-color: #6b52a5;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 5px;
 }
