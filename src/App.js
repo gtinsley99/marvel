@@ -5,10 +5,13 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Characters from "./pages/Characters";
 import NavBar from "./components/NavBar";
+import Marvelapi from "./components/marvelapi";
 import "./App.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  Marvelapi(setData);
   return (
     <div className="App">
       <BrowserRouter>
