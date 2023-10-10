@@ -6,8 +6,9 @@
 
 .character-card {
   width: 26%;
-  border: 1px solid black;
+  border: 3px solid #6b52a5;
   margin-bottom: 30px;
+  border-radius: 15px;
 }
 
 .character-card:hover {
@@ -17,6 +18,8 @@
 
 .character-card img {
   width: 100%;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
 }
 .icon-holder {
   position: relative;

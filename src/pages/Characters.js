@@ -17,7 +17,9 @@ const Characters = () => {
   ]);
   return (
     <>
-      <div></div>
+      <div>
+        <Popular />
+      </div>
       {/* Map the characters from the character list into cards */}
       <div className="card-container">
         {characterList.map((char, index) => {
