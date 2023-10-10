@@ -13,7 +13,7 @@ const Popular = () => {
       <h2> Popular Characters</h2>
       <div className="popular-holder">
         {popularCharacters.map((char, index) => {
-          return <CharcterCard name="char" />;
+          return <CharcterCard name={char} key={index} />;
         })}
       </div>
     </div>

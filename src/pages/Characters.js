@@ -23,7 +23,7 @@ const Characters = () => {
       {/* Map the characters from the character list into cards */}
       <div className="card-container">
         {characterList.map((char, index) => {
-          return <CharcterCard name={char} />;
+          return <CharcterCard name={char} key={index} />;
         })}
       </div>
     </>
