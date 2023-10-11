@@ -5,7 +5,6 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Characters from "./pages/Characters";
 import NavBar from "./components/NavBar";
-import Marvelapi from "./components/marvelapi";
 import {
   CharDesc,
   AllChar,
@@ -20,10 +19,7 @@ function App() {
   const [cookie, setCookie, removeCookie] = useCookies(["jwt_token"]);
   const [user, setUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [desc, setDesc] = useState("");
   const [allChar, setAllChar] = useState(null);
-  const [comics, setComics] = useState(null);
-  const [series, setSeries] = useState(null);
 
   // Route to get description of character - use name (thor for testing only) currently use effect, change to when click
   // CharDesc("thor", setDesc);
