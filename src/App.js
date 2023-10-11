@@ -8,9 +8,13 @@ import NavBar from "./components/NavBar";
 import Marvelapi from "./components/marvelapi";
 import { CharDesc, AllChar, CharComics, CharSeries } from "./components/marvelapi";
 import "./App.css";
+import { useCookies } from "react-cookie";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [cookie, setCookie, removeCookie] = useCookies(["jwt_token"]);
+  const [user, setUser] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
   const [desc, setDesc] = useState("");
   const [allChar, setAllChar] = useState(null);
   const [comics, setComics] = useState(null);
@@ -29,17 +33,39 @@ function App() {
  // Route to search for series by character, change from useeffect use name and input field (thor and a for testing only)
   // CharSeries("thor", "a", setSeries);
 
+
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
+        <NavBar loggedIn={loggedIn} />
         <Routes>
           <Route
             path="/"
             element={<Home loading={loading} setLoading={setLoading} />}
           />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/login"
+            element={
+              <Login
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+                user={user}
+                setUser={setUser}
+                setLoggedIn={setLoggedIn}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
           <Route path="/characters" element={<Characters />} />
         </Routes>
       </BrowserRouter>
