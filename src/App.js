@@ -64,6 +64,7 @@ function App() {
                 removeCookie={removeCookie}
                 user={user}
                 setUser={setUser}
+                loggedIn={loggedIn}
                 setLoggedIn={setLoggedIn}
                 setRes={setRes}
               />

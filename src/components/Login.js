@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import React from "react";
-import axios from "axios";
 import "./Login.css";
 
 const LoginComponent = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -34,6 +35,7 @@ const LoginComponent = (props) => {
         });
         console.log(props.cookie);
         props.setLoggedIn(true);
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
