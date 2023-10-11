@@ -1,11 +1,11 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import ExploreIcon from "@mui/icons-material/Explore";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import "./NavBar.css";
 
-const NavBar = () => {
+const NavBar = (props) => {
+
   return (
     <div className="nav-wrapper">
       <nav>
@@ -19,7 +19,7 @@ const NavBar = () => {
           <HomeIcon className="navbar-icon" />
         </Link>
         <Link to="/login">
-          <button className="button">Log In</button>
+          <button className="button">{props.loggedIn}</button>
         </Link>
       </nav>
     </div>
