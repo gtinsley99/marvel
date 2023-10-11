@@ -18,7 +18,11 @@ const ModalTab = (props) => {
 
   return (
     <div className="modal-holder">
-      <CharcterCard onClick={openModal} name={props.name} />
+      <CharcterCard
+        onClick={openModal}
+        name={props.name}
+        imgSrc={props.imgSrc}
+      />
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -27,7 +31,7 @@ const ModalTab = (props) => {
           <div className="modal-left modal-side">
             <button onClick={closeModal}>close</button>
             <div className="popup-image-div">
-              <img className="popup-image" src={PlaceHolder} alt="marvel" />
+              <img className="popup-image" src={props.imgSrc} alt="marvel" />
             </div>
             <h2>{props.name}</h2>
           </div>
