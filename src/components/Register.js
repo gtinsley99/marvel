@@ -32,8 +32,6 @@ function RegistrationForm(props) {
           }),
         }
       );
-
-      if (response.ok) {
         const data = await response.json();
         setSuccessMessage(data.successMessage);
         setError(null);
@@ -41,14 +39,12 @@ function RegistrationForm(props) {
           maxAge: 604800,
           path: "/",
         });
+        props.setCookie("username", data.user.username, {
+          maxAge: 604800,
+          path: "/",
+        });
         console.log(props.cookie);
         props.setLoggedIn(true);
-      } else {
-        const errorData = await response.json();
-        setSuccessMessage(null);
-        setError(errorData.errorMessage);
-        props.removeCookie("jwt-token");
-      }
     } catch (error) {
       console.error("Error:", error);
       setSuccessMessage(null);

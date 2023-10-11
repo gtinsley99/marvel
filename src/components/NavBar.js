@@ -10,6 +10,8 @@ const NavBar = (props) => {
       props.setLoggedIn(false);
       document.cookie =
       "jwt_token=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie =
+      "username=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     } 
   }
 
