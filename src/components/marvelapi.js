@@ -5,7 +5,7 @@ const getHash = (ts, privateKey, publicKey) => {
     return MD5(ts + privateKey + publicKey).toString();
 };
 
-//  // Route to marvel api to add character names, pic and id to own database
+//  // Route to marvel api to add character names, pic and id to own database  238, 322, 234
 // const Marvelapi = (setData) => {
 //   const [errors, setErrors] = useState(null);
   
