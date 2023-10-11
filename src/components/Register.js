@@ -19,7 +19,7 @@ function RegistrationForm(props) {
     e.preventDefault();
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/register`,
+        `${process.env.REACT_APP_API}/register`,
         {
           method: "POST",
           headers: {

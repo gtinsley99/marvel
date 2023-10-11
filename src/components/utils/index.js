@@ -1,6 +1,6 @@
-export const AuthCheck = async (jwt_token, setUser) => {
+export const AuthCheck = async (jwt_token, setUser, setLoggedIn) => {
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}t/users/loginwithtoken`, {
+      const res = await fetch(`${process.env.REACT_APP_API}/loginwithtoken`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -12,6 +12,8 @@ export const AuthCheck = async (jwt_token, setUser) => {
       }
       const data = await res.json();
       setUser(data.user.username);
+      setLoggedIn(true);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
