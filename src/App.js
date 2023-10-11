@@ -6,7 +6,7 @@ import Profile from "./pages/Profile";
 import Characters from "./pages/Characters";
 import NavBar from "./components/NavBar";
 import Marvelapi from "./components/marvelapi";
-import { CharDesc, AllChar, CharComics } from "./components/marvelapi";
+import { CharDesc, AllChar, CharComics, CharSeries } from "./components/marvelapi";
 import "./App.css";
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
   const [desc, setDesc] = useState("");
   const [allChar, setAllChar] = useState(null);
   const [comics, setComics] = useState(null);
+  const [series, setSeries] = useState(null);
 
   // Route to get description of character - use name (thor for testing only) currently use effect, change to when click
   // CharDesc("thor", setDesc);
@@ -22,9 +23,11 @@ function App() {
   // Route to get all characters from backend db- useeffect on load
   // AllChar(setAllChar);
 
-  // Route to search for comics by character, change from useeffect use name and input field (thor and avangers for testing only)
-  CharComics("thor", "avengers", setComics);
+  // Route to search for comics by character, change from useeffect use name and input field (thor and avengers for testing only)
+  // CharComics("thor", "avengers", setComics);
 
+ // Route to search for series by character, change from useeffect use name and input field (thor and a for testing only)
+  CharSeries("thor", "a", setSeries);
 
   return (
     <div className="App">

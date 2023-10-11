@@ -107,7 +107,7 @@ export const AllChar = (setAllChar) => {
   return;
 };
 
-// Route to search for comics with character from marvel api using stored id of character from backend
+// Route to search for comics with character from marvel api using stored id of character from backend- title and image
 export const CharComics = (name, input ,setComics) => {
   const [errors, setErrors] = useState(null);
   
@@ -134,6 +134,38 @@ export const CharComics = (name, input ,setComics) => {
       }
     };
     fetchComics();
+  }, []);
+
+  return;
+};
+
+// Route to search for series with character from marvel api using stored id of character from backend - title, description, thumbnail(path.jpg) image
+export const CharSeries = (name, input ,setSeries) => {
+  const [errors, setErrors] = useState(null);
+  
+  useEffect(() => {
+    const fetchSeries = async () => {
+      let apiKey = process.env.REACT_APP_API_KEY;
+      let privateKey = process.env.REACT_APP_PRIVATE_KEY;
+      let ts = Date.now().toString();
+      let hash = getHash(ts, privateKey, apiKey);
+      try {
+        const charRes = await fetch(`${process.env.REACT_APP_API}/one/${name}`);
+        const char = await charRes.json();
+        console.log(char);
+        const heroUrl= `${process.env.REACT_APP_BASE_URL}/v1/public/characters/${char.character.marvelID}/series`;
+        let url = `${heroUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=20&titleStartsWith=${input}`;
+        const res = await fetch(`${url}`);
+        const data = await res.json();
+        console.log(data.data.results);
+        setSeries(data.data.results);
+      } catch (error) {
+        setErrors("Failed to fetch data");
+        console.log(error);
+        console.log(errors);
+      }
+    };
+    fetchSeries();
   }, []);
 
   return;
