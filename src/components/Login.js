@@ -1,17 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import React from "react";
-import axios from "axios";
 import "./Login.css";
 
 const LoginComponent = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+      const response = await fetch(`${process.env.REACT_APP_API}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,15 +29,19 @@ const LoginComponent = (props) => {
           maxAge: 604800,
           path: "/",
         });
+        props.setCookie("username", data.user.username, {
+          maxAge: 604800,
+          path: "/",
+        });
         console.log(props.cookie);
-      } else {
-        props.removeCookie("jwt-token");
+        props.setLoggedIn(true);
+        navigate("/");
       }
-      setUsername("");
-      setPassword("");
     } catch (error) {
       console.log(error);
     }
+    setUsername("");
+    setPassword("");
   };
 
   return (
@@ -48,13 +53,15 @@ const LoginComponent = (props) => {
           placeholder="Username"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
-          type="text"></input>
+          type="text"
+        ></input>
         <input
           className="barsLog"
           placeholder="Password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          type="password"></input>
+          type="password"
+        ></input>
         <button className="loginBtn" onClick={handleLogin}>
           Login
         </button>
