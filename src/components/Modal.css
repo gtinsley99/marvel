@@ -1,0 +1,48 @@
+.modal-tab {
+  display: flex;
+  height: 100%;
+}
+
+.modal-tab h2 {
+  font-size: 28px;
+}
+
+.modal-holder {
+  width: 26%;
+}
+
+.popup-image-div {
+  width: 85%;
+}
+
+.popup-image {
+  width: 100%;
+}
+
+.modal-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+}
+
+.fav-and-variants {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.modal-favorite {
+  transform: scale(3);
+}
+
+.variants-btn {
+  font-size: 26px;
+}
