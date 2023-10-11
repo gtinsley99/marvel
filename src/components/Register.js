@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function RegistrationForm(props) {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
 
   const [error, setError] = useState(null);
@@ -17,44 +17,53 @@ function RegistrationForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          email: formData.email,
-          password:formData.password
-        }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
+          }),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
         setSuccessMessage(data.successMessage);
         setError(null);
-        props.setCookie("jwt_token", data.user.token, { maxAge: 604800, path: "/"});
-        console.log(props.cookie)
+        props.setCookie("jwt_token", data.user.token, {
+          maxAge: 604800,
+          path: "/",
+        });
+        console.log(props.cookie);
       } else {
         const errorData = await response.json();
         setSuccessMessage(null);
         setError(errorData.errorMessage);
-        props.removeCookie("jwt-token")
+        props.removeCookie("jwt-token");
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       setSuccessMessage(null);
-      setError('An error occurred. Please try again.');
+      setError("An error occurred. Please try again.");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="login-form">
+      <h1>Register an account</h1>
       <div>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="username"></label>
         <input
+          placeholder="Username"
+          className="barsLog"
           type="text"
           id="username"
           name="username"
@@ -63,8 +72,9 @@ function RegistrationForm(props) {
         />
       </div>
       <div>
-        <label htmlFor="email">Email:</label>
         <input
+          placeholder="Email"
+          className="barsLog"
           type="email"
           id="email"
           name="email"
@@ -73,8 +83,9 @@ function RegistrationForm(props) {
         />
       </div>
       <div>
-        <label htmlFor="password">Password:</label>
         <input
+          placeholder="Password"
+          className="barsLog"
           type="password"
           id="password"
           name="password"
@@ -82,7 +93,9 @@ function RegistrationForm(props) {
           onChange={handleChange}
         />
       </div>
-      <button type="submit">Register</button>
+      <button className="loginBtn" type="submit">
+        Register
+      </button>
       {successMessage && <p className="success-message">{successMessage}</p>}
       {error && <p className="error-message">{error}</p>}
     </form>
@@ -90,4 +103,3 @@ function RegistrationForm(props) {
 }
 
 export default RegistrationForm;
-
