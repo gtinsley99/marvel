@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import CharcterCard from "../components/CharcterCard";
 import PlaceHolder from "../images/marvel-placeholder.jpg";
 import "./Modal.css";
-import StarBorderPurple500Icon from "@mui/icons-material/StarBorderPurple500";
+import FavoriteIcon from "./FavoriteIcon";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -51,7 +51,7 @@ const ModalTab = (props) => {
               <p>Random Year</p>
             </div>
             <div className="fav-and-variants">
-              <StarBorderPurple500Icon className="modal-favorite" />
+              <FavoriteIcon />
               <button className="variants-btn">See Variants</button>
             </div>
           </div>
