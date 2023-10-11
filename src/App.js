@@ -6,12 +6,18 @@ import Profile from "./pages/Profile";
 import Characters from "./pages/Characters";
 import NavBar from "./components/NavBar";
 import Marvelapi from "./components/marvelapi";
+import { CharDesc } from "./components/marvelapi";
 import "./App.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState(null);
-  Marvelapi(setData);
+  const [desc, setDesc] = useState("");
+  
+  // const [data, setData] = useState(null);
+  // Marvelapi(setData);
+
+  // Route to get description of character - use name (thor for testing only)
+  CharDesc("thor", setDesc);
   return (
     <div className="App">
       <BrowserRouter>
