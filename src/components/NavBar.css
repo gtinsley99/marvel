@@ -1,3 +1,7 @@
+.nav-wrapper {
+  background-color: #0074d9;
+}
+
 nav {
   display: flex;
   align-items: center;
