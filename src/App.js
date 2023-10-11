@@ -6,18 +6,25 @@ import Profile from "./pages/Profile";
 import Characters from "./pages/Characters";
 import NavBar from "./components/NavBar";
 import Marvelapi from "./components/marvelapi";
-import { CharDesc } from "./components/marvelapi";
+import { CharDesc, AllChar } from "./components/marvelapi";
 import "./App.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [desc, setDesc] = useState("");
+  const [allChar, setAllChar] = useState(null);
   
   // const [data, setData] = useState(null);
   // Marvelapi(setData);
 
-  // Route to get description of character - use name (thor for testing only)
-  CharDesc("thor", setDesc);
+  // Route to get description of character - use name (thor for testing only) currently use effect, change to when click
+  // CharDesc("thor", setDesc);
+
+
+  // Route to get all characters from backend db
+  AllChar(setAllChar);
+
+  
   return (
     <div className="App">
       <BrowserRouter>
