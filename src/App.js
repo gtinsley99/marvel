@@ -15,6 +15,7 @@ function App() {
   const [cookie, setCookie, removeCookie] = useCookies(["jwt_token"]);
   const [user, setUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [res, setRes] = useState(null);
   const [desc, setDesc] = useState("");
   const [allChar, setAllChar] = useState(null);
   const [comics, setComics] = useState(null);
@@ -37,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar loggedIn={loggedIn} />
+        <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Routes>
           <Route
             path="/"
@@ -53,6 +54,7 @@ function App() {
                 user={user}
                 setUser={setUser}
                 setLoggedIn={setLoggedIn}
+                setRes={setRes}
               />
             }
           />

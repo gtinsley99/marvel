@@ -29,14 +29,13 @@ const LoginComponent = (props) => {
           path: "/",
         });
         console.log(props.cookie);
-      } else {
-        props.removeCookie("jwt-token");
+        props.setLoggedIn(true);
       }
-      setUsername("");
-      setPassword("");
     } catch (error) {
       console.log(error);
     }
+    setUsername("");
+    setPassword("");
   };
 
   return (
@@ -48,13 +47,15 @@ const LoginComponent = (props) => {
           placeholder="Username"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
-          type="text"></input>
+          type="text"
+        ></input>
         <input
           className="barsLog"
           placeholder="Password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          type="password"></input>
+          type="password"
+        ></input>
         <button className="loginBtn" onClick={handleLogin}>
           Login
         </button>
