@@ -27,7 +27,7 @@ function App() {
   // CharComics("thor", "avengers", setComics);
 
  // Route to search for series by character, change from useeffect use name and input field (thor and a for testing only)
-  CharSeries("thor", "a", setSeries);
+  // CharSeries("thor", "a", setSeries);
 
   return (
     <div className="App">
