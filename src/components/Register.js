@@ -17,7 +17,6 @@ function RegistrationForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/register`,
@@ -43,6 +42,7 @@ function RegistrationForm(props) {
           path: "/",
         });
         console.log(props.cookie);
+        props.setLoggedIn(true);
       } else {
         const errorData = await response.json();
         setSuccessMessage(null);
@@ -54,6 +54,7 @@ function RegistrationForm(props) {
       setSuccessMessage(null);
       setError("An error occurred. Please try again.");
     }
+    setFormData({username: "", email: "", password: ""});
   };
 
   return (
