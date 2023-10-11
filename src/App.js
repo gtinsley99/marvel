@@ -11,20 +11,41 @@ import { useCookies } from "react-cookie";
 function App() {
   const [loading, setLoading] = useState(true);
   const [cookie, setCookie, removeCookie] = useCookies(["jwt_token"]);
-  const [user,setUser] = useState('');
-  const [loggedIn, setLoggedIn] = useState("Log in")
+  const [user, setUser] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar loggedIn={loggedIn}/>
+        <NavBar loggedIn={loggedIn} />
         <Routes>
           <Route
             path="/"
             element={<Home loading={loading} setLoading={setLoading} />}
           />
-          <Route path="/login" element={<Login cookie={cookie} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} setLoggedIn={setLoggedIn}/> }  />
-          <Route path="/profile" element={<Profile cookie={cookie} setCookie={setCookie} removeCookie={removeCookie}/>} />
+          <Route
+            path="/login"
+            element={
+              <Login
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+                user={user}
+                setUser={setUser}
+                setLoggedIn={setLoggedIn}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
           <Route path="/characters" element={<Characters />} />
         </Routes>
       </BrowserRouter>
