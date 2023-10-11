@@ -84,4 +84,28 @@ const getHash = (ts, privateKey, publicKey) => {
   return;
 };
 
+// Route to get all characters from backend
+export const AllChar = (setAllChar) => {
+  const [errors, setErrors] = useState(null);
+  
+  useEffect(() => {
+    const fetchAllCharacters = async () => {
+      try {
+        const res = await fetch(`${process.env.REACT_APP_API}/all`);
+        const allCharacters = await res.json();
+        setAllChar(allCharacters.characters)
+        console.log(allCharacters);
+        console.log(allCharacters.characters);
+      } catch (error) {
+        setErrors("Failed to fetch data");
+        console.log(error);
+        console.log(errors);
+      }
+    };
+    fetchAllCharacters();
+  }, []);
+
+  return;
+};
+
 // export default Marvelapi;
