@@ -9,6 +9,7 @@ import Marvelapi from "./components/marvelapi";
 import { CharDesc, AllChar, CharComics, CharSeries } from "./components/marvelapi";
 import "./App.css";
 import { useCookies } from "react-cookie";
+import { AuthCheck } from "./components/utils";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -34,6 +35,10 @@ function App() {
  // Route to search for series by character, change from useeffect use name and input field (thor and a for testing only)
   // CharSeries("thor", "a", setSeries);
 
+
+  const loginWithToken = async (cookie) => {
+    await AuthCheck(cookie.jwt_token, setUser);
+  };
 
   return (
     <div className="App">
