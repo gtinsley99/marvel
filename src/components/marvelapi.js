@@ -5,8 +5,8 @@ const getHash = (ts, privateKey, publicKey) => {
     return MD5(ts + privateKey + publicKey).toString();
 };
 
-//  // Route to marvel api to add character names, pic and id to own database  238, 322, 234
-// const Marvelapi = (setData) => {
+//  // Route to marvel api to add character names, pic and id to own database  events 238, 322, 234
+// export const Marvelapi = () => {
 //   const [errors, setErrors] = useState(null);
   
 //   useEffect(() => {
@@ -21,7 +21,6 @@ const getHash = (ts, privateKey, publicKey) => {
 //         const res = await fetch(`${url}`);
 //         const data = await res.json();
 //         console.log(data.data.results);
-//         setData(data.data.results);
 //         let characters = data.data.results;
 //         console.log(characters[0].id);
 //         for (let i = 0; i<characters.length; i++){
@@ -108,4 +107,34 @@ export const AllChar = (setAllChar) => {
   return;
 };
 
-// export default Marvelapi;
+// Route to search for comics with character from marvel api using stored id of character from backend
+export const CharComics = (name, input ,setComics) => {
+  const [errors, setErrors] = useState(null);
+  
+  useEffect(() => {
+    const fetchComics = async () => {
+      let apiKey = process.env.REACT_APP_API_KEY;
+      let privateKey = process.env.REACT_APP_PRIVATE_KEY;
+      let ts = Date.now().toString();
+      let hash = getHash(ts, privateKey, apiKey);
+      try {
+        const charRes = await fetch(`${process.env.REACT_APP_API}/one/${name}`);
+        const char = await charRes.json();
+        console.log(char);
+        const heroUrl= `${process.env.REACT_APP_BASE_URL}/v1/public/characters/${char.character.marvelID}/comics`;
+        let url = `${heroUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=20&titleStartsWith=${input}`;
+        const res = await fetch(`${url}`);
+        const data = await res.json();
+        console.log(data.data.results);
+        setComics(data.data.results);
+      } catch (error) {
+        setErrors("Failed to fetch data");
+        console.log(error);
+        console.log(errors);
+      }
+    };
+    fetchComics();
+  }, []);
+
+  return;
+};
