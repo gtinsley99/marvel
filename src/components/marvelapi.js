@@ -170,3 +170,27 @@ export const CharSeries = (name, input ,setSeries) => {
 
   return;
 };
+
+// Route to search for series with character from marvel api using stored id of character from backend - title, description, thumbnail(path.jpg) image
+export const PopChar = (setPop) => {
+  const [errors, setErrors] = useState(null);
+  
+  useEffect(() => {
+    const fetchPop = async () => {
+      try {
+        const res = await fetch(`${process.env.REACT_APP_API}/popular`);
+        const data = await res.json();
+        console.log(data);
+        console.log(data.characters);
+        setPop(data.characters);
+      } catch (error) {
+        setErrors("Failed to fetch data");
+        console.log(error);
+        console.log(errors);
+      }
+    };
+    fetchPop();
+  }, []);
+
+  return;
+};
