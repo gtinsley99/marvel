@@ -2,6 +2,7 @@ import { useState } from "react"; // import useState
 // import components to use
 import Popular from "../components/Popular";
 import ModalTab from "../components/Modal";
+import { CharDesc } from "../components/marvelapi";
 
 const Characters = (props) => {
   return (

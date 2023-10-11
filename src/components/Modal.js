@@ -1,15 +1,18 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import CharcterCard from "../components/CharcterCard";
-import PlaceHolder from "../images/marvel-placeholder.jpg";
 import "./Modal.css";
 import FavoriteIcon from "./FavoriteIcon";
+import { fetchDescription } from "./marvelapi";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [desc, setDesc] = useState("No character Description available");
+  const [errors, setErrors] = useState(null);
 
   function openModal() {
     setIsOpen(true);
+    fetchDescription(props.name, setDesc, errors, setErrors);
   }
 
   function closeModal() {
@@ -38,13 +41,7 @@ const ModalTab = (props) => {
           <div className="modal-right modal-side">
             <div className="description">
               <h3>Description</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent pretium felis nec mauris laoreet euismod tempus et leo.
-                Etiam vel diam est. Curabitur nec faucibus orci, a semper urna.
-                Suspendisse lacinia velit dui, vehicula viverra dolor ultricies
-                nec. Donec quis pellentesque lectus.{" "}
-              </p>
+              <p>{desc}</p>
             </div>
             <div className="comics">
               <h3>Comics Appeared In</h3>
