@@ -28,6 +28,10 @@ const LoginComponent = (props) => {
           maxAge: 604800,
           path: "/",
         });
+        props.setCookie("username", data.user.username, {
+          maxAge: 604800,
+          path: "/",
+        });
         console.log(props.cookie);
         props.setLoggedIn(true);
       }
