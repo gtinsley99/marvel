@@ -26,7 +26,7 @@ function App() {
 
 
   // Route to get all characters from backend db- useeffect on load
-  // AllChar(setAllChar);
+  AllChar(setAllChar);
 
   // Route to search for comics by character, change from useeffect use name and input field (thor and avengers for testing only)
   // CharComics("thor", "avengers", setComics);
