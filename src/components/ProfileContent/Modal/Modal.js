@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UpdateUsername, UpdatePassword, UpdateEmail, DeleteAccount } from "../../utils";
 
 const Modal = (props) => {
@@ -7,7 +8,7 @@ const Modal = (props) => {
     const [password, setPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [newEmail, setNewEmail] = useState("");
-
+    const navigate = useNavigate();
     const handleClick = () => {
         props.setShowModal(false)
         setUsername("");
@@ -43,7 +44,7 @@ const Modal = (props) => {
 
     const handleSubmitDelete = (e) => {
         e.preventDefault();
-        DeleteAccount(props.cookies.jwt_token, username, password, props.setUser, props.setLoggedIn);
+        DeleteAccount(props.cookies.jwt_token, username, password, props.setUser, props.setLoggedIn, navigate);
         setUsername("");
         setPassword("")
     };
