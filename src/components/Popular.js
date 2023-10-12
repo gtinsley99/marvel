@@ -8,6 +8,7 @@ const Popular = () => {
     "Black Widow",
     "Scarlet Witch",
   ]);
+
   return (
     <div className="popular">
       <h2> Popular Characters</h2>

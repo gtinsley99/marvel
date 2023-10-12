@@ -9,10 +9,12 @@ const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [desc, setDesc] = useState("No character Description available");
   const [errors, setErrors] = useState(null);
+  const [comicsAppearedIn, setComicsAppearedIn] = useState([]);
 
   function openModal() {
     setIsOpen(true);
-    fetchDescription(props.name, setDesc, errors, setErrors);
+    fetchDescription(props.name, setDesc, errors, setErrors, setComicsAppearedIn);
+    console.log(`comics apperaed in: ${comicsAppearedIn}`);
   }
 
   function closeModal() {
@@ -21,15 +23,8 @@ const ModalTab = (props) => {
 
   return (
     <div className="modal-holder">
-      <CharcterCard
-        onClick={openModal}
-        name={props.name}
-        imgSrc={props.imgSrc}
-      />
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Example Modal">
+      <CharcterCard onClick={openModal} name={props.name} imgSrc={props.imgSrc} />
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal">
         <div className="modal-tab">
           <div className="modal-left modal-side">
             <button onClick={closeModal}>close</button>
@@ -45,7 +40,10 @@ const ModalTab = (props) => {
             </div>
             <div className="comics">
               <h3>Comics Appeared In</h3>
-              <p>Random Comic</p>
+              {comicsAppearedIn &&
+                comicsAppearedIn.map((comic, index) => {
+                  return <p>{comic.name}</p>;
+                })}
             </div>
             <div className="release">
               <h3>Release of Character</h3>
