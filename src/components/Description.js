@@ -2,7 +2,7 @@ const Description = () => {
     return (
         <div>
             <p>
-                Welcome to the "Marvel Character Encyclopedia," your ultimate guide to the fascinating world of Marvel characters and the comics that have brought their stories to life. Whether you're a lifelong Marvel aficionado or a newcomer looking to dive into the epic narratives of these iconic characters, our website is here to provide you with a comprehensive resource that delves deep into their descriptions and the comics that have defined their journeys.
+                Welcome to the "Marvel Character Encyclopedia", your ultimate guide to the fascinating world of Marvel characters and the comics that have brought their stories to life. Whether you're a lifelong Marvel aficionado or a newcomer looking to dive into the epic narratives of these iconic characters, our website is here to provide you with a comprehensive resource that delves deep into their descriptions and the comics that have defined their journeys.
             </p>
             <p>
                 Marvel Characters and Their Stories:
