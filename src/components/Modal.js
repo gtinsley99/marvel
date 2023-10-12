@@ -38,12 +38,14 @@ const ModalTab = (props) => {
               <h3>Description</h3>
               <p>{desc}</p>
             </div>
-            <div className="comics">
+            <div className="comics-section">
               <h3>Comics Appeared In</h3>
-              {comicsAppearedIn &&
-                comicsAppearedIn.map((comic, index) => {
-                  return <p>{comic.name}</p>;
-                })}
+              <div className="comics">
+                {comicsAppearedIn &&
+                  comicsAppearedIn.map((comic, index) => {
+                    return <p>{comic.name}</p>;
+                  })}
+              </div>
             </div>
             <div className="release">
               <h3>Release of Character</h3>

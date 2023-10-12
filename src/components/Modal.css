@@ -41,6 +41,19 @@
   margin: 20px 0;
 }
 
+.comics-section {
+  height: 30%;
+}
+
+.comics {
+  height: 80%;
+  overflow-y: scroll;
+}
+
+.release h3 {
+  padding-top: 40px;
+}
+
 .modal-favorite {
   transform: scale(3);
 }
