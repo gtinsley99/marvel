@@ -24,6 +24,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  width: 40%;
 }
 
 .modal-right {
@@ -31,6 +32,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: left;
+  width: 60%;
 }
 
 .fav-and-variants {
