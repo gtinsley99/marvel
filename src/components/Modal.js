@@ -15,7 +15,9 @@ const ModalTab = (props) => {
   function openModal() {
     setIsOpen(true);
     fetchDescription(props.name, setDesc, errors, setErrors);
+    if (props.cookies.jwt_token){
     CheckIfFavChar(props.name, props.cookies.jwt_token, setIconClicked);
+    }
   }
 
   function closeModal() {
