@@ -2,20 +2,16 @@ import { useState } from "react";
 import "./Popular.css";
 import ModalTab from "./Modal";
 
-const Popular = () => {
-  const [popularCharacters] = useState([
-    "Captain America",
-    "Black Widow",
-    "Scarlet Witch",
-  ]);
-
+const Popular = (props) => {
   return (
     <div className="popular">
       <h2> Popular Characters</h2>
       <div className="popular-holder">
-        {popularCharacters.map((char, index) => {
-          return <ModalTab name={char} key={index} />;
-        })}
+        {props.pop
+          ? props.pop.map((char, index) => {
+              return <ModalTab name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} />;
+            })
+          : "Fetching popular characters"}
       </div>
     </div>
   );

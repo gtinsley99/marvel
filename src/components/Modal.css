@@ -61,3 +61,48 @@
 .variants-btn {
   font-size: 26px;
 }
+
+.close-button {
+  font-size: 26px;
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: #00A000;
+  color: white;
+  box-shadow: 3px 3px 3px #006600;
+}
+
+.close-button:hover {
+  transform: scale(1.1);
+  background-color: #00cc00;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.close-button:active {
+  background-color: #00A000;
+}
+
+.variants-button {
+  font-size: 20px;
+  width:180px;
+  height:40px;
+  border: none;
+  border-radius: 10px;
+  background-color: #00A000;
+  color: white;
+  box-shadow: 3px 3px 3px #006600;
+}
+
+.variants-button:hover {
+  transform: scale(1.1);
+  background-color: #00cc00;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.variants-button:active {
+  background-color: #00A000;
+
+}

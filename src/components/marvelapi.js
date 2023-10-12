@@ -6,45 +6,45 @@ const getHash = (ts, privateKey, publicKey) => {
 };
 
 //  // Route to marvel api to add character names, pic and id to own database  events 238, 322, 234
-// export const Marvelapi = () => {
-//   const [errors, setErrors] = useState(null);
+export const Marvelapi = () => {
+  const [errors, setErrors] = useState(null);
 
-//   useEffect(() => {
-//     const fetchCharacters = async () => {
-//         const heroUrl= `${process.env.REACT_APP_BASE_URL}/v1/public/events/238/characters`;
-//         let ts = Date.now().toString();
-//         let apiKey = process.env.REACT_APP_API_KEY;
-//         let privateKey = process.env.REACT_APP_PRIVATE_KEY;
-//         let hash = getHash(ts, privateKey, apiKey);
-//         let url = `${heroUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=100`;
-//       try {
-//         const res = await fetch(`${url}`);
-//         const data = await res.json();
-//         console.log(data.data.results);
-//         let characters = data.data.results;
-//         console.log(characters[0].id);
-//         for (let i = 0; i<characters.length; i++){
-//         await fetch("http://localhost:5001/add", {
-//           method: "POST",
-//           headers: { "Content-Type": "application/json" },
-//           body: JSON.stringify({
-//             name: characters[i].name,
-//             image: `${characters[i].thumbnail.path}.jpg`,
-//             description: characters[i].description,
-//             marvelID: characters[i].id,
-//           }),
-//         })};
-//       } catch (error) {
-//         setErrors("Failed to fetch data");
-//         console.log(error);
-//         console.log(errors);
-//       }
-//     };
-//     fetchCharacters();
-//   }, []);
+  useEffect(() => {
+    const fetchCharacters = async () => {
+        const heroUrl= `${process.env.REACT_APP_BASE_URL}/v1/public/events/322/characters`;
+        let ts = Date.now().toString();
+        let apiKey = process.env.REACT_APP_API_KEY;
+        let privateKey = process.env.REACT_APP_PRIVATE_KEY;
+        let hash = getHash(ts, privateKey, apiKey);
+        let url = `${heroUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=100`;
+      try {
+        const res = await fetch(`${url}`);
+        const data = await res.json();
+        console.log(data.data.results);
+        let characters = data.data.results;
+        console.log(characters[0].id);
+        for (let i = 0; i<characters.length; i++){
+        await fetch("http://localhost:5001/add", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: characters[i].name,
+            image: `${characters[i].thumbnail.path}.jpg`,
+            description: characters[i].description,
+            marvelID: characters[i].id,
+          }),
+        })};
+      } catch (error) {
+        setErrors("Failed to fetch data");
+        console.log(error);
+        console.log(errors);
+      }
+    };
+    fetchCharacters();
+  }, []);
 
-//   return;
-// };
+  return;
+};
 
 // Route to get description from marvel api using stored id of character from backend
 
@@ -183,4 +183,115 @@ export const CharSeries = (name, input, setSeries) => {
   }, []);
 
   return;
+};
+
+// Route to search for most popular characters
+export const PopChar = (setPop) => {
+  const [errors, setErrors] = useState(null);
+
+  useEffect(() => {
+    const fetchPop = async () => {
+      try {
+        const res = await fetch(`${process.env.REACT_APP_API}/popular`);
+        const data = await res.json();
+        console.log(data);
+        console.log(data.characters);
+        setPop(data.characters);
+      } catch (error) {
+        setErrors("Failed to fetch data");
+        console.log(error);
+        console.log(errors);
+      }
+    };
+    fetchPop();
+  }, []);
+
+  return;
+};
+
+// Route to add a favourite character
+export const AddFavChar = async (jwt_token, charName) => {
+  try {
+    const res = await fetch(`${process.env.REACT_APP_API}/addfavourite`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt_token}`,
+      },
+      body: JSON.stringify({
+        name: charName
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+  } catch (error) {
+    console.log("Failed to fetch data");
+    console.log(error);
+  }
+};
+
+// Route to remove a favourite character
+export const DeleteFavChar = async (jwt_token, charName) => {
+  try {
+    const res = await fetch(`${process.env.REACT_APP_API}/deletecharacter`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt_token}`,
+      },
+      body: JSON.stringify({
+        name: charName
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+  } catch (error) {
+    console.log("Failed to fetch data");
+    console.log(error);
+   
+  }
+};
+
+// Route to check if character is a favourite
+export const CheckIfFavChar = async (name, jwt_token, setIconClicked) => {
+  try {
+    const res = await fetch(`${process.env.REACT_APP_API}/isfavourite/${name}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt_token}`,
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.message === "Is not a favourite"){
+      setIconClicked(true);
+    } else if (data.message === "Is a favourite"){
+      setIconClicked(false);
+    };
+  } catch (error) {
+    console.log("Failed to fetch data");
+    console.log(error);
+   
+  }
+};
+
+// Route to get fav characters of user
+export const UserFavChar = async (jwt_token, setFavs) => {
+  try {
+    const res = await fetch(`${process.env.REACT_APP_API}/favourites`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt_token}`,
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    setFavs(data.favourites);
+  } catch (error) {
+    console.log("Failed to fetch data");
+    console.log(error);
+   
+  }
 };

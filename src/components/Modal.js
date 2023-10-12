@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import CharcterCard from "../components/CharcterCard";
 import "./Modal.css";
 import FavoriteIcon from "./FavoriteIcon";
-import { fetchDescription, fetchComics } from "./marvelapi";
+import { fetchDescription, fetchComics, CheckIfFavChar } from "./marvelapi";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -13,11 +13,16 @@ const ModalTab = (props) => {
   const [comicsAppearedIn, setComicsAppearedIn] = useState([]);
   const [comicSearchTerm, setComicSearchTerm] = useState("");
   const [comicsFiltered, setComicsFiltered] = useState([]);
+  const [iconClicked, setIconClicked] = useState(true); // set up iconClicked State
+  const [showToolTip, setShowToolTip] = useState(false); // set up showToolTip State
 
   function openModal() {
     setIsOpen(true);
     fetchDescription(props.name, setDesc, errors, setErrors);
     fetchComics(props.name, errors, setErrors, setComicsAppearedIn, setComicsFiltered);
+    if (props.cookies.jwt_token) {
+      CheckIfFavChar(props.name, props.cookies.jwt_token, setIconClicked);
+    }
   }
 
   function closeModal() {
@@ -37,10 +42,12 @@ const ModalTab = (props) => {
   return (
     <div className="modal-holder">
       <CharcterCard onClick={openModal} name={props.name} imgSrc={props.imgSrc} />
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal">
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal" ariaHideApp={false}>
         <div className="modal-tab">
           <div className="modal-left modal-side">
-            <button onClick={closeModal}>close</button>
+            <button className="close-button" onClick={closeModal}>
+              &#10229;
+            </button>
             <div className="popup-image-div">
               <img className="popup-image" src={props.imgSrc} alt="marvel" />
             </div>
@@ -54,7 +61,7 @@ const ModalTab = (props) => {
             <div className="comics-section">
               <h3>Comics Appeared In</h3>
               <form>
-                <input placeHolder="search for comics" onChange={handleChange} />
+                <input placeholder="search for comics" onChange={handleChange} />
               </form>
               <div className="comics">
                 {comicsFiltered &&
@@ -68,8 +75,10 @@ const ModalTab = (props) => {
               <p>Random Year</p>
             </div>
             <div className="fav-and-variants">
-              <FavoriteIcon />
-              <button className="variants-btn">See Variants</button>
+              <FavoriteIcon cookies={props.cookies} iconClicked={iconClicked} setIconClicked={setIconClicked} showToolTip={showToolTip} setShowToolTip={setShowToolTip} name={props.name} />
+              <button className="variants-button" onClick={closeModal}>
+                See Variants
+              </button>
             </div>
           </div>
         </div>
