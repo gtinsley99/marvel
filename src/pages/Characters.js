@@ -12,7 +12,7 @@ const Characters = (props) => {
   return (
     <>
       <div>
-        <Popular />
+        <Popular pop={pop}/>
       </div>
       {/* Map the characters from the character list into cards */}
       <div className="card-container">
