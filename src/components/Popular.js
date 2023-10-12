@@ -9,7 +9,7 @@ const Popular = (props) => {
       <div className="popular-holder">
         {props.pop ?
         props.pop.map((char, index) => {
-          return <ModalTab name={char.name} imgSrc={char.image} key={index} />;
+          return <ModalTab name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} />;
         }) : "Fetching popular characters"}
       </div>
     </div>
