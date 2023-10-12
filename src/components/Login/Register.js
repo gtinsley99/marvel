@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Register } from "../utils";
 
 function RegistrationForm(props) {
   const [formData, setFormData] = useState({
@@ -8,8 +9,8 @@ function RegistrationForm(props) {
     password: "",
   });
 
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);
+  const [errors, setErrors] = useState(null);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,46 +20,14 @@ function RegistrationForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API}/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: formData.username,
-            email: formData.email,
-            password: formData.password,
-          }),
-        }
-      );
-        const data = await response.json();
-        setSuccessMessage(data.successMessage);
-        setError(null);
-        props.setCookie("jwt_token", data.user.token, {
-          maxAge: 604800,
-          path: "/",
-        });
-        props.setCookie("username", data.user.username, {
-          maxAge: 604800,
-          path: "/",
-        });
-        console.log(props.cookie);
-        props.setLoggedIn(true);
-        navigate("/");
-    } catch (error) {
-      console.error("Error:", error);
-      setSuccessMessage(null);
-      setError("An error occurred. Please try again.");
-    }
+    Register(formData.username, formData.email, formData.password, setErrors, props.setCookie, props.setLoggedIn, props.setUser, navigate);
     setFormData({username: "", email: "", password: ""});
   };
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
       <h1>Register an account</h1>
+      {errors && <h3 className="errorMsg">{errors}</h3>}
       <div>
         <label htmlFor="username"></label>
         <input
@@ -96,8 +65,6 @@ function RegistrationForm(props) {
       <button className="loginBtn" type="submit">
         Register
       </button>
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {error && <p className="error-message">{error}</p>}
     </form>
   );
 }

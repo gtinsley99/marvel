@@ -8,6 +8,7 @@ const NavBar = (props) => {
   const handleClick = () => {
     if (props.loggedIn){
       props.setLoggedIn(false);
+      props.setUser("");
       document.cookie =
       "jwt_token=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie =
