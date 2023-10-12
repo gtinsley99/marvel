@@ -6,7 +6,7 @@ import "./Login.css";
 const LoginComponent = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
@@ -24,6 +24,11 @@ const LoginComponent = (props) => {
       });
       const data = await response.json();
       console.log(data);
+      if (data.message === "Username or password incorrect"){
+        setErrors(data.message);
+        console.log(errors);
+        return;
+      }
       if (data.message === "User logged in") {
         props.setCookie("jwt_token", data.user.token, {
           maxAge: 604800,
@@ -38,7 +43,8 @@ const LoginComponent = (props) => {
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+     
     }
     setUsername("");
     setPassword("");
@@ -48,6 +54,7 @@ const LoginComponent = (props) => {
     <div>
       <form className="login-form">
         <h1>Login to your account</h1>
+        {errors && <h3 className="errorMsg">{errors}</h3>}
         <input
           className="barsLog"
           placeholder="Username"

@@ -8,8 +8,8 @@ function RegistrationForm(props) {
     password: "",
   });
 
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);
+  const [errors, setErrors] = useState(null);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -35,8 +35,11 @@ function RegistrationForm(props) {
         }
       );
         const data = await response.json();
-        setSuccessMessage(data.successMessage);
-        setError(null);
+        console.log(data)
+        if (data.message === "Username taken" || data.message === "Invalid email address" || data.message === "Email address taken"){
+          setErrors(data.message);
+          return;
+        }
         props.setCookie("jwt_token", data.user.token, {
           maxAge: 604800,
           path: "/",
@@ -50,8 +53,6 @@ function RegistrationForm(props) {
         navigate("/");
     } catch (error) {
       console.error("Error:", error);
-      setSuccessMessage(null);
-      setError("An error occurred. Please try again.");
     }
     setFormData({username: "", email: "", password: ""});
   };
@@ -59,6 +60,7 @@ function RegistrationForm(props) {
   return (
     <form onSubmit={handleSubmit} className="login-form">
       <h1>Register an account</h1>
+      {errors && <h3 className="errorMsg">{errors}</h3>}
       <div>
         <label htmlFor="username"></label>
         <input
@@ -96,8 +98,6 @@ function RegistrationForm(props) {
       <button className="loginBtn" type="submit">
         Register
       </button>
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      {error && <p className="error-message">{error}</p>}
     </form>
   );
 }
