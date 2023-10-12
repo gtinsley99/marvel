@@ -51,7 +51,7 @@ const ModalTab = (props) => {
               <p>Random Year</p>
             </div>
             <div className="fav-and-variants">
-              <FavoriteIcon />
+              <FavoriteIcon cookies={props.cookies}/>
               <button className="variants-btn">See Variants</button>
             </div>
           </div>

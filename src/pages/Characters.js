@@ -3,7 +3,7 @@ import { useState } from "react"; // import useState
 import Popular from "../components/Popular";
 import ModalTab from "../components/Modal";
 
-const Characters = () => {
+const Characters = (props) => {
   const [characterList] = useState([
     "iron-man",
     "captain america",
@@ -24,7 +24,7 @@ const Characters = () => {
       {/* Map the characters from the character list into cards */}
       <div className="card-container">
         {characterList.map((char, index) => {
-          return <ModalTab name={char} key={index} />;
+          return <ModalTab name={char} key={index} cookies={props.cookies}/>;
         })}
       </div>
     </>

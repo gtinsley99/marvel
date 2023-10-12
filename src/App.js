@@ -84,7 +84,7 @@ function App() {
               />
             }
           />
-          <Route path="/characters" element={<Characters />} />
+          <Route path="/characters" element={<Characters cookies={cookies} />} />
         </Routes>
       </BrowserRouter>
     </div>

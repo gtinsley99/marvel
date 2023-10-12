@@ -1,14 +1,20 @@
 import { useState } from "react";
 import StarBorderPurple500Icon from "@mui/icons-material/StarBorderPurple500";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import { AddFavChar, DeleteFavChar } from "./marvelapi";
 
-const FavoriteIcon = () => {
+const FavoriteIcon = (props) => {
   const [iconClicked, setIconClicked] = useState(true); // set up iconClicked State
   const [showToolTip, setShowToolTip] = useState(false); // set up showToolTip State
 
   // function to change the state "iconClicked" when  the icon is clicked
   const handleIconClick = () => {
     setIconClicked(!iconClicked);
+    if (iconClicked){
+      AddFavChar(props.cookies.jwt_token, "thor");
+    } else {
+      DeleteFavChar(props.cookies.jwt_token, "thor");
+    }
   };
 
   const handleMouseEnter = () => {
