@@ -3,19 +3,21 @@ import Modal from "react-modal";
 import CharcterCard from "../components/CharcterCard";
 import "./Modal.css";
 import FavoriteIcon from "./FavoriteIcon";
-import { fetchDescription } from "./marvelapi";
+import { fetchDescription, fetchComics } from "./marvelapi";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [desc, setDesc] = useState("No character Description available");
   const [errors, setErrors] = useState(null);
+  const [comicErrors, setComicErrors] = useState(null);
   const [comicsAppearedIn, setComicsAppearedIn] = useState([]);
   const [comicSearchTerm, setComicSearchTerm] = useState("");
   const [comicsFiltered, setComicsFiltered] = useState([]);
 
   function openModal() {
     setIsOpen(true);
-    fetchDescription(props.name, setDesc, errors, setErrors, setComicsAppearedIn, setComicsFiltered);
+    fetchDescription(props.name, setDesc, errors, setErrors);
+    fetchComics(props.name, errors, setErrors, setComicsAppearedIn, setComicsFiltered);
   }
 
   function closeModal() {
@@ -26,7 +28,7 @@ const ModalTab = (props) => {
     setComicSearchTerm(e.target.value);
 
     const filteredComics = comicsAppearedIn.filter((comic) => {
-      return comic.name.includes(comicSearchTerm);
+      return comic.title.includes(comicSearchTerm);
     });
 
     setComicsFiltered(filteredComics);
@@ -57,7 +59,7 @@ const ModalTab = (props) => {
               <div className="comics">
                 {comicsFiltered &&
                   comicsFiltered.map((comic, index) => {
-                    return <p>{comic.name}</p>;
+                    return <p>{comic.title}</p>;
                   })}
               </div>
             </div>

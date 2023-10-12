@@ -74,6 +74,29 @@ export const fetchDescription = async (name, setDesc, errors, setErrors, setComi
   }
 };
 
+// fetch first 100 comics appeared in
+export const fetchComics = async (name, errors, setErrors, setComicsAppearedIn, setComicsFiltered) => {
+  let apiKey = process.env.REACT_APP_API_KEY;
+  let privateKey = process.env.REACT_APP_PRIVATE_KEY;
+  let ts = Date.now().toString();
+  let hash = getHash(ts, privateKey, apiKey);
+  try {
+    const charRes = await fetch(`${process.env.REACT_APP_API_URL}/one/${name}`);
+    const char = await charRes.json();
+    console.log(char);
+    const heroUrl = `${process.env.REACT_APP_BASE_URL}/v1/public/characters/${char.character.marvelID}/comics`;
+    let url = `${heroUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=100`;
+    const res = await fetch(`${url}`);
+    const data = await res.json();
+    setComicsAppearedIn(data.data.results);
+    setComicsFiltered(data.data.results);
+  } catch (error) {
+    setErrors("Failed to fetch data");
+    console.log(error);
+    console.log(errors);
+  }
+};
+
 // Route to get all characters from backend
 export const AllChar = (setAllChar) => {
   const [errors, setErrors] = useState(null);
