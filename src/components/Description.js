@@ -2,34 +2,28 @@ const Description = () => {
     return (
         <div>
             <p>
-                Welcome to "Marvelous Abilities," your gateway to the extraordinary world of Marvel characters and their incredible skills and powers. In this immersive digital experience, we invite you to embark on a thrilling journey through the vast Marvel Universe, where you'll discover the awe-inspiring abilities possessed by your favorite superheroes and supervillains. Whether you're a long-time Marvel aficionado or a newcomer to this captivating realm, our website is designed to entertain, educate, and inspire.
+                Welcome to the "Marvel Character Encyclopedia," your ultimate guide to the fascinating world of Marvel characters and the comics that have brought their stories to life. Whether you're a lifelong Marvel aficionado or a newcomer looking to dive into the epic narratives of these iconic characters, our website is here to provide you with a comprehensive resource that delves deep into their descriptions and the comics that have defined their journeys.
             </p>
             <p>
-                Explore Our Website:
-                Our website is your one-stop destination to delve into the powers and skills of Marvel characters. Here's what you can expect to find:
-            </p>
-            <p>
-                Character Profiles: Detailed profiles of your favorite Marvel characters, complete with their origin stories, power descriptions, and notable moments in the comics and movies.
-            </p>
-            <p>
-                Powers and Abilities: A comprehensive breakdown of the superhuman abilities, gadgets, and technology that make each character unique. Learn how they acquired their powers and how they use them to fight for justice or wreak havoc.
-            </p>
-            <p>
-                Fun Facts and Trivia: Discover lesser-known facts, trivia, and easter eggs hidden within the Marvel Universe, adding depth to your understanding of these iconic characters.
-            </p>
-            <p>
-                Interactive Quizzes: Test your knowledge with interactive quizzes that challenge your familiarity with Marvel's finest heroes and most cunning villains.
-            </p>
-            <p>
-                Join the Marvel Community:
-                "Marvelous Abilities" is more than just a website; it's a community of fans, united by their passion for the Marvel Universe. Connect with fellow enthusiasts through our discussion forums, share your favorite character moments, and debate the merits of superheroes and supervillains.
+                Marvel Characters and Their Stories:
+                Marvel Comics has introduced a vast array of characters, each with its own unique personality, origin story, and abilities. From the wall-crawling heroics of Spider-Man to the cosmic adventures of the Guardians of the Galaxy, the Marvel Universe is a tapestry of diverse characters, each with a story waiting to be explored. Our website is dedicated to shedding light on these characters and the worlds they inhabit.
             </p>
             <p> 
-            Get Started:
-            Are you ready to unlock the secrets behind the superpowers of Marvel characters? Whether you're curious about the genius of Tony Stark (Iron Man), the mysticism of Doctor Strange, or the strength of the Hulk, our website is your portal to explore and celebrate the remarkable abilities that define these beloved characters.
+                Explore Our Website:
+                Here's what you can expect to discover on the "Marvel Character Encyclopedia":
             </p>
             <p>
-            Join us on this exciting adventure through the Marvel Universe, and prepare to be amazed by the Marvelous Abilities of the characters who have captured our imaginations and inspired generations of fans. Start your journey now and embrace the extraordinary!
+                Character Descriptions: Detailed and captivating character profiles that provide insight into their personalities, origins, and motivations. Learn about their strengths, weaknesses, and how they fit into the broader Marvel Universe.
+            </p>
+            <p>
+                Featured Comics: A comprehensive list of comic book series, issues, and story arcs where each character has played a significant role. You can trace their journeys and pivotal moments through the comics.
+            </p>
+            <p>
+                Get Started:
+                Sign in and keep your knowledge up to date following your favoutite characters and have a more optimised experience!
+            </p>
+            <p>
+                Join us in celebrating the rich history and vibrant narratives of Marvel characters and the comics that have defined their legacies. Start your adventure now and get lost in the mesmerizing stories that have captivated readers for generations. Marvel Character Encyclopedia is your key to unlocking the incredible world of Marvel comics!
             </p>
     </div>
     );
