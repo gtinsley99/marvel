@@ -1,21 +1,8 @@
-import { useState } from "react"; // import useState
 // import components to use
 import Popular from "../components/Popular";
 import ModalTab from "../components/Modal";
 
 const Characters = (props) => {
-  const [characterList] = useState([
-    "iron-man",
-    "captain america",
-    "spider-man",
-    "hulk",
-    "hawkeye",
-    "black-widow",
-    "doctor strange",
-    "deadpool",
-    "scarlet witch",
-  ]);
-
   return (
     <>
       <div>
@@ -23,9 +10,13 @@ const Characters = (props) => {
       </div>
       {/* Map the characters from the character list into cards */}
       <div className="card-container">
-        {characterList.map((char, index) => {
-          return <ModalTab name={char} key={index} cookies={props.cookies}/>;
-        })}
+        {props.allChar
+          ? props.allChar.map((char, index) => {
+              return (
+                <ModalTab name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} />
+              );
+            })
+          : "Fetching Character Data"}
       </div>
     </>
   );

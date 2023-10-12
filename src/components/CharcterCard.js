@@ -10,7 +10,7 @@ const CharcterCard = (props) => {
   return (
     <div className="character-card" onClick={props.onClick}>
       {/* Character image */}
-      <img src={Placeholder} alt="character" />
+      <img src={`${props.imgSrc}`} alt="character" />
       {/* Character Name */}
       <h2>{props.name}</h2>
     </div>

@@ -20,20 +20,18 @@ function App() {
   const [res, setRes] = useState(null);
   const [desc, setDesc] = useState("");
   const [allChar, setAllChar] = useState(null);
-  const [comics, setComics] = useState(null);
-  const [series, setSeries] = useState(null);
 
   // Route to get description of character - use name (thor for testing only) currently use effect, change to when click
   // CharDesc("thor", setDesc);
 
-
   // Route to get all characters from backend db- useeffect on load
-  // AllChar(setAllChar);
+  AllChar(setAllChar);
+  console.log(`all characters state: ${allChar}`);
 
   // Route to search for comics by character, change from useeffect use name and input field (thor and avengers for testing only)
   // CharComics("thor", "avengers", setComics);
 
- // Route to search for series by character, change from useeffect use name and input field (thor and a for testing only)
+  // Route to search for series by character, change from useeffect use name and input field (thor and a for testing only)
   // CharSeries("thor", "a", setSeries);
 
   // Route to get most popular characters
@@ -84,7 +82,10 @@ function App() {
               />
             }
           />
-          <Route path="/characters" element={<Characters cookies={cookies} />} />
+          <Route
+            path="/characters"
+            element={<Characters cookies={cookies} allChar={allChar} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

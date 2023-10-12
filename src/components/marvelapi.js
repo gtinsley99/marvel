@@ -47,38 +47,28 @@ const getHash = (ts, privateKey, publicKey) => {
 // };
 
 // Route to get description from marvel api using stored id of character from backend
-export const CharDesc = (name, setDesc) => {
-  const [errors, setErrors] = useState(null);
-  const [charData, setCharData] = useState("");
 
-  useEffect(() => {
-    const fetchCharacter = async () => {
-      let apiKey = process.env.REACT_APP_API_KEY;
-      let privateKey = process.env.REACT_APP_PRIVATE_KEY;
-      let ts = Date.now().toString();
-      let hash = getHash(ts, privateKey, apiKey);
-      try {
-        const charRes = await fetch(`${process.env.REACT_APP_API}/one/${name}`);
-        const char = await charRes.json();
-        setCharData(char);
-        console.log(char);
-        const heroUrl = `${process.env.REACT_APP_BASE_URL}/v1/public/characters/${char.character.marvelID}`;
-        let url = `${heroUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=1`;
-        const res = await fetch(`${url}`);
-        const data = await res.json();
-        console.log(data.data.results[0]);
-        console.log(data.data.results[0].description);
-        setDesc(data.data.results[0].description);
-      } catch (error) {
-        setErrors("Failed to fetch data");
-        console.log(error);
-        console.log(errors);
-      }
-    };
-    fetchCharacter();
-  }, []);
-
-  return;
+export const fetchDescription = async (name, setDesc, errors, setErrors) => {
+  let apiKey = process.env.REACT_APP_API_KEY;
+  let privateKey = process.env.REACT_APP_PRIVATE_KEY;
+  let ts = Date.now().toString();
+  let hash = getHash(ts, privateKey, apiKey);
+  try {
+    const charRes = await fetch(`${process.env.REACT_APP_API_URL}/one/${name}`);
+    const char = await charRes.json();
+    console.log(char);
+    const heroUrl = `${process.env.REACT_APP_BASE_URL}/v1/public/characters/${char.character.marvelID}`;
+    let url = `${heroUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=1`;
+    const res = await fetch(`${url}`);
+    const data = await res.json();
+    console.log(data.data.results[0]);
+    console.log(data.data.results[0].description);
+    setDesc(data.data.results[0].description);
+  } catch (error) {
+    setErrors("Failed to fetch data");
+    console.log(error);
+    console.log(errors);
+  }
 };
 
 // Route to get all characters from backend
@@ -88,7 +78,7 @@ export const AllChar = (setAllChar) => {
   useEffect(() => {
     const fetchAllCharacters = async () => {
       try {
-        const res = await fetch(`${process.env.REACT_APP_API}/all`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/all`);
         const allCharacters = await res.json();
         setAllChar(allCharacters.characters);
         console.log(allCharacters);
@@ -116,7 +106,9 @@ export const CharComics = (name, input, setComics) => {
       let ts = Date.now().toString();
       let hash = getHash(ts, privateKey, apiKey);
       try {
-        const charRes = await fetch(`${process.env.REACT_APP_API}/one/${name}`);
+        const charRes = await fetch(
+          `${process.env.REACT_APP_API_URL}/one/${name}`
+        );
         const char = await charRes.json();
         console.log(char);
         const heroUrl = `${process.env.REACT_APP_BASE_URL}/v1/public/characters/${char.character.marvelID}/comics`;
@@ -148,7 +140,9 @@ export const CharSeries = (name, input, setSeries) => {
       let ts = Date.now().toString();
       let hash = getHash(ts, privateKey, apiKey);
       try {
-        const charRes = await fetch(`${process.env.REACT_APP_API}/one/${name}`);
+        const charRes = await fetch(
+          `${process.env.REACT_APP_API_URL}/one/${name}`
+        );
         const char = await charRes.json();
         console.log(char);
         const heroUrl = `${process.env.REACT_APP_BASE_URL}/v1/public/characters/${char.character.marvelID}/series`;
@@ -229,6 +223,30 @@ export const DeleteFavChar = async (jwt_token, charName) => {
     });
     const data = await res.json();
     console.log(data);
+  } catch (error) {
+    console.log("Failed to fetch data");
+    console.log(error);
+   
+  }
+};
+
+// Route to check if character is a favourite
+export const CheckIfFavChar = async (name, jwt_token, setIconClicked) => {
+  try {
+    const res = await fetch(`${process.env.REACT_APP_API}/isfavourite/${name}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt_token}`,
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.message === "Is not a favourite"){
+      setIconClicked(true);
+    } else if (data.message === "Is a favourite"){
+      setIconClicked(false);
+    };
   } catch (error) {
     console.log("Failed to fetch data");
     console.log(error);
