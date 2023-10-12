@@ -3,16 +3,19 @@ import Modal from "react-modal";
 import CharcterCard from "../components/CharcterCard";
 import "./Modal.css";
 import FavoriteIcon from "./FavoriteIcon";
-import { fetchDescription } from "./marvelapi";
+import { fetchDescription, CheckIfFavChar } from "./marvelapi";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [desc, setDesc] = useState("No character Description available");
   const [errors, setErrors] = useState(null);
+  const [iconClicked, setIconClicked] = useState(true); // set up iconClicked State
+  const [showToolTip, setShowToolTip] = useState(false); // set up showToolTip State
 
   function openModal() {
     setIsOpen(true);
     fetchDescription(props.name, setDesc, errors, setErrors);
+    CheckIfFavChar(props.name, props.cookies.jwt_token, setIconClicked);
   }
 
   function closeModal() {
@@ -29,7 +32,8 @@ const ModalTab = (props) => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        contentLabel="Example Modal">
+        contentLabel="Example Modal"
+      >
         <div className="modal-tab">
           <div className="modal-left modal-side">
             <button onClick={closeModal}>close</button>
@@ -52,7 +56,14 @@ const ModalTab = (props) => {
               <p>Random Year</p>
             </div>
             <div className="fav-and-variants">
-              <FavoriteIcon />
+              <FavoriteIcon
+                cookies={props.cookies}
+                iconClicked={iconClicked}
+                setIconClicked={setIconClicked}
+                showToolTip={showToolTip}
+                setShowToolTip={setShowToolTip}
+                name={props.name}
+              />
               <button className="variants-btn">See Variants</button>
             </div>
           </div>

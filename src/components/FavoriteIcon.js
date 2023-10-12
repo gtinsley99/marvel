@@ -1,26 +1,31 @@
 import { useState } from "react";
 import StarBorderPurple500Icon from "@mui/icons-material/StarBorderPurple500";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import { AddFavChar, DeleteFavChar } from "./marvelapi";
 
-const FavoriteIcon = () => {
-  const [iconClicked, setIconClicked] = useState(true); // set up iconClicked State
-  const [showToolTip, setShowToolTip] = useState(false); // set up showToolTip State
+const FavoriteIcon = (props) => {
+
 
   // function to change the state "iconClicked" when  the icon is clicked
   const handleIconClick = () => {
-    setIconClicked(!iconClicked);
+    props.setIconClicked(!props.iconClicked);
+    if (props.iconClicked){
+      AddFavChar(props.cookies.jwt_token, props.name);
+    } else {
+      DeleteFavChar(props.cookies.jwt_token, props.name);
+    }
   };
 
   const handleMouseEnter = () => {
-    setShowToolTip(true);
+    props.setShowToolTip(true);
   };
 
   const handleMouseLeave = () => {
-    setShowToolTip(false);
+    props.setShowToolTip(false);
   };
 
   // render either filled in icon or not filled in depending on "iconClicked" state
-  const icon = iconClicked ? (
+  const icon = props.iconClicked ? (
     <div
       className="icon-holder"
       onMouseEnter={handleMouseEnter}
@@ -29,7 +34,7 @@ const FavoriteIcon = () => {
         className="favorite-icon"
         onClick={handleIconClick}
       />
-      {showToolTip && <div className="tool-tip">Add to Favorites</div>}
+      {props.showToolTip && <div className="tool-tip">Add to Favorites</div>}
     </div>
   ) : (
     <div
@@ -40,7 +45,7 @@ const FavoriteIcon = () => {
         className="favorite-icon clicked"
         onClick={handleIconClick}
       />
-      {showToolTip && <div className="tool-tip">Remove from Favorites</div>}
+      {props.showToolTip && <div className="tool-tip">Remove from Favorites</div>}
     </div>
   );
 
