@@ -105,7 +105,8 @@ export const DeleteAccount = async (
   username,
   password,
   setUser,
-  setLoggedIn
+  setLoggedIn,
+  navigate
 ) => {
   try {
     const res = await fetch(`${process.env.REACT_APP_API}/deleteuser`, {
@@ -130,6 +131,7 @@ export const DeleteAccount = async (
       "jwt_token=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setUser("");
     setLoggedIn(false);
+    navigate("/");
   } catch (error) {
     console.log(error);
   }
