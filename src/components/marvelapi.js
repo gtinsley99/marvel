@@ -48,7 +48,7 @@ export const Marvelapi = () => {
 
 // Route to get description from marvel api using stored id of character from backend
 
-export const fetchDescription = async (name, setDesc, errors, setErrors) => {
+export const fetchDescription = async (name, setDesc, errors, setErrors, setComicsAppearedIn, setComicsFiltered) => {
   let apiKey = process.env.REACT_APP_API_KEY;
   let privateKey = process.env.REACT_APP_PRIVATE_KEY;
   let ts = Date.now().toString();
@@ -64,6 +64,32 @@ export const fetchDescription = async (name, setDesc, errors, setErrors) => {
     console.log(data.data.results[0]);
     console.log(data.data.results[0].description);
     setDesc(data.data.results[0].description);
+    setComicsAppearedIn(data.data.results[0].comics.items);
+    setComicsFiltered(data.data.results[0].comics.items);
+    console.log(`from the function: ${data.data.results[0].comics.items}`);
+  } catch (error) {
+    setErrors("Failed to fetch data");
+    console.log(error);
+    console.log(errors);
+  }
+};
+
+// fetch first 100 comics appeared in
+export const fetchComics = async (name, errors, setErrors, setComicsAppearedIn, setComicsFiltered) => {
+  let apiKey = process.env.REACT_APP_API_KEY;
+  let privateKey = process.env.REACT_APP_PRIVATE_KEY;
+  let ts = Date.now().toString();
+  let hash = getHash(ts, privateKey, apiKey);
+  try {
+    const charRes = await fetch(`${process.env.REACT_APP_API_URL}/one/${name}`);
+    const char = await charRes.json();
+    console.log(char);
+    const heroUrl = `${process.env.REACT_APP_BASE_URL}/v1/public/characters/${char.character.marvelID}/comics`;
+    let url = `${heroUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=100`;
+    const res = await fetch(`${url}`);
+    const data = await res.json();
+    setComicsAppearedIn(data.data.results);
+    setComicsFiltered(data.data.results);
   } catch (error) {
     setErrors("Failed to fetch data");
     console.log(error);
@@ -106,9 +132,7 @@ export const CharComics = (name, input, setComics) => {
       let ts = Date.now().toString();
       let hash = getHash(ts, privateKey, apiKey);
       try {
-        const charRes = await fetch(
-          `${process.env.REACT_APP_API_URL}/one/${name}`
-        );
+        const charRes = await fetch(`${process.env.REACT_APP_API_URL}/one/${name}`);
         const char = await charRes.json();
         console.log(char);
         const heroUrl = `${process.env.REACT_APP_BASE_URL}/v1/public/characters/${char.character.marvelID}/comics`;
@@ -140,9 +164,7 @@ export const CharSeries = (name, input, setSeries) => {
       let ts = Date.now().toString();
       let hash = getHash(ts, privateKey, apiKey);
       try {
-        const charRes = await fetch(
-          `${process.env.REACT_APP_API_URL}/one/${name}`
-        );
+        const charRes = await fetch(`${process.env.REACT_APP_API_URL}/one/${name}`);
         const char = await charRes.json();
         console.log(char);
         const heroUrl = `${process.env.REACT_APP_BASE_URL}/v1/public/characters/${char.character.marvelID}/series`;

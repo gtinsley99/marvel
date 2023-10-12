@@ -3,20 +3,25 @@ import Modal from "react-modal";
 import CharcterCard from "../components/CharcterCard";
 import "./Modal.css";
 import FavoriteIcon from "./FavoriteIcon";
-import { fetchDescription, CheckIfFavChar } from "./marvelapi";
+import { fetchDescription, fetchComics, CheckIfFavChar } from "./marvelapi";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [desc, setDesc] = useState("No character Description available");
   const [errors, setErrors] = useState(null);
+  const [comicErrors, setComicErrors] = useState(null);
+  const [comicsAppearedIn, setComicsAppearedIn] = useState([]);
+  const [comicSearchTerm, setComicSearchTerm] = useState("");
+  const [comicsFiltered, setComicsFiltered] = useState([]);
   const [iconClicked, setIconClicked] = useState(true); // set up iconClicked State
   const [showToolTip, setShowToolTip] = useState(false); // set up showToolTip State
 
   function openModal() {
     setIsOpen(true);
     fetchDescription(props.name, setDesc, errors, setErrors);
-    if (props.cookies.jwt_token){
-    CheckIfFavChar(props.name, props.cookies.jwt_token, setIconClicked);
+    fetchComics(props.name, errors, setErrors, setComicsAppearedIn, setComicsFiltered);
+    if (props.cookies.jwt_token) {
+      CheckIfFavChar(props.name, props.cookies.jwt_token, setIconClicked);
     }
   }
 
@@ -24,21 +29,25 @@ const ModalTab = (props) => {
     setIsOpen(false);
   }
 
+  const handleChange = (e) => {
+    setComicSearchTerm(e.target.value);
+
+    const filteredComics = comicsAppearedIn.filter((comic) => {
+      return comic.title.includes(comicSearchTerm);
+    });
+
+    setComicsFiltered(filteredComics);
+  };
+
   return (
     <div className="modal-holder">
-      <CharcterCard
-        onClick={openModal}
-        name={props.name}
-        imgSrc={props.imgSrc}
-      />
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Example Modal"
-      >
+      <CharcterCard onClick={openModal} name={props.name} imgSrc={props.imgSrc} />
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal" ariaHideApp={false}>
         <div className="modal-tab">
           <div className="modal-left modal-side">
-            <button className="close-button" onClick={closeModal}>&#10229;</button>
+            <button className="close-button" onClick={closeModal}>
+              &#10229;
+            </button>
             <div className="popup-image-div">
               <img className="popup-image" src={props.imgSrc} alt="marvel" />
             </div>
@@ -49,24 +58,27 @@ const ModalTab = (props) => {
               <h3>Description</h3>
               <p>{desc}</p>
             </div>
-            <div className="comics">
+            <div className="comics-section">
               <h3>Comics Appeared In</h3>
-              <p>Random Comic</p>
+              <form>
+                <input placeholder="search for comics" onChange={handleChange} />
+              </form>
+              <div className="comics">
+                {comicsFiltered &&
+                  comicsFiltered.map((comic, index) => {
+                    return <p>{comic.title}</p>;
+                  })}
+              </div>
             </div>
             <div className="release">
               <h3>Release of Character</h3>
               <p>Random Year</p>
             </div>
             <div className="fav-and-variants">
-              <FavoriteIcon
-                cookies={props.cookies}
-                iconClicked={iconClicked}
-                setIconClicked={setIconClicked}
-                showToolTip={showToolTip}
-                setShowToolTip={setShowToolTip}
-                name={props.name}
-              />
-              <button className="variants-button" onClick={closeModal}>See Variants</button>
+              <FavoriteIcon cookies={props.cookies} iconClicked={iconClicked} setIconClicked={setIconClicked} showToolTip={showToolTip} setShowToolTip={setShowToolTip} name={props.name} />
+              <button className="variants-button" onClick={closeModal}>
+                See Variants
+              </button>
             </div>
           </div>
         </div>
