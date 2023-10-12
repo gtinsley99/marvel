@@ -25,7 +25,7 @@ const ModalTab = (props) => {
         contentLabel="Example Modal">
         <div className="modal-tab">
           <div className="modal-left modal-side">
-            <button onClick={closeModal}>close</button>
+            <button className="close-button" onClick={closeModal}>&#10229;</button>
             <div className="popup-image-div">
               <img className="popup-image" src={PlaceHolder} alt="marvel" />
             </div>
@@ -52,7 +52,7 @@ const ModalTab = (props) => {
             </div>
             <div className="fav-and-variants">
               <StarBorderPurple500Icon className="modal-favorite" />
-              <button className="variants-btn">See Variants</button>
+              <button className="variants-button" onClick={closeModal}>See Variants</button>
             </div>
           </div>
         </div>
