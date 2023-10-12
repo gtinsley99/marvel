@@ -1,0 +1,108 @@
+.modal-tab {
+  display: flex;
+  height: 100%;
+}
+
+.modal-tab h2 {
+  font-size: 28px;
+}
+
+.modal-holder {
+  width: 26%;
+}
+
+.popup-image-div {
+  width: 85%;
+}
+
+.popup-image {
+  width: 100%;
+}
+
+.modal-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+}
+
+.modal-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  width: 60%;
+}
+
+.fav-and-variants {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.comics-section {
+  height: 30%;
+}
+
+.comics {
+  height: 80%;
+  overflow-y: scroll;
+}
+
+.release h3 {
+  padding-top: 40px;
+}
+
+.modal-favorite {
+  transform: scale(3);
+}
+
+.variants-btn {
+  font-size: 26px;
+}
+
+.close-button {
+  font-size: 26px;
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: #00A000;
+  color: white;
+  box-shadow: 3px 3px 3px #006600;
+}
+
+.close-button:hover {
+  transform: scale(1.1);
+  background-color: #00cc00;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.close-button:active {
+  background-color: #00A000;
+}
+
+.variants-button {
+  font-size: 20px;
+  width:180px;
+  height:40px;
+  border: none;
+  border-radius: 10px;
+  background-color: #00A000;
+  color: white;
+  box-shadow: 3px 3px 3px #006600;
+}
+
+.variants-button:hover {
+  transform: scale(1.1);
+  background-color: #00cc00;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.variants-button:active {
+  background-color: #00A000;
+
+}
