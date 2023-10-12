@@ -30,6 +30,8 @@ const Login = (props) => {
           cookie={props.cookie}
           setCookie={props.setCookie}
           removeCookie={props.removeCookie}
+          setUser={props.setUser}
+          setLoggedIn={props.setLoggedIn}
         />
       </div>
     </div>

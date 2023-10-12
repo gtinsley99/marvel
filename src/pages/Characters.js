@@ -1,8 +1,14 @@
+
+import { useState } from "react";
+
 // import components to use
 import Popular from "../components/Popular";
 import ModalTab from "../components/Modal";
+import { PopChar } from "../components/marvelapi";
 
 const Characters = (props) => {
+  const [pop, setPop] = useState(null);
+  PopChar(setPop);
   return (
     <>
       <div>

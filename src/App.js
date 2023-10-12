@@ -5,8 +5,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Characters from "./pages/Characters";
 import NavBar from "./components/NavBar";
-import Marvelapi from "./components/marvelapi";
-import { CharDesc, AllChar, CharComics, CharSeries, PopChar } from "./components/marvelapi";
+import { CharDesc, AllChar, CharComics, CharSeries, Marvelapi } from "./components/marvelapi";
 import "./App.css";
 import { useCookies } from "react-cookie";
 import { AuthCheck } from "./components/utils";
@@ -16,7 +15,6 @@ function App() {
   const [cookies, setCookie, removeCookie] = useCookies(["jwt_token"]);
   const [user, setUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [pop, setPop] = useState(null);
   const [res, setRes] = useState(null);
   const [desc, setDesc] = useState("");
   const [allChar, setAllChar] = useState(null);
@@ -34,8 +32,10 @@ function App() {
   // Route to search for series by character, change from useeffect use name and input field (thor and a for testing only)
   // CharSeries("thor", "a", setSeries);
 
+  // Marvelapi();
+
   // Route to get most popular characters
-  PopChar(setPop);
+ 
 
 
   const loginWithToken = async (cookie) => {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function RegistrationForm(props) {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ function RegistrationForm(props) {
 
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,6 +47,7 @@ function RegistrationForm(props) {
         });
         console.log(props.cookie);
         props.setLoggedIn(true);
+        navigate("/");
     } catch (error) {
       console.error("Error:", error);
       setSuccessMessage(null);
