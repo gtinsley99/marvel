@@ -10,16 +10,27 @@ const ModalTab = (props) => {
   const [desc, setDesc] = useState("No character Description available");
   const [errors, setErrors] = useState(null);
   const [comicsAppearedIn, setComicsAppearedIn] = useState([]);
+  const [comicSearchTerm, setComicSearchTerm] = useState("");
+  const [comicsFiltered, setComicsFiltered] = useState([]);
 
   function openModal() {
     setIsOpen(true);
-    fetchDescription(props.name, setDesc, errors, setErrors, setComicsAppearedIn);
-    console.log(`comics apperaed in: ${comicsAppearedIn}`);
+    fetchDescription(props.name, setDesc, errors, setErrors, setComicsAppearedIn, setComicsFiltered);
   }
 
   function closeModal() {
     setIsOpen(false);
   }
+
+  const handleChange = (e) => {
+    setComicSearchTerm(e.target.value);
+
+    const filteredComics = comicsAppearedIn.filter((comic) => {
+      return comic.name.includes(comicSearchTerm);
+    });
+
+    setComicsFiltered(filteredComics);
+  };
 
   return (
     <div className="modal-holder">
@@ -40,9 +51,12 @@ const ModalTab = (props) => {
             </div>
             <div className="comics-section">
               <h3>Comics Appeared In</h3>
+              <form>
+                <input placeHolder="search for comics" onChange={handleChange} />
+              </form>
               <div className="comics">
-                {comicsAppearedIn &&
-                  comicsAppearedIn.map((comic, index) => {
+                {comicsFiltered &&
+                  comicsFiltered.map((comic, index) => {
                     return <p>{comic.name}</p>;
                   })}
               </div>

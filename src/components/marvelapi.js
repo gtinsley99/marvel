@@ -48,7 +48,7 @@ const getHash = (ts, privateKey, publicKey) => {
 
 // Route to get description from marvel api using stored id of character from backend
 
-export const fetchDescription = async (name, setDesc, errors, setErrors, setComicsAppearedIn) => {
+export const fetchDescription = async (name, setDesc, errors, setErrors, setComicsAppearedIn, setComicsFiltered) => {
   let apiKey = process.env.REACT_APP_API_KEY;
   let privateKey = process.env.REACT_APP_PRIVATE_KEY;
   let ts = Date.now().toString();
@@ -65,6 +65,7 @@ export const fetchDescription = async (name, setDesc, errors, setErrors, setComi
     console.log(data.data.results[0].description);
     setDesc(data.data.results[0].description);
     setComicsAppearedIn(data.data.results[0].comics.items);
+    setComicsFiltered(data.data.results[0].comics.items);
     console.log(`from the function: ${data.data.results[0].comics.items}`);
   } catch (error) {
     setErrors("Failed to fetch data");
