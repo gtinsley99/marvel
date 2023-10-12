@@ -76,7 +76,7 @@ function App() {
             path="/profile"
             element={
               <Profile
-                cookie={cookies}
+                cookies={cookies}
                 setCookie={setCookie}
                 removeCookie={removeCookie}
               />

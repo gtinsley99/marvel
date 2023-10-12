@@ -253,3 +253,23 @@ export const CheckIfFavChar = async (name, jwt_token, setIconClicked) => {
    
   }
 };
+
+// Route to get fav characters of user
+export const UserFavChar = async (jwt_token, setFavs) => {
+  try {
+    const res = await fetch(`${process.env.REACT_APP_API}/favourites`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt_token}`,
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+    setFavs(data.favourites);
+  } catch (error) {
+    console.log("Failed to fetch data");
+    console.log(error);
+   
+  }
+};
