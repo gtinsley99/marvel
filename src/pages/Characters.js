@@ -11,8 +11,8 @@ const Characters = (props) => {
   const [characters, setCharacters] = useState([props.allChar]);
   
   const handleChange = async (event) => {
-    const searchTerm = event.target.value
-    
+    const searchTerm = event.target.value;
+
     const filteredCharacters = props.allChar.filter((character) => {
       return character.name.includes(searchTerm)
     })
