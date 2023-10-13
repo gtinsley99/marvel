@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // import components to use
 import Popular from "../components/Popular/Popular";
@@ -7,7 +7,16 @@ import { PopChar } from "../components/utils/marvelapi";
 
 const Characters = (props) => {
   const [pop, setPop] = useState(null);
-  const [characters, setCharacters] = useState(props.allChar && props.allChar);
+  const [characters, setCharacters] = useState();
+
+  useEffect(() => {
+    // Fetch and set characters from props.allChar initially
+    if (props.allChar) {
+      setCharacters(props.allChar);
+    }
+    // Fetch popular characters
+  }, [props.allChar]);
+  PopChar(setPop);
 
   const handleChange = async (event) => {
     const searchTerm = event.target.value;
@@ -18,7 +27,6 @@ const Characters = (props) => {
     setCharacters(filteredCharacters);
   };
 
-  PopChar(setPop);
   return (
     <>
       <div>
