@@ -1,0 +1,6 @@
+.favorites {
+  display: flex;
+  overflow-x: scroll;
+  width: 90vw;
+  margin: auto;
+}

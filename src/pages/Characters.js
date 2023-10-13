@@ -6,29 +6,28 @@ import ModalTab from "../components/Modal/Modal";
 import { PopChar } from "../components/utils/marvelapi";
 
 const Characters = (props) => {
-
   const [pop, setPop] = useState(null);
-  const [characters, setCharacters] = useState([props.allChar]);
-  
+  const [characters, setCharacters] = useState(props.allChar && props.allChar);
+
   const handleChange = async (event) => {
     const searchTerm = event.target.value;
 
     const filteredCharacters = props.allChar.filter((character) => {
-      return character.name.includes(searchTerm)
-    })
-    setCharacters(filteredCharacters)
-};
+      return character.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    setCharacters(filteredCharacters);
+  };
 
   PopChar(setPop);
   return (
     <>
       <div>
-      <form>
-        <input placeholder="Search for a Superhero" onChange={handleChange}></input>
-      </form>  
+        <Popular pop={pop} cookies={props.cookies} />
       </div>
       <div>
-        <Popular pop={pop} cookies={props.cookies} />
+        <form>
+          <input placeholder="Search for a Superhero" onChange={handleChange}></input>
+        </form>
       </div>
       {/* Map the characters from the character list into cards */}
       <div className="card-container">
