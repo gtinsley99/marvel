@@ -56,86 +56,121 @@ const Modal = (props) => {
   };
 
   return (
-    <div>
+    <div className="modalBackgrnd">
       {props.form === "username" && (
-        <div>
-          <div className="inputField">
+        <div className="inputForm">
+            <div className="inputTop">
+              <h3>Update username</h3>
+            </div>
             {props.res === "Username updated" ? (
               <h3 className="successMsg">{props.res}</h3>
             ) : (
               <h3 className="errMsg">{props.res}</h3>
             )}
-            <label>New username</label>
-            <input
-              placeholder="Insert new username here..."
-              value={newUsername}
-              onChange={(e) => setNewUsername(e.target.value)}
-            ></input>
+            <div className="inputMid">
+            <div className="inputField">
+              <label>New username</label>
+              <input
+                placeholder="Insert new username here..."
+                value={newUsername}
+                onChange={(e) => setNewUsername(e.target.value)}
+              ></input>
+            </div>
           </div>
-          <button onClick={handleSubmitUsername}>Submit</button>
+          <div className="inputBot">
+            <button className="formButton" onClick={handleSubmitUsername}>
+              Submit
+            </button>
+            <button className="formButton" onClick={handleClick}>
+              Close
+            </button>
+          </div>
         </div>
       )}
       {props.form === "password" && (
-        <div>
-          <div className="inputField">
+        <div className="inputForm">
             {props.res === "User password updated" ? (
               <h3 className="successMsg">{props.res}</h3>
             ) : (
               <h3 className="errMsg">{props.res}</h3>
             )}
-            <label>Username</label>
-            <input
-              placeholder="Insert username here..."
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            ></input>
+            <div className="inputTop">
+              <h3>Update password</h3>
+            </div>
+            <div className="inputMid">
+            
+            <div className="inputField">
+              <label>Username</label>
+              <input
+                placeholder="Insert username here..."
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              ></input>
+            </div>
+            <div >
+              <label>Password</label>
+              <input
+                placeholder="Insert password here..."
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label>New password</label>
+              <input
+                placeholder="Insert new password here..."
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              ></input>
+            </div>
           </div>
-          <div className="inputField">
-            <label>Password</label>
-            <input
-              placeholder="Insert password here..."
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
+          <div className="inputBot">
+          <button className="formButton" onClick={handleSubmitPassword}>Submit</button>
+          <button className="formButton" onClick={handleClick}>Close</button>
           </div>
-          <div className="inputField">
-            <label>New password</label>
-            <input
-              placeholder="Insert new password here..."
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            ></input>
-          </div>
-          <button onClick={handleSubmitPassword}>Submit</button>
         </div>
       )}
       {props.form === "email" && (
-        <form onSubmit={handleSubmitEmail}>
-          <div className="inputField">
+        <form onSubmit={handleSubmitEmail} className="inputForm">
+            <div className="inputTop">
+              <h3>Update email</h3>
+            </div>
             {props.res === "User email updated" ? (
               <h3 className="successMsg">{props.res}</h3>
             ) : (
               <h3 className="errMsg">{props.res}</h3>
             )}
-            <label>New email</label>
-            <input
-              placeholder="Insert new email here..."
-              type="email"
-              value={newEmail}
-              onChange={(e) => setNewEmail(e.target.value)}
-            ></input>
+            <div className="inputMid">
+            <div className="inputField">
+              <label>New email</label>
+              <input
+                placeholder="Insert new email here..."
+                type="email"
+                value={newEmail}
+                onChange={(e) => setNewEmail(e.target.value)}
+              ></input>
+            </div>
           </div>
-          <button>Submit</button>
+          <div className="inputBot">
+            <button className="formButton">Submit</button>
+            <button className="formButton" onClick={handleClick}>
+              Close
+            </button>
+          </div>
         </form>
       )}
-      {props.form === "delete" && (
-        <div>
-          <div className="inputField">
+      {props.form === "delete" && !modal && (
+        <div className="inputForm">
+            <div>
+              <h3>Delete account</h3>
+            </div>
             {props.res === "Username or password incorrect" && (
               <h3 className="errMsg">{props.res}</h3>
             )}
+            <div className="inputMid">
+            <div className="inputField">
             <label>Username</label>
             <input
               placeholder="Insert username here..."
@@ -151,23 +186,28 @@ const Modal = (props) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></input>
+            </div>
           </div>
-          <button onClick={handleConfirmDelete}>Delete Account</button>
-        </div>
+          <div className="inputBot">
+          <button className="formButton" onClick={handleConfirmDelete}>Delete Account</button>
+          <button className="formButton" onClick={handleClick}>Close</button>
+          </div>
+        </div>)}  {props.form === "delete" && modal && (
+        <DelModal
+          setRes={props.setRes}
+          res={props.res}
+          setLoggedIn={props.setLoggedIn}
+          cookies={props.cookies}
+          username={username}
+          password={password}
+          setUser={props.setUser}
+          setUsername={setUsername}
+          setPassword={setPassword}
+          setModal={setModal}
+        />
       )}
-      <button onClick={handleClick}>Close</button>
-      {modal && <DelModal
-        setRes={props.setRes}
-        res={props.res}
-        setLoggedIn={props.setLoggedIn}
-        cookies={props.cookies}
-        username={username}
-        password={password}
-        setUser={props.setUser}
-        setUsername={setUsername}
-        setPassword={setPassword}
-        setModal={setModal}
-      />}
+
+    
     </div>
   );
 };
