@@ -3,12 +3,13 @@ import Modal from "react-modal";
 import CharcterCard from "../CharacterCard/CharcterCard";
 import "./Modal.css";
 import FavoriteIcon from "./FavoriteIcon";
-import { fetchDescription, fetchComics, CheckIfFavChar } from "../utils/marvelapi";
+import { fetchDescription, fetchComics, CheckIfFavChar, fetchVariants } from "../utils/marvelapi";
 import { fetchPowerStats } from "../utils/SuperheroApiFetch";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [desc, setDesc] = useState("No character Description available");
+  const [variants, setVariants] = useState(null);
   const [errors, setErrors] = useState(null);
   const [comicErrors, setComicErrors] = useState(null);
   const [comicsAppearedIn, setComicsAppearedIn] = useState([]);
@@ -41,6 +42,22 @@ const ModalTab = (props) => {
 
     setComicsFiltered(filteredComics);
   };
+
+  const handleVariants = (name) => {
+    let newName = "";
+    if (name.includes("(")){
+      let arr = name.split("");
+      let first = arr.findIndex((letter) => letter === "(");
+      let newArr = []
+      for (let i = 0; i <first - 1; i++){
+          newArr.push(arr[i]);
+      }
+      newName = newArr.join("");
+  }else{
+      newName = name;
+  }
+    fetchVariants(newName, setVariants);
+  }
 
   const isProfile = props.render === "profile";
 
@@ -80,8 +97,8 @@ const ModalTab = (props) => {
               <p>Random Year</p>
             </div>
             <div className="fav-and-variants">
-              <FavoriteIcon cookies={props.cookies} iconClicked={iconClicked} setIconClicked={setIconClicked} showToolTip={showToolTip} setShowToolTip={setShowToolTip} name={props.name} />
-              <button className="variants-button" onClick={closeModal}>
+              <FavoriteIcon loggedIn={props.loggedIn} cookies={props.cookies} iconClicked={iconClicked} setIconClicked={setIconClicked} showToolTip={showToolTip} setShowToolTip={setShowToolTip} name={props.name} />
+              <button className="variants-button" onClick={() => handleVariants(props.name)}>
                 See Variants
               </button>
             </div>

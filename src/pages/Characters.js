@@ -30,18 +30,16 @@ const Characters = (props) => {
   return (
     <>
       <div>
-        <Popular pop={pop} cookies={props.cookies} />
+        <Popular pop={pop} cookies={props.cookies} loggedIn={props.loggedIn} />
       </div>
       <div>
-        <form>
           <input placeholder="Search for a Superhero" onChange={handleChange}></input>
-        </form>
       </div>
       {/* Map the characters from the character list into cards */}
       <div className="card-container">
         {characters
           ? characters.map((char, index) => {
-              return <ModalTab name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} />;
+              return <ModalTab name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} loggedIn={props.loggedIn} />;
             })
           : "Fetching Character Data"}
       </div>
