@@ -43,8 +43,10 @@ const ModalTab = (props) => {
     setComicsFiltered(filteredComics);
   };
 
+  const isProfile = props.render === "profile";
+
   return (
-    <div className="modal-holder">
+    <div className={[isProfile ? "modal-holder-profile" : "modal-holder-characters"]}>
       <CharcterCard onClick={openModal} name={props.name} imgSrc={props.imgSrc} />
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal" ariaHideApp={false}>
         <div className="modal-tab">

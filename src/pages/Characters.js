@@ -17,7 +17,7 @@ const Characters = (props) => {
       <div className="card-container">
         {props.allChar
           ? props.allChar.map((char, index) => {
-              return <ModalTab name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} />;
+              return <ModalTab name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} render={"characters"} />;
             })
           : "Fetching Character Data"}
       </div>
