@@ -14,11 +14,11 @@ const Profile = (props) => {
       return;
     }
     UserFavChar(props.cookies.jwt_token, setFavs);
-  }, []);
+  }, [favs]);
   return (
     <div>
       <ProfileContent cookies={props.cookies} setCookie={props.setCookie} user={props.user} setUser={props.setUser} setLoggedIn={props.setLoggedIn} />
-      <ProfileFavs favs={favs} cookies={props.cookies} />
+      <ProfileFavs favs={favs} cookies={props.cookies} loggedIn={props.loggedIn} />
     </div>
   );
 };
