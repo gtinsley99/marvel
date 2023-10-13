@@ -12,7 +12,6 @@ const ModalTab = (props) => {
   const [errors, setErrors] = useState(null);
   const [comicErrors, setComicErrors] = useState(null);
   const [comicsAppearedIn, setComicsAppearedIn] = useState([]);
-  const [comicSearchTerm, setComicSearchTerm] = useState("");
   const [comicsFiltered, setComicsFiltered] = useState([]);
   const [iconClicked, setIconClicked] = useState(true); // set up iconClicked State
   const [showToolTip, setShowToolTip] = useState(false); // set up showToolTip State
@@ -34,10 +33,10 @@ const ModalTab = (props) => {
   }
 
   const handleChange = (e) => {
-    setComicSearchTerm(e.target.value);
+    const searchTerm = e.target.value;
 
     const filteredComics = comicsAppearedIn.filter((comic) => {
-      return comic.title.includes(comicSearchTerm);
+      return comic.title.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
     setComicsFiltered(filteredComics);

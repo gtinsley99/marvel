@@ -13,7 +13,7 @@ const Characters = (props) => {
     const searchTerm = event.target.value;
 
     const filteredCharacters = props.allChar.filter((character) => {
-      return character.name.includes(searchTerm);
+      return character.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
     setCharacters(filteredCharacters);
   };
@@ -22,12 +22,12 @@ const Characters = (props) => {
   return (
     <>
       <div>
+        <Popular pop={pop} cookies={props.cookies} />
+      </div>
+      <div>
         <form>
           <input placeholder="Search for a Superhero" onChange={handleChange}></input>
         </form>
-      </div>
-      <div>
-        <Popular pop={pop} cookies={props.cookies} />
       </div>
       {/* Map the characters from the character list into cards */}
       <div className="card-container">
