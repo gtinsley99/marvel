@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import CharcterCard from "../CharacterCard/CharcterCard";
 import "./Modal.css";
 import FavoriteIcon from "./FavoriteIcon";
-import { fetchDescription, fetchComics, CheckIfFavChar } from "../utils/marvelapi";
+import { fetchDescription, fetchComics, CheckIfFavChar, fetchVariants } from "../utils/marvelapi";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -38,6 +38,22 @@ const ModalTab = (props) => {
 
     setComicsFiltered(filteredComics);
   };
+
+  const handleVariants = (name) => {
+    let newName = "";
+    if (name.includes("(")){
+      let arr = name.split("");
+      let first = arr.findIndex((letter) => letter === "(");
+      let newArr = []
+      for (let i = 0; i <first - 1; i++){
+          newArr.push(arr[i]);
+      }
+      newName = newArr.join("");
+  }else{
+      newName = name;
+  }
+    fetchVariants(newName);
+  }
 
   return (
     <div className="modal-holder">
@@ -76,7 +92,7 @@ const ModalTab = (props) => {
             </div>
             <div className="fav-and-variants">
               <FavoriteIcon loggedIn={props.loggedIn} cookies={props.cookies} iconClicked={iconClicked} setIconClicked={setIconClicked} showToolTip={showToolTip} setShowToolTip={setShowToolTip} name={props.name} />
-              <button className="variants-button" onClick={closeModal}>
+              <button className="variants-button" onClick={() => handleVariants(props.name)}>
                 See Variants
               </button>
             </div>
