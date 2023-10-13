@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "../App.css";
 
 // import components to use
 import Popular from "../components/Popular/Popular";
@@ -32,8 +33,11 @@ const Characters = (props) => {
       <div>
         <Popular pop={pop} cookies={props.cookies} loggedIn={props.loggedIn} />
       </div>
-      <div>
+      <div className="searchDiv">
+        <div className="searchCard">
+        <label>Search for marvel character:</label>
           <input placeholder="Search for a Superhero" onChange={handleChange}></input>
+          </div>
       </div>
       {/* Map the characters from the character list into cards */}
       <div className="card-container">
