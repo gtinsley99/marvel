@@ -8,6 +8,7 @@ import { fetchDescription, fetchComics, CheckIfFavChar, fetchVariants } from "..
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [desc, setDesc] = useState("No character Description available");
+  const [variants, setVariants] = useState(null);
   const [errors, setErrors] = useState(null);
   const [comicErrors, setComicErrors] = useState(null);
   const [comicsAppearedIn, setComicsAppearedIn] = useState([]);
@@ -52,7 +53,7 @@ const ModalTab = (props) => {
   }else{
       newName = name;
   }
-    fetchVariants(newName);
+    fetchVariants(newName, setVariants);
   }
 
   return (

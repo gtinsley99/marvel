@@ -47,7 +47,7 @@ export const Marvelapi = () => {
 };
 
 // Route to get variants of character
-export const fetchVariants = async (name) => {
+export const fetchVariants = async (name, setVariants) => {
   const heroUrl= `${process.env.REACT_APP_BASE_URL}/v1/public/characters`;
   let ts = Date.now().toString();
   let apiKey = process.env.REACT_APP_API_KEY;
@@ -57,8 +57,8 @@ export const fetchVariants = async (name) => {
 try {
   const res = await fetch(`${url}`);
   const data = await res.json();
+  setVariants(data.data.results);
   console.log(data.data.results);
-  let characters = data.data.results;
 } catch (error) {
   console.log(error);
 }
