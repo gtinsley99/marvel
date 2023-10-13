@@ -6,6 +6,7 @@ import FavoriteIcon from "./FavoriteIcon";
 import { fetchDescription, fetchComics, CheckIfFavChar, fetchVariants } from "../utils/marvelapi";
 import { fetchPowerStats } from "../utils/SuperheroApiFetch";
 import { CharacterIds } from "../utils/characterIds";
+import Powerstats from "./Powerstats";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -78,37 +79,7 @@ const ModalTab = (props) => {
             <h2>{props.name}</h2>
           </div>
           <div className="modal-right modal-side">
-            <div className="powerstats-wrapper">
-              <h3>Powerstats</h3>
-              <div className="powerstats">
-                <div>
-                  <h4>Intelligence</h4>
-                  <p>{powerStats && powerStats.intelligence}</p>
-                </div>
-                <div>
-                  <h4>Strength</h4>
-                  <p>{powerStats && powerStats.strength}</p>
-                </div>
-
-                <div>
-                  <h4>Speed</h4>
-                  <p>{powerStats && powerStats.speed}</p>
-                </div>
-
-                <div>
-                  <h4>Durability</h4>
-                  <p>{powerStats && powerStats.durability}</p>
-                </div>
-                <div>
-                  <h4>Power</h4>
-                  <p>{powerStats && powerStats.power}</p>
-                </div>
-                <div>
-                  <h4>Combat</h4>
-                  <p>{powerStats && powerStats.combat} </p>
-                </div>
-              </div>
-            </div>
+            <Powerstats powerStats={powerStats} />
             <div className="comics-section">
               <h3>Comics Appeared In</h3>
               <form>
