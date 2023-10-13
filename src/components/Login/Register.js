@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Register } from "../utils";
 
 function RegistrationForm(props) {
   const [formData, setFormData] = useState({
@@ -19,41 +20,7 @@ function RegistrationForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API}/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: formData.username,
-            email: formData.email,
-            password: formData.password,
-          }),
-        }
-      );
-        const data = await response.json();
-        console.log(data)
-        if (data.message === "Username taken" || data.message === "Invalid email address" || data.message === "Email address taken"){
-          setErrors(data.message);
-          return;
-        }
-        props.setCookie("jwt_token", data.user.token, {
-          maxAge: 604800,
-          path: "/",
-        });
-        props.setCookie("username", data.user.username, {
-          maxAge: 604800,
-          path: "/",
-        });
-        console.log(props.cookie);
-        props.setLoggedIn(true);
-        navigate("/");
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    Register(formData.username, formData.email, formData.password, setErrors, props.setCookie, props.setLoggedIn, props.setUser, navigate);
     setFormData({username: "", email: "", password: ""});
   };
 

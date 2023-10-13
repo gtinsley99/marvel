@@ -1,5 +1,13 @@
+@font-face {
+  font-family: "Komika";
+  src: url("/src/fonts/komika/KOMIKAH_.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .App {
   text-align: center;
+  font-family: "Komika", sans-serif;
 }
 
 .App-logo {
@@ -38,10 +46,9 @@
 }
 
 .charBtn {
-  background-color: #6B52A5;
+  background-color: #6b52a5;
   padding: 10px;
   color: white;
   border: none;
   border-radius: 5px;
 }
-

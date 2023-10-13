@@ -35,7 +35,7 @@ function App() {
 
   // Route to get most popular characters
 
-  const loginWithToken = async (cookie) => {
+  const loginWithToken = async () => {
     await AuthCheck(cookies.jwt_token, setUser, setLoggedIn);
   };
 
@@ -48,14 +48,14 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+        <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} />
         <Routes>
           <Route path="/" element={<Home loading={loading} setLoading={setLoading} />} />
           <Route
             path="/login"
             element={<Login cookie={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} setRes={setRes} />}
           />
-          <Route path="/profile" element={<Profile cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} />} />
+          <Route path="/profile" element={<Profile cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} setLoggedIn={setLoggedIn} />} />
           <Route path="/characters" element={<Characters cookies={cookies} allChar={allChar} />} />
         </Routes>
       </BrowserRouter>
