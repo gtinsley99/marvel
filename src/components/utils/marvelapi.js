@@ -47,6 +47,24 @@ export const Marvelapi = () => {
   return;
 };
 
+// Route to get variants of character
+export const fetchVariants = async (name, setVariants) => {
+  const heroUrl= `${process.env.REACT_APP_BASE_URL}/v1/public/characters`;
+  let ts = Date.now().toString();
+  let apiKey = process.env.REACT_APP_API_KEY;
+  let privateKey = process.env.REACT_APP_PRIVATE_KEY;
+  let hash = getHash(ts, privateKey, apiKey);
+  let url = `${heroUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=100&nameStartsWith=${name}`;
+try {
+  const res = await fetch(`${url}`);
+  const data = await res.json();
+  setVariants(data.data.results);
+  console.log(data.data.results);
+} catch (error) {
+  console.log(error);
+}
+};
+
 // Route to get description from marvel api using stored id of character from backend
 
 export const fetchDescription = async (name, setDesc, errors, setErrors) => {
