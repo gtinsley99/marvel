@@ -18,7 +18,7 @@ const ModalTab = (props) => {
   const [errors, setErrors] = useState(null);
   const [comicErrors, setComicErrors] = useState(null);
   const [comicsAppearedIn, setComicsAppearedIn] = useState([]);
-  const [comicsFiltered, setComicsFiltered] = useState([]);
+  const [comicsFiltered, setComicsFiltered] = useState(null);
   const [iconClicked, setIconClicked] = useState(true); // set up iconClicked State
   const [showToolTip, setShowToolTip] = useState(false); // set up showToolTip State
   const [powerStats, setPowerStats] = useState();
@@ -117,10 +117,10 @@ const ModalTab = (props) => {
                   />
                 </form>
                 <div className="comics">
-                  {comicsFiltered &&
+                  {comicsFiltered ?
                     comicsFiltered.map((comic, index) => {
                       return <p>{comic.title}</p>;
-                    })}
+                    }) : <p>Loading comics...</p>}
                 </div>
               </div>
               <div className="release">

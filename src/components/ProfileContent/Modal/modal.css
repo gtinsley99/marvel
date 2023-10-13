@@ -2,6 +2,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
+}
+
+.inputNewUser{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    left: -20px;
 }
 
 .successMsg{
@@ -27,7 +36,7 @@
 .inputForm{
     background-color: white;
     border: 1px solid black;
-    padding: 10px 80px;
+    padding: 0px 80px 10px 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,6 +48,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+    
 }
 
 .inputMid{
@@ -46,7 +56,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 80px;
+    padding: 10px;
     margin-bottom: 20px;
 }
 

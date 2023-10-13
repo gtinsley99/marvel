@@ -89,16 +89,15 @@ const Modal = (props) => {
       )}
       {props.form === "password" && (
         <div className="inputForm">
+            <div className="inputTop">
+              <h3>Update password</h3>
+            </div>
             {props.res === "User password updated" ? (
               <h3 className="successMsg">{props.res}</h3>
             ) : (
               <h3 className="errMsg">{props.res}</h3>
             )}
-            <div className="inputTop">
-              <h3>Update password</h3>
-            </div>
             <div className="inputMid">
-            
             <div className="inputField">
               <label>Username</label>
               <input
@@ -107,7 +106,7 @@ const Modal = (props) => {
                 onChange={(e) => setUsername(e.target.value)}
               ></input>
             </div>
-            <div >
+            <div className="inputField">
               <label>Password</label>
               <input
                 placeholder="Insert password here..."
@@ -116,7 +115,7 @@ const Modal = (props) => {
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
             </div>
-            <div>
+            <div className="inputNewUser">
               <label>New password</label>
               <input
                 placeholder="Insert new password here..."
