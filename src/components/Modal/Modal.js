@@ -5,6 +5,7 @@ import "./Modal.css";
 import FavoriteIcon from "./FavoriteIcon";
 import { fetchDescription, fetchComics, CheckIfFavChar, fetchVariants } from "../utils/marvelapi";
 import { fetchPowerStats } from "../utils/SuperheroApiFetch";
+import { CharacterIds } from "../utils/characterIds";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -22,11 +23,12 @@ const ModalTab = (props) => {
   function openModal() {
     setIsOpen(true);
     fetchDescription(props.name, setDesc, errors, setErrors);
-    fetchComics(props.name, errors, setErrors, setComicsAppearedIn, setComicsFiltered);
+    fetchComics(props.name, comicErrors, setComicErrors, setComicsAppearedIn, setComicsFiltered);
     if (props.cookies.jwt_token) {
       CheckIfFavChar(props.name, props.cookies.jwt_token, setIconClicked);
     }
-    fetchPowerStats(props.name, setPowerStats, setPowerStatsErrors);
+    const characterId = CharacterIds[props.name];
+    fetchPowerStats(characterId, setPowerStats, setPowerStatsErrors);
   }
 
   function closeModal() {
@@ -45,19 +47,19 @@ const ModalTab = (props) => {
 
   const handleVariants = (name) => {
     let newName = "";
-    if (name.includes("(")){
+    if (name.includes("(")) {
       let arr = name.split("");
       let first = arr.findIndex((letter) => letter === "(");
-      let newArr = []
-      for (let i = 0; i <first - 1; i++){
-          newArr.push(arr[i]);
+      let newArr = [];
+      for (let i = 0; i < first - 1; i++) {
+        newArr.push(arr[i]);
       }
       newName = newArr.join("");
-  }else{
+    } else {
       newName = name;
-  }
+    }
     fetchVariants(newName, setVariants);
-  }
+  };
 
   const isProfile = props.render === "profile";
 
@@ -76,9 +78,36 @@ const ModalTab = (props) => {
             <h2>{props.name}</h2>
           </div>
           <div className="modal-right modal-side">
-            <div className="description">
-              <h3>Description</h3>
-              <p>{powerStats}</p>
+            <div className="powerstats-wrapper">
+              <h3>Powerstats</h3>
+              <div className="powerstats">
+                <div>
+                  <h4>Intelligence</h4>
+                  <p>{powerStats && powerStats.intelligence}</p>
+                </div>
+                <div>
+                  <h4>Strength</h4>
+                  <p>{powerStats && powerStats.strength}</p>
+                </div>
+
+                <div>
+                  <h4>Speed</h4>
+                  <p>{powerStats && powerStats.speed}</p>
+                </div>
+
+                <div>
+                  <h4>Durability</h4>
+                  <p>{powerStats && powerStats.durability}</p>
+                </div>
+                <div>
+                  <h4>Power</h4>
+                  <p>{powerStats && powerStats.power}</p>
+                </div>
+                <div>
+                  <h4>Combat</h4>
+                  <p>{powerStats && powerStats.combat} </p>
+                </div>
+              </div>
             </div>
             <div className="comics-section">
               <h3>Comics Appeared In</h3>
@@ -97,7 +126,15 @@ const ModalTab = (props) => {
               <p>Random Year</p>
             </div>
             <div className="fav-and-variants">
-              <FavoriteIcon loggedIn={props.loggedIn} cookies={props.cookies} iconClicked={iconClicked} setIconClicked={setIconClicked} showToolTip={showToolTip} setShowToolTip={setShowToolTip} name={props.name} />
+              <FavoriteIcon
+                loggedIn={props.loggedIn}
+                cookies={props.cookies}
+                iconClicked={iconClicked}
+                setIconClicked={setIconClicked}
+                showToolTip={showToolTip}
+                setShowToolTip={setShowToolTip}
+                name={props.name}
+              />
               <button className="variants-button" onClick={() => handleVariants(props.name)}>
                 See Variants
               </button>

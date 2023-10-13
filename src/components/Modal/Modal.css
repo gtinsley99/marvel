@@ -47,6 +47,17 @@
   margin: 20px 0;
 }
 
+.powerstats {
+  display: flex;
+  justify-content: space-between;
+  min-width: 90%;
+  overflow-x: scroll;
+}
+
+.powerstats h4 {
+  margin: 0;
+}
+
 .comics-section {
   height: 30%;
 }
