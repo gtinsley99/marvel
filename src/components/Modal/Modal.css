@@ -7,7 +7,13 @@
   font-size: 28px;
 }
 
-.modal-holder {
+.modal-holder-profile {
+  min-width: 20%;
+  margin: 0 20px;
+  padding: 20px 0;
+}
+
+.modal-holder-characters {
   width: 26%;
 }
 
@@ -68,7 +74,7 @@
   height: 40px;
   border: none;
   border-radius: 10px;
-  background-color: #00A000;
+  background-color: #00a000;
   color: white;
   box-shadow: 3px 3px 3px #006600;
 }
@@ -81,16 +87,16 @@
 }
 
 .close-button:active {
-  background-color: #00A000;
+  background-color: #00a000;
 }
 
 .variants-button {
   font-size: 20px;
-  width:180px;
-  height:40px;
+  width: 180px;
+  height: 40px;
   border: none;
   border-radius: 10px;
-  background-color: #00A000;
+  background-color: #00a000;
   color: white;
   box-shadow: 3px 3px 3px #006600;
 }
@@ -103,6 +109,5 @@
 }
 
 .variants-button:active {
-  background-color: #00A000;
-
+  background-color: #00a000;
 }
