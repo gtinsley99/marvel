@@ -26,12 +26,12 @@ const FavoriteIcon = (props) => {
   const icon = props.iconClicked ? (
     <div className="icon-holder" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <StarBorderPurple500Icon className="favorite-icon" onClick={handleIconClick} />
-      {props.showToolTip && <div className="tool-tip">Add to Favorites</div>}
+      {props.showToolTip && <div className="tool-tip">{props.loggedIn ? "Add to Favourites" : "Login to favourite a character"}</div>}
     </div>
   ) : (
     <div className="icon-holder" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <StarRateIcon className="favorite-icon clicked" onClick={handleIconClick} />
-      {props.showToolTip && <div className="tool-tip">Remove from Favorites</div>}
+      {props.showToolTip && <div className="tool-tip">{props.loggedIn ? "Remove from Favourites" : "Login to favourite a character"}</div>}
     </div>
   );
 

@@ -75,7 +75,7 @@ const ModalTab = (props) => {
               <p>Random Year</p>
             </div>
             <div className="fav-and-variants">
-              <FavoriteIcon cookies={props.cookies} iconClicked={iconClicked} setIconClicked={setIconClicked} showToolTip={showToolTip} setShowToolTip={setShowToolTip} name={props.name} />
+              <FavoriteIcon loggedIn={props.loggedIn} cookies={props.cookies} iconClicked={iconClicked} setIconClicked={setIconClicked} showToolTip={showToolTip} setShowToolTip={setShowToolTip} name={props.name} />
               <button className="variants-button" onClick={closeModal}>
                 See Variants
               </button>
