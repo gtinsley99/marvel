@@ -4,3 +4,11 @@
     align-items: center;
     justify-content: center;
 }
+
+.successMsg{
+    color: green;
+}
+
+.errMsg{
+    color: red;
+}
