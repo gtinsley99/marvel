@@ -4,6 +4,7 @@ import CharcterCard from "../CharacterCard/CharcterCard";
 import "./Modal.css";
 import FavoriteIcon from "./FavoriteIcon";
 import { fetchDescription, fetchComics, CheckIfFavChar, fetchVariants } from "../utils/marvelapi";
+import { fetchPowerStats } from "../utils/SuperheroApiFetch";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -12,10 +13,11 @@ const ModalTab = (props) => {
   const [errors, setErrors] = useState(null);
   const [comicErrors, setComicErrors] = useState(null);
   const [comicsAppearedIn, setComicsAppearedIn] = useState([]);
-  const [comicSearchTerm, setComicSearchTerm] = useState("");
   const [comicsFiltered, setComicsFiltered] = useState([]);
   const [iconClicked, setIconClicked] = useState(true); // set up iconClicked State
   const [showToolTip, setShowToolTip] = useState(false); // set up showToolTip State
+  const [powerStats, setPowerStats] = useState();
+  const [powerStatsErrors, setPowerStatsErrors] = useState();
 
   function openModal() {
     setIsOpen(true);
@@ -24,6 +26,7 @@ const ModalTab = (props) => {
     if (props.cookies.jwt_token) {
       CheckIfFavChar(props.name, props.cookies.jwt_token, setIconClicked);
     }
+    fetchPowerStats(props.name, setPowerStats, setPowerStatsErrors);
   }
 
   function closeModal() {
@@ -31,10 +34,10 @@ const ModalTab = (props) => {
   }
 
   const handleChange = (e) => {
-    setComicSearchTerm(e.target.value);
+    const searchTerm = e.target.value;
 
     const filteredComics = comicsAppearedIn.filter((comic) => {
-      return comic.title.includes(comicSearchTerm);
+      return comic.title.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
     setComicsFiltered(filteredComics);
@@ -56,8 +59,10 @@ const ModalTab = (props) => {
     fetchVariants(newName, setVariants);
   }
 
+  const isProfile = props.render === "profile";
+
   return (
-    <div className="modal-holder">
+    <div className={[isProfile ? "modal-holder-profile" : "modal-holder-characters"]}>
       <CharcterCard onClick={openModal} name={props.name} imgSrc={props.imgSrc} />
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal" ariaHideApp={false}>
         <div className="modal-tab">
@@ -73,7 +78,7 @@ const ModalTab = (props) => {
           <div className="modal-right modal-side">
             <div className="description">
               <h3>Description</h3>
-              <p>{desc}</p>
+              <p>{powerStats}</p>
             </div>
             <div className="comics-section">
               <h3>Comics Appeared In</h3>

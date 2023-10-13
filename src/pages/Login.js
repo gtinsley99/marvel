@@ -5,11 +5,6 @@ import RegistrationForm from "../components/Login/Register";
 import CoverImage from "../images/avengers-cover.png";
 
 const Login = (props) => {
-  const [token, setToken] = useState("");
-
-  const handleLogin = (newToken) => {
-    setToken(newToken);
-  };
 
   return (
     <div className="whole-login">
