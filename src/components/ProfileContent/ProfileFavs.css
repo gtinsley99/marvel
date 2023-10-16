@@ -3,4 +3,6 @@
   overflow-x: scroll;
   width: 90vw;
   margin: auto;
+  background-color: #dedddd;
+  border: 2px solid grey;
 }

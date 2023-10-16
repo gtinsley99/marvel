@@ -9,7 +9,7 @@ const ProfileFavs = (props) => {
       <div className="favorites">
         {props.favs
           ? props.favs.map((char, index) => {
-              return <ModalTab name={char.name} imgSrc={char.image} cookies={props.cookies} key={index} render={"profile"} loggedIn={props.loggedIn} />;
+              return <ModalTab name={char.name} imgSrc={char.image} cookies={props.cookies} key={index} render={"profile"} loggedIn={props.loggedIn} setHideNav={props.setHideNav} setShowNav={props.setShowNav}/>;
             })
           : "You have no favorites"}
       </div>

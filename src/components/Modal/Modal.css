@@ -58,12 +58,28 @@
 }
 
 .comics-section {
-  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
 }
 
 .comics {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: start;
   height: 80%;
   overflow-y: scroll;
+}
+
+.comicSearch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .release h3 {
@@ -87,6 +103,7 @@
   background-color: #00a000;
   color: white;
   box-shadow: 3px 3px 3px #006600;
+  transition: all 0.3s ease-in;
 }
 
 .close-button:hover {
@@ -98,6 +115,7 @@
 
 .close-button:active {
   background-color: #00a000;
+  transform: translateY(3px);
 }
 
 .variants-button {
@@ -109,6 +127,7 @@
   background-color: #00a000;
   color: white;
   box-shadow: 3px 3px 3px #006600;
+  transition: all 0.3s ease-in;
 }
 
 .variants-button:hover {
@@ -120,11 +139,15 @@
 
 .variants-button:active {
   background-color: #00a000;
+  transform: translateY(3px);
 }
 
 .variantImg {
-  height: 250px;
   width: 200px;
+  height: 250px;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
+  border: 3px solid #6b52a5;
 }
 
 .variantsMapStart {
@@ -149,6 +172,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 200px;
   justify-content: center;
   margin: 0px 20px;
 }
@@ -179,8 +203,14 @@
 .variantsMid {
   display: flex;
   justify-content: center;
+  background-color: #dedddd;
+  border: 2px solid grey;
 }
 
 .textDiv {
   height: 30px;
+}
+
+.stats {
+  margin-top: 8%;
 }

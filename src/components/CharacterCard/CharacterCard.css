@@ -10,6 +10,7 @@
   border: 3px solid #6b52a5;
   margin-bottom: 30px;
   border-radius: 15px;
+  background-color: white;
 }
 
 .character-card:hover {

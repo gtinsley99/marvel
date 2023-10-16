@@ -7,6 +7,7 @@ import ReactPaginate from "react-paginate";
 import Popular from "../components/Popular/Popular";
 import ModalTab from "../components/Modal/Modal";
 import { PopChar } from "../components/utils/marvelapi";
+import background from "../images/marvel.png";
 
 const Characters = (props) => {
   const [pop, setPop] = useState(null);
@@ -43,9 +44,10 @@ const Characters = (props) => {
   };
 
   return (
-    <>
-      <div>
-        <Popular pop={pop} cookies={props.cookies} loggedIn={props.loggedIn} />
+    <div className="charPage">
+      <img className="background" src={background}></img>
+      <div className="popChar">
+        <Popular pop={pop} cookies={props.cookies} loggedIn={props.loggedIn} setHideNav={props.setHideNav} setShowNav={props.setShowNav} />
       </div>
       <div className="searchDiv">
         <div className="searchCard">
@@ -57,7 +59,7 @@ const Characters = (props) => {
       <div className="card-container">
         {displayedCharacters
           ? displayedCharacters.map((char, index) => {
-              return <ModalTab name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} loggedIn={props.loggedIn} />;
+              return <ModalTab name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} loggedIn={props.loggedIn} setHideNav={props.setHideNav} setShowNav={props.setShowNav} />;
             })
           : "Fetching Character Data"}
       </div>
@@ -71,7 +73,7 @@ const Characters = (props) => {
         activeClassName="active"
         forcePage={currentPage}
       />{" "}
-    </>
+    </div>
   );
 };
 

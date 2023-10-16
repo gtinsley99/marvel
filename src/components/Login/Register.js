@@ -25,14 +25,13 @@ function RegistrationForm(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
+    <form onSubmit={handleSubmit} className="login-form" style={{backgroundColor: "red", color: "black", marginTop: "25px"}}>
       <h1>Register an account</h1>
-      {errors && <h3 className="errorMsg">{errors}</h3>}
+      {errors && <h3 className="regErrorMsg">{errors}</h3>}
       <div>
-        <label htmlFor="username"></label>
         <input
           placeholder="Username"
-          className="barsLog"
+          className="regBarsLog"
           type="text"
           id="username"
           name="username"
@@ -43,7 +42,7 @@ function RegistrationForm(props) {
       <div>
         <input
           placeholder="Email"
-          className="barsLog"
+          className="regBarsLog"
           type="email"
           id="email"
           name="email"
@@ -54,7 +53,7 @@ function RegistrationForm(props) {
       <div>
         <input
           placeholder="Password"
-          className="barsLog"
+          className="regBarsLog"
           type="password"
           id="password"
           name="password"
