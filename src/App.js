@@ -14,6 +14,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [cookies, setCookie, removeCookie] = useCookies(["jwt_token"]);
   const [user, setUser] = useState("");
+  const [userPic, setUserPic] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [res, setRes] = useState(null);
   const [showNav, setShowNav] = useState(true);
@@ -41,7 +42,7 @@ function App() {
     };
 
   const loginWithToken = async () => {
-    await AuthCheck(cookies.jwt_token, setUser, setLoggedIn);
+    await AuthCheck(cookies.jwt_token, setUser, setUserPic, setLoggedIn);
   };
 
   useEffect(() => {
@@ -53,13 +54,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {showNav && <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} />}
+        {showNav && <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} setUserPic={setUserPic} userPic={userPic} />}
         <div className="navMargin"></div>
         <Routes>
           <Route path="/" element={<Home loading={loading} setLoading={setLoading} />} />
           <Route
             path="/login"
-            element={<Login cookie={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} setRes={setRes} />}
+            element={<Login cookie={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} setUserPic={setUserPic} loggedIn={loggedIn} setLoggedIn={setLoggedIn} setRes={setRes} />}
           />
           <Route
             path="/profile"
