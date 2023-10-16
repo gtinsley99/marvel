@@ -1,6 +1,9 @@
 .nav-wrapper {
+  position: fixed;
   background-color: #0074d9;
   border-bottom: 3px solid black;
+  width: 100vw;
+  top: 0;
 }
 
 nav {
