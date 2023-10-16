@@ -19,17 +19,9 @@ function App() {
   const [showNav, setShowNav] = useState(true);
   const [allChar, setAllChar] = useState(null);
 
-  // Route to get description of character - use name (thor for testing only) currently use effect, change to when click
-  // CharDesc("thor", setDesc);
 
   // Route to get all characters from backend db- useeffect on load
   AllChar(setAllChar);
-
-  // Route to search for comics by character, change from useeffect use name and input field (thor and avengers for testing only)
-  // CharComics("thor", "avengers", setComics);
-
-  // Route to search for series by character, change from useeffect use name and input field (thor and a for testing only)
-  // CharSeries("thor", "a", setSeries);
 
   // Marvelapi();
 
