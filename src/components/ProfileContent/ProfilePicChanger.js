@@ -1,34 +1,43 @@
 import React, { useState } from 'react';
-import { Button, Modal } from 'antd';
 
-function ProfilePicChanger(props){
-  const [file, setFile] = useState();
+function ProfilePicChanger(props) {
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  function changeHandler (event) {
-   event.preventDefault()
-   props.setFile(`./ProfileImg/${event.target.files[0].name}`)
-   console.log(`./ProfileImg/${event.target.files[0].name}`);
+  function changeHandler(event) {
+    event.preventDefault();
+
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const dataURL = e.target.result;
+        setSelectedImage(dataURL);
+      };
+
+      reader.readAsDataURL(file);
+    }
   }
 
   function submitHandler(event) {
-    event.preventDefault()
-    console.log(props.file);
-    
+    event.preventDefault();
+
+    if (selectedImage) {
+      // Now you can set the selectedImage to the parent component
+      props.setFile(selectedImage);
+    }
   }
 
-
-
-return (
-  <div className='Picture'>
-    <form onSubmit={submitHandler}>
-    <input type="file" onChange={changeHandler}>
-      </input>
-      <button type="submit">
-       Upload
-      </button>
+  return (
+    <div className='Picture'>
+      <form onSubmit={submitHandler}>
+        <input type="file" onChange={changeHandler} />
+        <button type="submit">Upload</button>
       </form>
-    </div> 
-    )}
-
+     
+    </div>
+  );
+}
 
 export default ProfilePicChanger;

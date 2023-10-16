@@ -11,7 +11,7 @@ const ProfileContent = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState(null);
   const [res, setRes] = useState(null);
-  const [file, setFile] = useState(`./ProfileImg/cuthbert.jpg`);
+  const [file, setFile] = useState();
 
   const handleClick = (e) => {
     console.log(file);
@@ -24,7 +24,7 @@ const ProfileContent = (props) => {
   return (
     <div>
       <h2 className='Username'>Welcome user: {props.user}</h2>
-      <Avatar className='profilepicture'src={require(`${file}`)} size={150} icon={<UserOutlined />} />
+      <Avatar className='profilepicture'src={file} size={150} icon={<UserOutlined />} />
        <ProfilePicChanger setFile={setFile} file={file} />
       <div className='button-holder'>           
         <button value="username" onClick={handleClick} >Update Username</button>
