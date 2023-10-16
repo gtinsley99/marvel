@@ -1,11 +1,9 @@
 import React from "react";
-import { useState } from "react";
 import LoginComponent from "../components/Login/Login";
 import RegistrationForm from "../components/Login/Register";
 import CoverImage from "../images/avengers-cover.png";
 
 const Login = (props) => {
-
   return (
     <div className="whole-login">
       <div className="img-holder">
