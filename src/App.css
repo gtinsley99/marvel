@@ -121,7 +121,7 @@ label{
   position: fixed;
   top: 0;
   z-index: -2;
-  width: 120vw;
+  width: 100vw;
   height: 100vh;
   overflow-x: hidden;
 }
