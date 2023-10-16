@@ -33,7 +33,7 @@ const Characters = (props) => {
     <div className="charPage">
       <img className="background" src={background}></img>
       <div className="popChar">
-        <Popular pop={pop} cookies={props.cookies} loggedIn={props.loggedIn} />
+        <Popular pop={pop} cookies={props.cookies} loggedIn={props.loggedIn} setHideNav={props.setHideNav} setShowNav={props.setShowNav} />
       </div>
       <div className="searchDiv">
         <div className="searchCard">
@@ -45,7 +45,7 @@ const Characters = (props) => {
       <div className="card-container">
         {characters
           ? characters.map((char, index) => {
-              return <ModalTab name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} loggedIn={props.loggedIn} />;
+              return <ModalTab name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} loggedIn={props.loggedIn} setHideNav={props.setHideNav} setShowNav={props.setShowNav} />;
             })
           : "Fetching Character Data"}
       </div>
