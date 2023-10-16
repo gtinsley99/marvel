@@ -83,12 +83,16 @@ const ModalTab = (props) => {
               <h2>{props.name}</h2>
             </div>
             <div className="modal-right modal-side">
+              <div className="stats">
               <Powerstats powerStats={powerStats} />
+              </div>
               <div className="comics-section">
+                <div className="comicSearch">
                 <h3>Comics Appeared In</h3>
                 <form>
                   <input placeholder="search for comics" onChange={handleChange} />
                 </form>
+                </div>
                 <div className="comics">
                   {comicsFiltered ? (
                     comicsFiltered.map((comic, index) => {
@@ -99,10 +103,7 @@ const ModalTab = (props) => {
                   )}
                 </div>
               </div>
-              <div className="release">
-                <h3>Release of Character</h3>
-                <p>Random Year</p>
-              </div>
+            
               <div className="fav-and-variants">
                 <FavoriteIcon
                   loggedIn={props.loggedIn}

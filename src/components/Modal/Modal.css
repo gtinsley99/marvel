@@ -58,12 +58,28 @@
 }
 
 .comics-section {
-  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
 }
 
 .comics {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: start;
   height: 80%;
   overflow-y: scroll;
+}
+
+.comicSearch{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .release h3 {
@@ -190,5 +206,9 @@
 
 .textDiv{
   height: 30px;
+}
+
+.stats{
+  margin-top: 8%;
 }
 
