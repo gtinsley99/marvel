@@ -3,8 +3,12 @@
   flex-direction: column;
   align-items: center;
   border: 1px solid black;
-  width: 65%;
+  border-radius: 10px;
+  width: 75%;
   margin: 5px auto;
+  background-color: #6b52a5;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .barsLog {
@@ -16,16 +20,32 @@
   box-shadow: 3px 3px 3px;
 }
 
+.regBarsLog {
+  padding: 10px;
+  width: 377px;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 15px;
+  box-shadow: 3px 3px 3px;
+}
+
 .loginBtn {
+  font-family: "komika";
   width: 40%;
   padding: 15px;
   margin: 20px;
   border: none;
   border-radius: 15px;
-  background-color: #6b52a5;
+  background-color: #0074d9;
   color: white;
   box-shadow: 3px 3px 3px black;
   cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.loginBtn:hover {
+  transform: scale(1.1);
+  background-color: #0088ff;
 }
 
 .loginBtn:active {
@@ -35,11 +55,13 @@
 
 .whole-login {
   display: flex;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .img-holder {
   width: 50%;
-  height: 110vh;
+  height: 100vh;
 }
 
 .img-holder img {
@@ -49,8 +71,13 @@
 
 .login-register {
   width: 50%;
+  margin-top: 50px;
 }
 
 .errorMsg{
-  color: red;
+  color: yellow;
+}
+
+.regErrorMsg{
+  color: yellow;
 }

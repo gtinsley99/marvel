@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import LoginComponent from "../components/Login/Login";
 import RegistrationForm from "../components/Login/Register";
 import CoverImage from "../images/avengers-cover.png";

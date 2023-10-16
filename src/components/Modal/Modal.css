@@ -87,6 +87,7 @@
   background-color: #00a000;
   color: white;
   box-shadow: 3px 3px 3px #006600;
+  transition: all 0.3s ease-in;
 }
 
 .close-button:hover {
@@ -98,6 +99,7 @@
 
 .close-button:active {
   background-color: #00a000;
+  transform: translateY(3px);
 }
 
 .variants-button {
@@ -109,6 +111,7 @@
   background-color: #00a000;
   color: white;
   box-shadow: 3px 3px 3px #006600;
+  transition: all 0.3s ease-in;
 }
 
 .variants-button:hover {
@@ -120,6 +123,7 @@
 
 .variants-button:active {
   background-color: #00a000;
+  transform: translateY(3px);
 }
 
 .variantImg{
