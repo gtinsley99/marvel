@@ -3,14 +3,13 @@ import Modal from "react-modal";
 import CharcterCard from "../CharacterCard/CharcterCard";
 import "./Modal.css";
 import FavoriteIcon from "./FavoriteIcon";
-import { fetchDescription, fetchComics, CheckIfFavChar, fetchVariants } from "../utils/marvelapi";
+import { fetchComics, CheckIfFavChar, fetchVariants } from "../utils/marvelapi";
 import { fetchPowerStats } from "../utils/SuperheroApiFetch";
 import { CharacterIds } from "../utils/characterIds";
 import Powerstats from "./Powerstats";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [desc, setDesc] = useState("No character Description available");
   const [variants, setVariants] = useState(null);
   const [errors, setErrors] = useState(null);
   const [comicErrors, setComicErrors] = useState(null);
@@ -24,7 +23,8 @@ const ModalTab = (props) => {
 
   function openModal() {
     setIsOpen(true);
-    fetchDescription(props.name, setDesc, errors, setErrors);
+    props.setShowNav(false);
+    props.setHideNav(true);
     fetchComics(props.name, errors, setErrors, setComicsAppearedIn, setComicsFiltered);
     if (props.cookies.jwt_token) {
       CheckIfFavChar(props.name, props.cookies.jwt_token, setIconClicked);
@@ -35,6 +35,8 @@ const ModalTab = (props) => {
 
   function closeModal() {
     setIsOpen(false);
+    props.setShowNav(true);
+    props.setHideNav(false);
   }
 
   const handleChange = (e) => {
