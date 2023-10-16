@@ -63,7 +63,7 @@
 }
 
 .searchCard{
-  border: 3px solid #6b52a5;
+  border: 2px solid black;
   background-color: #dedddd;
   padding: 20px;
   display: flex;
@@ -80,7 +80,7 @@ label{
   background-color: #dedddd;
   padding: 30px;
   width: 90%;
-  border: 3px solid #6b52a5;
+  border: 2px solid black;
   margin-bottom: 50px;
 }
 
