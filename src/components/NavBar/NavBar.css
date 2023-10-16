@@ -1,12 +1,18 @@
 .nav-wrapper {
+  position: fixed;
   background-color: #0074d9;
+  border-bottom: 3px solid black;
+  width: 100vw;
+  top: 0;
+  overflow-x: hidden;
+  z-index: 2;
 }
 
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 90vw;
+  width: 95vw;
   margin: auto;
   background-color: #0074d9;
   padding: 30px;
@@ -22,6 +28,15 @@ nav {
   transform: scale(1.8);
 }
 
+.profPic{
+  transform: scale(1.5);
+}
+
+.profPic:hover{
+  cursor: pointer;
+  transform: scale(1.8);
+}
+
 .button {
   padding: 10px;
   font-size: 20px;
@@ -30,6 +45,7 @@ nav {
   border: none;
   border-radius: 7px;
   transition: all 0.3s ease-in;
+  font-family: "Komika";
 }
 
 .button:hover {

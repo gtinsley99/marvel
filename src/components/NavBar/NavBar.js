@@ -8,6 +8,8 @@ const NavBar = (props) => {
   const handleClick = () => {
     if (props.loggedIn){
       props.setLoggedIn(false);
+      props.setUser("");
+      props.setUserPic("");
       document.cookie =
       "jwt_token=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie =
@@ -19,7 +21,7 @@ const NavBar = (props) => {
     <div className="nav-wrapper">
       <nav>
         <Link to={props.loggedIn ? "/profile" : "/login"}>
-          <AccountCircleIcon className="navbar-icon" />
+          {props.userPic === "" ? <AccountCircleIcon className="navbar-icon" /> : <img className="profPic" src="userPic"></img>}
         </Link>
         <Link to="/characters">
           <ExploreIcon className="navbar-icon" />

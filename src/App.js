@@ -14,29 +14,35 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [cookies, setCookie, removeCookie] = useCookies(["jwt_token"]);
   const [user, setUser] = useState("");
+  const [userPic, setUserPic] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [res, setRes] = useState(null);
-  const [desc, setDesc] = useState("");
+  const [showNav, setShowNav] = useState(true);
   const [allChar, setAllChar] = useState(null);
+  const [hideNav, setHideNav] = useState(false);
 
-  // Route to get description of character - use name (thor for testing only) currently use effect, change to when click
-  // CharDesc("thor", setDesc);
 
   // Route to get all characters from backend db- useeffect on load
   AllChar(setAllChar);
 
-  // Route to search for comics by character, change from useeffect use name and input field (thor and avengers for testing only)
-  // CharComics("thor", "avengers", setComics);
-
-  // Route to search for series by character, change from useeffect use name and input field (thor and a for testing only)
-  // CharSeries("thor", "a", setSeries);
-
   // Marvelapi();
 
-  // Route to get most popular characters
+    // Show navbar on scrollup, hide on scrolldown
+    let prevScrollPos = window.scrollY;
+    window.onscroll = () => {
+      let currentScrollPos = window.scrollY;
+      if (!hideNav){
+        if (prevScrollPos > currentScrollPos || currentScrollPos < 100) {
+          setShowNav(true);
+        } else {
+          setShowNav(false);
+        }
+      };
+      prevScrollPos = currentScrollPos;
+    };
 
-  const loginWithToken = async (cookie) => {
-    await AuthCheck(cookies.jwt_token, setUser, setLoggedIn);
+  const loginWithToken = async () => {
+    await AuthCheck(cookies.jwt_token, setUser, setUserPic, setLoggedIn);
   };
 
   useEffect(() => {
@@ -48,15 +54,19 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+        {showNav && <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} setUserPic={setUserPic} userPic={userPic} />}
+        <div className="navMargin"></div>
         <Routes>
           <Route path="/" element={<Home loading={loading} setLoading={setLoading} />} />
           <Route
             path="/login"
-            element={<Login cookie={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} setRes={setRes} />}
+            element={<Login cookie={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} setUserPic={setUserPic} loggedIn={loggedIn} setLoggedIn={setLoggedIn} setRes={setRes} />}
           />
-          <Route path="/profile" element={<Profile cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} />} />
-          <Route path="/characters" element={<Characters cookies={cookies} allChar={allChar} />} />
+          <Route
+            path="/profile"
+            element={<Profile cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} setLoggedIn={setLoggedIn} loggedIn={loggedIn} setHideNav={setHideNav} setShowNav={setShowNav} />}
+          />
+          <Route path="/characters" element={<Characters cookies={cookies} allChar={allChar} loggedIn={loggedIn} setHideNav={setHideNav} setShowNav={setShowNav} />} />
         </Routes>
       </BrowserRouter>
     </div>
