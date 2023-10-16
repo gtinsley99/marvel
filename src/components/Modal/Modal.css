@@ -122,13 +122,13 @@
   background-color: #00a000;
 }
 
-.variantImg{
+.variantImg {
   height: 250px;
   width: 200px;
 }
 
-.variantsMapStart{
-  justify-content: start;
+.variantsMapStart {
+  justify-content: flex-start;
   align-items: center;
   display: flex;
   width: 1200px;
@@ -136,7 +136,7 @@
   overflow-x: scroll;
 }
 
-.variantsMapCentre{
+.variantsMapCentre {
   justify-content: center;
   align-items: center;
   display: flex;
@@ -145,7 +145,7 @@
   overflow-x: scroll;
 }
 
-.variantItem{
+.variantItem {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -153,35 +153,34 @@
   margin: 0px 20px;
 }
 
-.variantTab{
+.variantTab {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.variant-top{
+.variant-top {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.variants-bot{
+.variants-bot {
   display: flex;
   justify-content: center;
   margin: 100px 20px 0px 0px;
   align-items: center;
 }
 
-.closeVariants{
+.closeVariants {
   margin: 0px 80px;
 }
 
-.variantsMid{
+.variantsMid {
   display: flex;
   justify-content: center;
 }
 
-.textDiv{
+.textDiv {
   height: 30px;
 }
-
