@@ -16,24 +16,26 @@ function App() {
   const [user, setUser] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [res, setRes] = useState(null);
-  const [desc, setDesc] = useState("");
+  const [showNav, setShowNav] = useState(true);
   const [allChar, setAllChar] = useState(null);
 
-  // Route to get description of character - use name (thor for testing only) currently use effect, change to when click
-  // CharDesc("thor", setDesc);
 
   // Route to get all characters from backend db- useeffect on load
   AllChar(setAllChar);
 
-  // Route to search for comics by character, change from useeffect use name and input field (thor and avengers for testing only)
-  // CharComics("thor", "avengers", setComics);
-
-  // Route to search for series by character, change from useeffect use name and input field (thor and a for testing only)
-  // CharSeries("thor", "a", setSeries);
-
   // Marvelapi();
 
-  // Route to get most popular characters
+    // Show navbar on scrollup, hide on scrolldown
+    let prevScrollPos = window.scrollY;
+    window.onscroll = () => {
+      let currentScrollPos = window.scrollY;
+      if (prevScrollPos > currentScrollPos || currentScrollPos < 100) {
+        setShowNav(true);
+      } else {
+        setShowNav(false);
+      }
+      prevScrollPos = currentScrollPos;
+    };
 
   const loginWithToken = async () => {
     await AuthCheck(cookies.jwt_token, setUser, setLoggedIn);
@@ -48,7 +50,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} />
+        {showNav && <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} />}
+        <div className="navMargin"></div>
         <Routes>
           <Route path="/" element={<Home loading={loading} setLoading={setLoading} />} />
           <Route

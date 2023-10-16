@@ -5,6 +5,7 @@ import "../App.css";
 import Popular from "../components/Popular/Popular";
 import ModalTab from "../components/Modal/Modal";
 import { PopChar } from "../components/utils/marvelapi";
+import background from "../images/marvel.png"
 
 const Characters = (props) => {
   const [pop, setPop] = useState(null);
@@ -29,8 +30,9 @@ const Characters = (props) => {
   };
 
   return (
-    <>
-      <div>
+    <div className="charPage">
+      <img className="background" src={background}></img>
+      <div className="popChar">
         <Popular pop={pop} cookies={props.cookies} loggedIn={props.loggedIn} />
       </div>
       <div className="searchDiv">
@@ -47,7 +49,7 @@ const Characters = (props) => {
             })
           : "Fetching Character Data"}
       </div>
-    </>
+    </div>
   );
 };
 

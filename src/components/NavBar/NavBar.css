@@ -1,7 +1,11 @@
 .nav-wrapper {
+  position: fixed;
   background-color: #0074d9;
-  border-bottom: 2px solid #6b52a5;
+  border-bottom: 3px solid black;
+  width: 100vw;
+  top: 0;
   overflow-x: hidden;
+  z-index: 2;
 }
 
 nav {
