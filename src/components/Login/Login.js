@@ -13,7 +13,7 @@ const LoginComponent = (props) => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    Login(username, password, setErrors, props.setCookie, props.setLoggedIn, props.setUser, navigate)
+    Login(username, password, setErrors, props.setCookie, props.setLoggedIn, props.setUser, props.setUserPic, navigate)
     setUsername("");
     setPassword("");
   };

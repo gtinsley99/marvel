@@ -10,7 +10,7 @@ const Login = (props) => {
         <img src={CoverImage} alt="placeholder" />
       </div>
       <div className="login-register">
-        <LoginComponent cookie={props.cookie} setCookie={props.setCookie} removeCookie={props.removeCookie} user={props.user} setUser={props.setUser} setLoggedIn={props.setLoggedIn} />
+        <LoginComponent cookie={props.cookie} setCookie={props.setCookie} removeCookie={props.removeCookie} user={props.user} setUser={props.setUser} setUserPic={props.setUserPic} setLoggedIn={props.setLoggedIn} />
         <RegistrationForm cookie={props.cookie} setCookie={props.setCookie} removeCookie={props.removeCookie} setUser={props.setUser} setLoggedIn={props.setLoggedIn} />
       </div>
     </div>

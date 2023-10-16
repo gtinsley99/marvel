@@ -1,4 +1,4 @@
-export const AuthCheck = async (jwt_token, setUser, setLoggedIn) => {
+export const AuthCheck = async (jwt_token, setUser, setUserPic, setLoggedIn) => {
   try {
     const res = await fetch(`${process.env.REACT_APP_API}/loginwithtoken`, {
       method: "GET",
@@ -12,6 +12,9 @@ export const AuthCheck = async (jwt_token, setUser, setLoggedIn) => {
     }
     const data = await res.json();
     setUser(data.user.username);
+    if (data.user.profilePic !== null){
+    setUserPic(data.user.profilePic);
+    };
     setLoggedIn(true);
     console.log(data);
   } catch (error) {
@@ -146,6 +149,7 @@ export const Login = async (
   setCookie,
   setLoggedIn,
   setUser,
+  setUserPic,
   navigate
 ) => {
   try {
@@ -177,6 +181,9 @@ export const Login = async (
       });
       setLoggedIn(true);
       setUser(data.user.username);
+      if (data.user.profilePic !== null){
+        setUserPic(data.user.profilePic);
+        };
       navigate("/");
     }
   } catch (error) {
@@ -232,7 +239,7 @@ export const Register = async (
   }
 };
 
-export const UpdateProfPic = async (jwt_token, picUrl) => {
+export const UpdateProfPic = async (jwt_token, picUrl, setUserPic) => {
   try {
     const response = await fetch(`${process.env.REACT_APP_API}/updatepic`, {
       method: "PUT",
@@ -246,6 +253,7 @@ export const UpdateProfPic = async (jwt_token, picUrl) => {
     });
     const data = await response.json();
     console.log(data);
+    setUserPic(data.profilePic);
   } catch (error) {
     console.error("Error:", error);
   };
