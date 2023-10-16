@@ -84,6 +84,11 @@ label {
   margin-right: 10px;
 }
 
+input{
+  position: relative;
+  top: -9px;
+}
+
 #delButton {
   background-color: red;
 }
