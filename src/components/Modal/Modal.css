@@ -74,7 +74,7 @@
   overflow-y: scroll;
 }
 
-.comicSearch{
+.comicSearch {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -142,7 +142,7 @@
   transform: translateY(3px);
 }
 
-.variantImg{
+.variantImg {
   width: 200px;
   height: 250px;
   border-top-left-radius: 13px;
@@ -150,8 +150,8 @@
   border: 3px solid #6b52a5;
 }
 
-.variantsMapStart{
-  justify-content: start;
+.variantsMapStart {
+  justify-content: flex-start;
   align-items: center;
   display: flex;
   width: 1200px;
@@ -159,17 +159,16 @@
   overflow-x: scroll;
 }
 
-.variantsMapCentre{
+.variantsMapCentre {
   justify-content: center;
   align-items: center;
   display: flex;
   width: 1200px;
   height: 400px;
   overflow-x: scroll;
-  
 }
 
-.variantItem{
+.variantItem {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -178,41 +177,40 @@
   margin: 0px 20px;
 }
 
-.variantTab{
+.variantTab {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.variant-top{
+.variant-top {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.variants-bot{
+.variants-bot {
   display: flex;
   justify-content: center;
   margin: 100px 20px 0px 0px;
   align-items: center;
 }
 
-.closeVariants{
+.closeVariants {
   margin: 0px 80px;
 }
 
-.variantsMid{
+.variantsMid {
   display: flex;
   justify-content: center;
   background-color: #dedddd;
   border: 2px solid grey;
 }
 
-.textDiv{
+.textDiv {
   height: 30px;
 }
 
-.stats{
+.stats {
   margin-top: 8%;
 }
-

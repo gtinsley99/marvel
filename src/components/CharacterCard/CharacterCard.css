@@ -48,3 +48,24 @@
   border-radius: 5px;
   width: 125px;
 }
+
+.pagination {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  margin: 25px auto;
+}
+
+.pagination li {
+  list-style: none;
+}
+
+.pagination a {
+  cursor: pointer;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.pagination .active a {
+  background-color: red;
+}
