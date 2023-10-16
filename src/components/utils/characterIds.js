@@ -57,7 +57,7 @@ export const CharacterIds = {
   Namor: 482,
   "New Warriors": 489, //Nick Fury
   "Nico Minoru": 610, //Songbird
-  Owl: 494, //Nite Owl
+  Owl: 538, //Nite Owl
   Patriot: 502, //One Punch Man
   "Professor X": 527,
   Prowler: 528,
