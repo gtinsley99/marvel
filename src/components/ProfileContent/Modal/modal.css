@@ -1,94 +1,93 @@
-.inputField{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
+.inputField {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
-.inputNewUser{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    position: relative;
-    left: -20px;
+.inputNewUser {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  left: -20px;
 }
 
-.successMsg{
-    color: green;
+.successMsg {
+  color: green;
 }
 
-.errMsg{
-    color: red;
+.errMsg {
+  color: red;
 }
 
-.modalBackgrnd{
-    top: 0;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 2;
-    background-color: rgba(128, 128, 128, 0.446);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.modalBackgrnd {
+  top: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  background-color: rgba(128, 128, 128, 0.446);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.inputForm{
-    background-color: white;
-    border: 1px solid black;
-    padding: 0px 80px 10px 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.inputForm {
+  background-color: white;
+  border: 1px solid black;
+  padding: 0px 80px 10px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.inputTop{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    
+.inputTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
-.inputMid{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px;
-    margin-bottom: 20px;
+.inputMid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
-.inputBot{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 80%;
+.inputBot {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
 }
 
-.formButton{
-    background-color: rgb(228, 102, 18);
-    border: 1px solid grey;
-    border-radius: 10%;
-    transition: 0.5s;
-    padding: 4px 10px;
-    margin-bottom: 10px;
+.formButton {
+  background-color: rgb(228, 102, 18);
+  border: 1px solid grey;
+  border-radius: 10%;
+  transition: 0.5s;
+  padding: 4px 10px;
+  margin-bottom: 10px;
 }
 
-.formButton:hover{
-    cursor: pointer;
-    background-color: orange;
+.formButton:hover {
+  cursor: pointer;
+  background-color: orange;
 }
 
-label{
-    margin-right: 10px;
+label {
+  margin-right: 10px;
 }
 
-#delButton{
-    background-color: red;
+#delButton {
+  background-color: red;
 }
 
-#delButton:hover{
-    background-color: rgb(182, 5, 5);
+#delButton:hover {
+  background-color: rgb(182, 5, 5);
 }
