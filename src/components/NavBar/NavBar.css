@@ -4,13 +4,15 @@
   border-bottom: 3px solid black;
   width: 100vw;
   top: 0;
+  overflow-x: hidden;
+  z-index: 2;
 }
 
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 90vw;
+  width: 95vw;
   margin: auto;
   background-color: #0074d9;
   padding: 30px;
