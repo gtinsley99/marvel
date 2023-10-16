@@ -1,6 +1,7 @@
 .modal-tab {
   display: flex;
   height: 100%;
+  font-family: "Komika";
 }
 
 .modal-tab h2 {
@@ -52,16 +53,34 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50%;
+  height: 52%;
+  border-radius: 15px;
+  background-color: #dedddd;
+  border: 3px solid #6b52a5;
 }
 
 .comics {
+  text-align: center;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
   height: 80%;
+  width: 75%;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  background-color: white;
+  border: 1px solid black;
   overflow-y: scroll;
+}
+
+.comics-div {
+  width: 95%;
+}
+
+.comics p {
+  width: 90%;
+  margin: auto;
 }
 
 .comicSearch {
@@ -70,6 +89,12 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.comicSearch input {
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 5px;
 }
 
 .release h3 {
@@ -117,14 +142,15 @@
   background-color: #00a000;
   color: white;
   box-shadow: 3px 3px 3px #006600;
-  transition: all 0.3s ease-in;
+  transition: transform 0.3s ease-in;
+  font-family: "Komika";
 }
 
 .variants-button:hover {
   transform: scale(1.1);
   background-color: #00cc00;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .variants-button:active {
@@ -167,12 +193,10 @@
   margin: 0px 20px;
 }
 
-.variantTab {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.variant-tab {
+  font-family: "Komika";
+  font-size: 14px;
 }
-
 .variant-top {
   display: flex;
   justify-content: space-around;

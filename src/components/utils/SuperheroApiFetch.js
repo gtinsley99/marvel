@@ -1,4 +1,4 @@
-export const fetchPowerStats = async (id, setPowerStats, setError) => {
+export const fetchPowerStats = async (id, setPowerStats, setError, Error) => {
   try {
     const response = await fetch(`https://akabab.github.io/superhero-api/api/powerstats/${id}.json`);
     console.log(response);
@@ -10,6 +10,7 @@ export const fetchPowerStats = async (id, setPowerStats, setError) => {
     setPowerStats(data);
   } catch (error) {
     setError("could not fetch data");
+    console.log(Error);
     console.log(error);
   }
 };
