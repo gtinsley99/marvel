@@ -9,7 +9,7 @@ export const CharacterIds = {
   "Black Panther": 106,
   Blade: 112,
   Blizzard: 116,
-  Boomerang: 131,
+  Boomerang: 141,
   Bullseye: 141,
   Cable: 145,
   "Cable (Deadpool)": 145,

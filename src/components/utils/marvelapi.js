@@ -58,7 +58,13 @@ export const fetchVariants = async (name, setVariants) => {
 try {
   const res = await fetch(`${url}`);
   const data = await res.json();
-  setVariants(data.data.results);
+  let picVariants = [];
+  for (let i = 0; i<data.data.results.length; i++){
+    if (data.data.results[i].thumbnail.path !== "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"){
+    picVariants.push(data.data.results[i]);
+  }
+  }
+  setVariants(picVariants);
   console.log(data.data.results);
 } catch (error) {
   console.log(error);
