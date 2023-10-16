@@ -18,6 +18,7 @@ function App() {
   const [res, setRes] = useState(null);
   const [showNav, setShowNav] = useState(true);
   const [allChar, setAllChar] = useState(null);
+  const [hideNav, setHideNav] = useState(false);
 
 
   // Route to get all characters from backend db- useeffect on load
@@ -29,11 +30,13 @@ function App() {
     let prevScrollPos = window.scrollY;
     window.onscroll = () => {
       let currentScrollPos = window.scrollY;
-      if (prevScrollPos > currentScrollPos || currentScrollPos < 100) {
-        setShowNav(true);
-      } else {
-        setShowNav(false);
-      }
+      if (!hideNav){
+        if (prevScrollPos > currentScrollPos || currentScrollPos < 100) {
+          setShowNav(true);
+        } else {
+          setShowNav(false);
+        }
+      };
       prevScrollPos = currentScrollPos;
     };
 
@@ -60,9 +63,9 @@ function App() {
           />
           <Route
             path="/profile"
-            element={<Profile cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} setLoggedIn={setLoggedIn} loggedIn={loggedIn} />}
+            element={<Profile cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} setLoggedIn={setLoggedIn} loggedIn={loggedIn} setHideNav={setHideNav} setShowNav={setShowNav} />}
           />
-          <Route path="/characters" element={<Characters cookies={cookies} allChar={allChar} loggedIn={loggedIn} />} />
+          <Route path="/characters" element={<Characters cookies={cookies} allChar={allChar} loggedIn={loggedIn} setHideNav={setHideNav} setShowNav={setShowNav} />} />
         </Routes>
       </BrowserRouter>
     </div>
