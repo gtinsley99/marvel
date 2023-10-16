@@ -128,6 +128,7 @@ export const AllChar = (setAllChar) => {
       try {
         const res = await fetch(`${process.env.REACT_APP_API_URL}/all`);
         const allCharacters = await res.json();
+        allCharacters.characters.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
         setAllChar(allCharacters.characters);
         console.log(allCharacters);
         console.log(allCharacters.characters);
