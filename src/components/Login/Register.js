@@ -29,7 +29,6 @@ function RegistrationForm(props) {
       <h1>Register an account</h1>
       {errors && <h3 className="regErrorMsg">{errors}</h3>}
       <div>
-        <label htmlFor="username"></label>
         <input
           placeholder="Username"
           className="regBarsLog"

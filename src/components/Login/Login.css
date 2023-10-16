@@ -22,7 +22,7 @@
 
 .regBarsLog {
   padding: 10px;
-  width: 300px;
+  width: 377px;
   margin: 10px;
   border: 1px solid black;
   border-radius: 15px;
@@ -55,11 +55,13 @@
 
 .whole-login {
   display: flex;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .img-holder {
   width: 50%;
-  height: 110vh;
+  height: 100vh;
 }
 
 .img-holder img {
@@ -69,6 +71,7 @@
 
 .login-register {
   width: 50%;
+  margin-top: 50px;
 }
 
 .errorMsg{

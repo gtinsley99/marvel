@@ -1,6 +1,7 @@
 .nav-wrapper {
   background-color: #0074d9;
   border-bottom: 2px solid #6b52a5;
+  overflow-x: hidden;
 }
 
 nav {
