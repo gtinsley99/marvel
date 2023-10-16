@@ -3,13 +3,10 @@ import Modal from "react-modal";
 import CharcterCard from "../CharacterCard/CharcterCard";
 import "./Modal.css";
 import FavoriteIcon from "./FavoriteIcon";
-import {
-  fetchDescription,
-  fetchComics,
-  CheckIfFavChar,
-  fetchVariants,
-} from "../utils/marvelapi";
+import { fetchDescription, fetchComics, CheckIfFavChar, fetchVariants } from "../utils/marvelapi";
 import { fetchPowerStats } from "../utils/SuperheroApiFetch";
+import { CharacterIds } from "../utils/characterIds";
+import Powerstats from "./Powerstats";
 
 const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -28,17 +25,12 @@ const ModalTab = (props) => {
   function openModal() {
     setIsOpen(true);
     fetchDescription(props.name, setDesc, errors, setErrors);
-    fetchComics(
-      props.name,
-      errors,
-      setErrors,
-      setComicsAppearedIn,
-      setComicsFiltered
-    );
+    fetchComics(props.name, errors, setErrors, setComicsAppearedIn, setComicsFiltered);
     if (props.cookies.jwt_token) {
       CheckIfFavChar(props.name, props.cookies.jwt_token, setIconClicked);
     }
-    fetchPowerStats(props.name, setPowerStats, setPowerStatsErrors);
+    const characterId = CharacterIds[props.name];
+    fetchPowerStats(characterId, setPowerStats, setPowerStatsErrors);
   }
 
   function closeModal() {
@@ -76,22 +68,9 @@ const ModalTab = (props) => {
   const isProfile = props.render === "profile";
 
   return (
-    <div
-      className={[
-        isProfile ? "modal-holder-profile" : "modal-holder-characters",
-      ]}
-    >
-      <CharcterCard
-        onClick={openModal}
-        name={props.name}
-        imgSrc={props.imgSrc}
-      />
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Example Modal"
-        ariaHideApp={false}
-      >
+    <div className={[isProfile ? "modal-holder-profile" : "modal-holder-characters"]}>
+      <CharcterCard onClick={openModal} name={props.name} imgSrc={props.imgSrc} />
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal" ariaHideApp={false}>
         {!seeVariants ? (
           <div className="modal-tab">
             <div className="modal-left modal-side">
@@ -104,23 +83,20 @@ const ModalTab = (props) => {
               <h2>{props.name}</h2>
             </div>
             <div className="modal-right modal-side">
-              <div className="description">
-                <h3>Description</h3>
-                <p>{powerStats}</p>
-              </div>
+              <Powerstats powerStats={powerStats} />
               <div className="comics-section">
                 <h3>Comics Appeared In</h3>
                 <form>
-                  <input
-                    placeholder="search for comics"
-                    onChange={handleChange}
-                  />
+                  <input placeholder="search for comics" onChange={handleChange} />
                 </form>
                 <div className="comics">
-                  {comicsFiltered ?
+                  {comicsFiltered ? (
                     comicsFiltered.map((comic, index) => {
                       return <p>{comic.title}</p>;
-                    }) : <p>Loading comics...</p>}
+                    })
+                  ) : (
+                    <p>Loading comics...</p>
+                  )}
                 </div>
               </div>
               <div className="release">
@@ -137,10 +113,7 @@ const ModalTab = (props) => {
                   setShowToolTip={setShowToolTip}
                   name={props.name}
                 />
-                <button
-                  className="variants-button"
-                  onClick={() => handleVariants(props.name)}
-                >
+                <button className="variants-button" onClick={() => handleVariants(props.name)}>
                   See Variants
                 </button>
               </div>
@@ -153,39 +126,35 @@ const ModalTab = (props) => {
             </div>
             <div>
               <div className="variantsMid">
-              {variants ? (
-                <div className={variants.length > 3 ? "variantsMapStart" : "variantsMapCentre"}>
-                  {variants.map((item, index) => {
-                    let imgUrl = item.thumbnail.path + ".jpg";
+                {variants ? (
+                  <div className={variants.length > 3 ? "variantsMapStart" : "variantsMapCentre"}>
+                    {variants.map((item, index) => {
+                      let imgUrl = item.thumbnail.path + ".jpg";
                       return (
                         <div key={index} className="variantItem">
                           <img className="variantImg" src={imgUrl}></img>
                           <div className="textDiv">
-                          <h4>{item.name}</h4>
+                            <h4>{item.name}</h4>
                           </div>
                         </div>
                       );
-                    
-                  })}
-                </div>
-              ) : (
-                "Variants loading"
-              )}
+                    })}
+                  </div>
+                ) : (
+                  "Variants loading"
+                )}
               </div>
               <div className="variants-bot">
                 <div className="closeVariants">
-              <button className="close-button" onClick={closeModal}>
-                &#10229;
-              </button>
-              </div>
-              <div className="closeVariants">
-              <button
-                className="variants-button"
-                onClick={() => setSeeVariants(false)}
-              >
-                See Character
-              </button>
-              </div>
+                  <button className="close-button" onClick={closeModal}>
+                    &#10229;
+                  </button>
+                </div>
+                <div className="closeVariants">
+                  <button className="variants-button" onClick={() => setSeeVariants(false)}>
+                    See Character
+                  </button>
+                </div>
               </div>
             </div>
           </div>
