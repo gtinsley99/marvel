@@ -12,7 +12,6 @@ const ModalTab = (props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [variants, setVariants] = useState(null);
   const [errors, setErrors] = useState(null);
-  const [comicErrors, setComicErrors] = useState(null);
   const [comicsAppearedIn, setComicsAppearedIn] = useState([]);
   const [comicsFiltered, setComicsFiltered] = useState(null);
   const [iconClicked, setIconClicked] = useState(true); // set up iconClicked State
@@ -30,7 +29,7 @@ const ModalTab = (props) => {
       CheckIfFavChar(props.name, props.cookies.jwt_token, setIconClicked);
     }
     const characterId = CharacterIds[props.name];
-    fetchPowerStats(characterId, setPowerStats, setPowerStatsErrors);
+    fetchPowerStats(characterId, setPowerStats, setPowerStatsErrors, powerStatsErrors);
   }
 
   function closeModal() {
@@ -86,26 +85,31 @@ const ModalTab = (props) => {
             </div>
             <div className="modal-right modal-side">
               <div className="stats">
-              <Powerstats powerStats={powerStats} />
+                <Powerstats powerStats={powerStats} />
               </div>
               <div className="comics-section">
                 <div className="comicSearch">
-                <h3>Comics Appeared In</h3>
-                <form>
-                  <input placeholder="search for comics" onChange={handleChange} />
-                </form>
+                  <h3>Comics Appeared In</h3>
+                  <form>
+                    <input placeholder="Search for comics" onChange={handleChange} />
+                  </form>
                 </div>
                 <div className="comics">
                   {comicsFiltered ? (
                     comicsFiltered.map((comic, index) => {
-                      return <p>{comic.title}</p>;
+                      return (
+                        <div className="comics-div" key={index}>
+                          <p>{comic.title}</p>
+                          <hr style={{ width: "100%" }} />
+                        </div>
+                      );
                     })
                   ) : (
                     <p>Loading comics...</p>
                   )}
                 </div>
               </div>
-            
+
               <div className="fav-and-variants">
                 <FavoriteIcon
                   loggedIn={props.loggedIn}
@@ -135,7 +139,7 @@ const ModalTab = (props) => {
                       let imgUrl = item.thumbnail.path + ".jpg";
                       return (
                         <div key={index} className="variantItem">
-                          <img className="variantImg" src={imgUrl}></img>
+                          <img className="variantImg" src={imgUrl} alt="variant"></img>
                           <div className="textDiv">
                             <h4>{item.name}</h4>
                           </div>
