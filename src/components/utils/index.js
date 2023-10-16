@@ -100,7 +100,6 @@ export const DeleteAccount = async (
   username,
   password,
   setRes,
-  setUser,
   setLoggedIn,
   setButton,
   setMsg,
@@ -127,7 +126,6 @@ export const DeleteAccount = async (
       "username=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie =
       "jwt_token=; Expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    setUser("");
     setLoggedIn(false);
     setButton("Close");
     setMsg(data.message);

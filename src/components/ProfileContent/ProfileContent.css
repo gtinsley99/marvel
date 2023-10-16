@@ -8,6 +8,7 @@
   padding: 10px;
   margin: 5px;
   border: none;
+  margin: 20px;
   border-radius: 10px;
   box-shadow: 3px 3px 3px #1e1534;
   font-family: "Komika";
@@ -15,6 +16,7 @@
 
 .button-holder button:hover {
   cursor: pointer;
+  transform: scale(1.05);
 }
 
 .button-holder button:active {

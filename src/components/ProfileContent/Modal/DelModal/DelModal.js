@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DeleteAccount } from "../../../utils";
+import "../modal.css";
 
 const DelModal = (props) => {
   const [button, setButton] = useState("Delete account");
@@ -12,19 +13,19 @@ const DelModal = (props) => {
   const handleClick = async (e) => {
     if (button === "Close") {
       props.setModal(false);
+      props.setUser("");
       navigate("/");
-    }
+    } else{
     await DeleteAccount(
       props.cookies.jwt_token,
       props.username,
       props.password,
       props.setRes,
-      props.setUser,
       props.setLoggedIn,
       setButton,
       setMsg,
       props.setModal
-    );
+    );}
     props.setUsername("");
     props.setPassword("");
   };
@@ -34,12 +35,14 @@ const DelModal = (props) => {
     props.setPassword("");
   };
   return (
-    <div>
+    <div className="inputForm">
       <h4>{msg}</h4>
-      <button onClick={handleClick}>{button}</button>
+      <div className="inputBot">
+      <button className="formButton" id="delButton" onClick={handleClick}>{button}</button>
       {props.res !== "User deleted" && (
-        <button onClick={handleClose}>Cancel</button>
+        <button className="formButton" onClick={handleClose}>Cancel</button>
       )}
+      </div>
     </div>
   );
 };
