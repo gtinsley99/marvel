@@ -1,62 +1,55 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import "./Modal.css";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 const Powerstats = ({ powerStats }) => {
-  const intelligenceStyle = {
-    "::before": {
-      content: `${powerStats && powerStats.intelligence}%`,
-    },
-    background: `radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(#ff2400 ${powerStats && powerStats.intelligence}%, pink 0)`,
-  };
+  const [percentage, setPercentage] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (percentage < 100) {
+        setPercentage(percentage + 1);
+      }
+    }, 50);
+  }, [percentage]);
+
   return (
-    <div>
-      <div className="powerstats-wrapper">
-        <h3>Powerstats</h3>
-        <div className="powerstats">
-          <div>
-            <h4>Intelligence</h4>
-            <div class="progress-bar" style={intelligenceStyle}>
-              <progress min="0" max="100" style={{ visibility: "hidden", height: "0", width: "0" }}></progress>
-            </div>
-            <p>{`${powerStats && powerStats.intelligence}%`}</p>
-          </div>
-          <div>
-            <h4>Strength</h4>
-            <div class="progress-bar" style={{ background: `radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(#ff2400 ${powerStats && powerStats.strength}%, pink 0)` }}>
-              <progress min="0" max="100" style={{ visibility: "hidden", height: "0", width: "0" }}></progress>
-            </div>
-            <p>{`${powerStats && powerStats.strength}%`}</p>
-          </div>
-
-          <div>
-            <h4>Speed</h4>
-            <div class="progress-bar" style={{ background: `radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(#ff2400 ${powerStats && powerStats.speed}%, pink 0)` }}>
-              <progress min="0" max="100" style={{ visibility: "hidden", height: "0", width: "0" }}></progress>
-            </div>
-            <p>{`${powerStats && powerStats.speed}%`}</p>
-          </div>
-
-          <div>
-            <h4>Durability</h4>
-            <div class="progress-bar" style={{ background: `radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(#ff2400 ${powerStats && powerStats.durability}%, pink 0)` }}>
-              <progress min="0" max="100" style={{ visibility: "hidden", height: "0", width: "0" }}></progress>
-            </div>
-            <p>{`${powerStats && powerStats.durability}%`}</p>
-          </div>
-          <div>
-            <h4>Power</h4>
-            <div class="progress-bar" style={{ background: `radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(#ff2400 ${powerStats && powerStats.power}%, pink 0),` }}>
-              <progress min="0" max="100" style={{ visibility: "hidden", height: "0", width: "0" }}></progress>
-            </div>
-            <p>{`${powerStats && powerStats.power}%`}</p>
-          </div>
-          <div>
-            <h4>Combat</h4>
-            <div class="progress-bar" style={{ background: `radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(#ff2400 ${powerStats && powerStats.combat}%, pink 0)` }}>
-              <progress min="0" max="100" style={{ visibility: "hidden", height: "0", width: "0" }}></progress>
-            </div>
-            <p>{`${powerStats && powerStats.combat}%`}</p>
-          </div>
+    <div className="powerstats">
+      <div>
+        <h4>Intelligence</h4>
+        <div style={{ width: 50 }}>
+          <CircularProgressbar value={powerStats && powerStats.intelligence} text={powerStats && powerStats.intelligence} />
+        </div>
+      </div>
+      <div>
+        <h4>Strength</h4>
+        <div style={{ width: 50 }}>
+          <CircularProgressbar value={powerStats && powerStats.strength} text={powerStats && powerStats.strength} />
+        </div>
+      </div>
+      <div>
+        <h4>Speed</h4>
+        <div style={{ width: 50 }}>
+          <CircularProgressbar value={powerStats && powerStats.speed} text={powerStats && powerStats.speed} />
+        </div>
+      </div>
+      <div>
+        <h4>Durability</h4>
+        <div style={{ width: 50 }}>
+          <CircularProgressbar value={powerStats && powerStats.durability} text={powerStats && powerStats.durability} />
+        </div>
+      </div>
+      <div>
+        <h4>Power</h4>
+        <div style={{ width: 50 }}>
+          <CircularProgressbar value={powerStats && powerStats.power} text={powerStats && powerStats.power} />
+        </div>
+      </div>
+      <div>
+        <h4>Combat</h4>
+        <div style={{ width: 50 }}>
+          <CircularProgressbar value={powerStats && powerStats.combat} text={powerStats && powerStats.combat} />
         </div>
       </div>
     </div>

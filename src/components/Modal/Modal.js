@@ -88,7 +88,7 @@ const ModalTab = (props) => {
               <div className="comics">
                 {comicsFiltered &&
                   comicsFiltered.map((comic, index) => {
-                    return <p>{comic.title}</p>;
+                    return <p key={index}>{comic.title}</p>;
                   })}
               </div>
             </div>
