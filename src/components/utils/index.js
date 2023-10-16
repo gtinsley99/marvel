@@ -231,3 +231,22 @@ export const Register = async (
     console.error("Error:", error);
   }
 };
+
+export const UpdateProfPic = async (jwt_token, picUrl) => {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_API}/updatepic`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt_token}`
+      },
+      body: JSON.stringify({
+        newprofilepic: picUrl,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  };
+};
