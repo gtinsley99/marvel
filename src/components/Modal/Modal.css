@@ -47,6 +47,16 @@
   margin: 20px 0;
 }
 
+.powerstats {
+  display: flex;
+  justify-content: space-between;
+  max-width: 90%;
+}
+
+.powerstats h4 {
+  margin: 0;
+}
+
 .comics-section {
   height: 30%;
 }
@@ -77,6 +87,7 @@
   background-color: #00a000;
   color: white;
   box-shadow: 3px 3px 3px #006600;
+  transition: all 0.3s ease-in;
 }
 
 .close-button:hover {
@@ -88,6 +99,7 @@
 
 .close-button:active {
   background-color: #00a000;
+  transform: translateY(3px);
 }
 
 .variants-button {
@@ -99,6 +111,7 @@
   background-color: #00a000;
   color: white;
   box-shadow: 3px 3px 3px #006600;
+  transition: all 0.3s ease-in;
 }
 
 .variants-button:hover {
@@ -110,4 +123,69 @@
 
 .variants-button:active {
   background-color: #00a000;
+  transform: translateY(3px);
 }
+
+.variantImg{
+  height: 250px;
+  width: 200px;
+}
+
+.variantsMapStart{
+  justify-content: start;
+  align-items: center;
+  display: flex;
+  width: 1200px;
+  height: 400px;
+  overflow-x: scroll;
+}
+
+.variantsMapCentre{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 1200px;
+  height: 400px;
+  overflow-x: scroll;
+}
+
+.variantItem{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 20px;
+}
+
+.variantTab{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.variant-top{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.variants-bot{
+  display: flex;
+  justify-content: center;
+  margin: 100px 20px 0px 0px;
+  align-items: center;
+}
+
+.closeVariants{
+  margin: 0px 80px;
+}
+
+.variantsMid{
+  display: flex;
+  justify-content: center;
+}
+
+.textDiv{
+  height: 30px;
+}
+

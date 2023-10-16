@@ -1,12 +1,14 @@
 .nav-wrapper {
   background-color: #0074d9;
+  border-bottom: 2px solid #6b52a5;
+  overflow-x: hidden;
 }
 
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 90vw;
+  width: 95vw;
   margin: auto;
   background-color: #0074d9;
   padding: 30px;
