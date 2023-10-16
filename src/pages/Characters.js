@@ -20,6 +20,13 @@ const Characters = (props) => {
     setCurrentPage(e.selected);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const pageCount = Math.ceil(characters ? characters.length / charactersPerPage : 11);
   const displayedCharacters = characters && characters.slice(currentPage * charactersPerPage, (currentPage + 1) * charactersPerPage);
 
@@ -45,7 +52,7 @@ const Characters = (props) => {
 
   return (
     <div className="charPage">
-      <img className="background" src={background}></img>
+      <img className="background" src={background} alt="background"></img>
       <div className="popChar">
         <Popular pop={pop} cookies={props.cookies} loggedIn={props.loggedIn} setHideNav={props.setHideNav} setShowNav={props.setShowNav} />
       </div>
@@ -63,16 +70,19 @@ const Characters = (props) => {
             })
           : "Fetching Character Data"}
       </div>
-      <ReactPaginate
-        previousLabel="Previous"
-        nextLabel="Next"
-        pageCount={pageCount}
-        pageRangeDisplayed={11}
-        onPageChange={handlePageClick}
-        containerClassName="pagination"
-        activeClassName="active"
-        forcePage={currentPage}
-      />{" "}
+      <div className="navigate-buttons">
+        <ReactPaginate
+          previousLabel="Previous"
+          nextLabel="Next"
+          pageCount={pageCount}
+          pageRangeDisplayed={11}
+          onPageChange={handlePageClick}
+          containerClassName="pagination"
+          activeClassName="active"
+          forcePage={currentPage}
+        />{" "}
+        <button onClick={scrollToTop}>Back To Top</button>
+      </div>
     </div>
   );
 };
