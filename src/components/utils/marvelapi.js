@@ -276,7 +276,7 @@ export const UserFavChar = async (jwt_token, setFavs) => {
       },
     });
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     setFavs(data.favourites);
   } catch (error) {
     console.log("Failed to fetch data");
