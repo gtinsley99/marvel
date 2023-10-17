@@ -24,8 +24,8 @@ const ProfileContent = (props) => {
   return (
     <div>
       <h2 className='Username'>Welcome user: {props.user}</h2>
-      <Avatar className='profilepicture'src={file} size={150} icon={<UserOutlined />} />
-       <ProfilePicChanger setFile={setFile} file={file} />
+      <Avatar className='profilepicture'src={props.userPic} size={150} icon={<UserOutlined />} />
+       <ProfilePicChanger setFile={setFile} file={file} cookies={props.cookies} setUserPic={props.setUserPic} userPic={props.userPic} />
       <div className='button-holder'>           
         <button value="username" onClick={handleClick} >Update Username</button>
         <button value="password" onClick={handleClick} >Update Password</button>

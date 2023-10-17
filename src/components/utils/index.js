@@ -239,20 +239,34 @@ export const Register = async (
   }
 };
 
-export const UpdateProfPic = async (jwt_token, picUrl, setUserPic) => {
+export const UpdateProfPic = async (jwt_token, picFile, setUserPic) => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_API}/updatepic`, {
+    const base64 = await fetch(picFile.files);
+    console.log(base64);
+    const blob = await base64.blob();
+    console.log(blob);
+    const formdata = new FormData();
+    formdata.append("blob", blob, "avatar");
+    console.log(formdata);
+    let uplData = formdata.getAll("blob")[0];
+    console.log(uplData);
+    const response = await fetch(`http://localhost:5001/upload`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${jwt_token}`
       },
-      body: JSON.stringify({
-        newprofilepic: picUrl,
-      }),
+      body: formdata
     });
     const data = await response.json();
+    console.log(response);
     console.log(data);
+    console.log(data.profilePic);
+    console.log(typeof data.profilePic);
+    // const reader = new FileReader();
+    // const blobRes = await data.profilePic.blob();
+    // const image = reader.readAsText(blobRes);
+    // console.log(typeof blobRes);
+
     setUserPic(data.profilePic);
   } catch (error) {
     console.error("Error:", error);

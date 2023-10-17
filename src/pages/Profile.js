@@ -20,7 +20,7 @@ const Profile = (props) => {
   }, []);
   return (
     <div>
-      <ProfileContent cookies={props.cookies} setCookie={props.setCookie} user={props.user} setUser={props.setUser} setLoggedIn={props.setLoggedIn} />
+      <ProfileContent cookies={props.cookies} setCookie={props.setCookie} user={props.user} setUser={props.setUser} setLoggedIn={props.setLoggedIn} setUserPic={props.setUserPic} userPic={props.userPic} />
       <ProfileFavs favs={favs} cookies={props.cookies} loggedIn={props.loggedIn} setHideNav={props.setHideNav} setShowNav={props.setShowNav} />
     </div>
   );

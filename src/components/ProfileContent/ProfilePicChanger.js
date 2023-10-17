@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { UpdateProfPic } from '../utils';
 
 function ProfilePicChanger(props) {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -8,7 +9,7 @@ function ProfilePicChanger(props) {
 
     const file = event.target.files[0];
 
-    if (file) {
+    if (props.userPic) {
       const reader = new FileReader();
 
       reader.onload = (e) => {
@@ -25,6 +26,7 @@ function ProfilePicChanger(props) {
 
     if (selectedImage) {
       // Now you can set the selectedImage to the parent component
+      UpdateProfPic(props.cookies.jwt_token, selectedImage, props.setUserPic);
       props.setFile(selectedImage);
     }
   }
@@ -32,7 +34,7 @@ function ProfilePicChanger(props) {
   return (
     <div className='Picture'>
       <form onSubmit={submitHandler}>
-        <input type="file" onChange={changeHandler} />
+        <input type="file" name='avatar' onChange={changeHandler} />
         <button type="submit">Upload</button>
       </form>
      
