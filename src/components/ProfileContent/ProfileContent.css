@@ -2,6 +2,10 @@
   font-size: 20px;
 }
 
+.profilepicture{
+   background-size: cover;
+}
+
 .button-holder button {
   background-color: #6b52a5;
   color: white;
