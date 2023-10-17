@@ -20,9 +20,10 @@ const Characters = (props) => {
     setCurrentPage(e.selected);
     window.scrollTo({
       top: 575,
-      behavior: "smooth",
+      behavior: "smooth"
     });
   };
+
 
   const scrollToTop = () => {
     window.scrollTo({
