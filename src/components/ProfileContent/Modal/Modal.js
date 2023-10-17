@@ -203,6 +203,7 @@ const Modal = (props) => {
           setUsername={setUsername}
           setPassword={setPassword}
           setModal={setModal}
+          setUserPic={props.setUserPic}
         />
       )}
 

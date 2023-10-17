@@ -9,7 +9,7 @@ function ProfilePicChanger(props) {
 
     const file = event.target.files[0];
 
-    if (props.userPic) {
+    if (file) {
       const reader = new FileReader();
 
       reader.onload = (e) => {
@@ -28,6 +28,7 @@ function ProfilePicChanger(props) {
       // Now you can set the selectedImage to the parent component
       UpdateProfPic(props.cookies.jwt_token, selectedImage, props.setUserPic);
       props.setFile(selectedImage);
+     
     }
   }
 

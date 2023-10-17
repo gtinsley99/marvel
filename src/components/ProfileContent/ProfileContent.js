@@ -41,6 +41,7 @@ const ProfileContent = (props) => {
           cookies={props.cookies}
           setCookie={props.setCookie}
           setUser={props.setUser}
+          setUserPic={props.setUserPic}
           setLoggedIn={props.setLoggedIn}
         />
       )}

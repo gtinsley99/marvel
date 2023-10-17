@@ -11,9 +11,17 @@ export const AuthCheck = async (jwt_token, setUser, setUserPic, setLoggedIn) => 
       throw new Error(res.statusText);
     }
     const data = await res.json();
+    console.log(data);
     setUser(data.user.username);
-    if (data.user.profilePic !== null){
-    setUserPic(data.user.profilePic);
+    if (data.profilePic !== null){
+      console.log(data.user.profilePic);
+      let imageData = data.user.profilePic.data;
+      let TYPED_ARRAY = new Uint8Array(imageData);
+      const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+      let base64String = btoa(STRING_CHAR);
+      let imageUrl = `data:${data.user.profilePic.mimetype};base64,${base64String}`;
+      setUserPic(imageUrl);
+      console.log(imageUrl);
     };
     setLoggedIn(true);
     console.log(data);
@@ -181,8 +189,13 @@ export const Login = async (
       });
       setLoggedIn(true);
       setUser(data.user.username);
-      if (data.user.profilePic !== null){
-        setUserPic(data.user.profilePic);
+      if (data.profilePic){
+        let imageData = data.user.profilePic.data;
+        let TYPED_ARRAY = new Uint8Array(imageData);
+        const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+        let base64String = btoa(STRING_CHAR);
+        let imageUrl = `data:${data.user.profilePic.mimetype};base64,${base64String}`;
+        setUserPic(imageUrl);
         };
       navigate("/");
     }
@@ -241,16 +254,11 @@ export const Register = async (
 
 export const UpdateProfPic = async (jwt_token, picFile, setUserPic) => {
   try {
-    const base64 = await fetch(picFile.files);
-    console.log(base64);
+    const base64 = await fetch(picFile);
     const blob = await base64.blob();
-    console.log(blob);
     const formdata = new FormData();
     formdata.append("blob", blob, "avatar");
-    console.log(formdata);
-    let uplData = formdata.getAll("blob")[0];
-    console.log(uplData);
-    const response = await fetch(`http://localhost:5001/upload`, {
+    const response = await fetch(`http://localhost:5001/updatepic`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${jwt_token}`
@@ -258,16 +266,14 @@ export const UpdateProfPic = async (jwt_token, picFile, setUserPic) => {
       body: formdata
     });
     const data = await response.json();
-    console.log(response);
     console.log(data);
     console.log(data.profilePic);
-    console.log(typeof data.profilePic);
-    // const reader = new FileReader();
-    // const blobRes = await data.profilePic.blob();
-    // const image = reader.readAsText(blobRes);
-    // console.log(typeof blobRes);
-
-    setUserPic(data.profilePic);
+    let imageData = data.profilePic.data.data;
+    let TYPED_ARRAY = new Uint8Array(imageData);
+    const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+    let base64String = btoa(STRING_CHAR);
+    let imageUrl = `data:${data.profilePic.mimetype};base64,${base64String}`;
+    setUserPic(imageUrl);
   } catch (error) {
     console.error("Error:", error);
   };
