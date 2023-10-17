@@ -49,26 +49,26 @@ export const Marvelapi = () => {
 
 // Route to get variants of character
 export const fetchVariants = async (name, setVariants) => {
-  const heroUrl= `${process.env.REACT_APP_BASE_URL}/v1/public/characters`;
+  const heroUrl = `${process.env.REACT_APP_BASE_URL}/v1/public/characters`;
   let ts = Date.now().toString();
   let apiKey = process.env.REACT_APP_API_KEY;
   let privateKey = process.env.REACT_APP_PRIVATE_KEY;
   let hash = getHash(ts, privateKey, apiKey);
   let url = `${heroUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=100&nameStartsWith=${name}`;
-try {
-  const res = await fetch(`${url}`);
-  const data = await res.json();
-  let picVariants = [];
-  for (let i = 0; i<data.data.results.length; i++){
-    if (data.data.results[i].thumbnail.path !== "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"){
-    picVariants.push(data.data.results[i]);
+  try {
+    const res = await fetch(`${url}`);
+    const data = await res.json();
+    let picVariants = [];
+    for (let i = 0; i < data.data.results.length; i++) {
+      if (data.data.results[i].thumbnail.path !== "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") {
+        picVariants.push(data.data.results[i]);
+      }
+    }
+    setVariants(picVariants);
+    console.log(data.data.results);
+  } catch (error) {
+    console.log(error);
   }
-  }
-  setVariants(picVariants);
-  console.log(data.data.results);
-} catch (error) {
-  console.log(error);
-}
 };
 
 // Route to get description from marvel api using stored id of character from backend
@@ -107,6 +107,7 @@ export const fetchComics = async (name, errors, setErrors, setComicsAppearedIn, 
     const char = await charRes.json();
     console.log(char);
     const heroUrl = `${process.env.REACT_APP_BASE_URL}/v1/public/characters/${char.character.marvelID}/comics`;
+    console.log(heroUrl);
     let url = `${heroUrl}?ts=${ts}&apikey=${apiKey}&hash=${hash}&limit=100`;
     const res = await fetch(`${url}`);
     const data = await res.json();
@@ -128,7 +129,7 @@ export const AllChar = (setAllChar) => {
       try {
         const res = await fetch(`${process.env.REACT_APP_API_URL}/all`);
         const allCharacters = await res.json();
-        allCharacters.characters.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+        allCharacters.characters.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
         setAllChar(allCharacters.characters);
         console.log(allCharacters);
         console.log(allCharacters.characters);
