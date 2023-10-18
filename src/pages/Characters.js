@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "../App.css";
-
+import sadGroot from "../images/sad-groot.png";
 import ReactPaginate from "react-paginate";
 
 // import components to use
@@ -69,11 +69,11 @@ const Characters = (props) => {
       </div>
       {/* Map the characters from the character list into cards */}
       <div className="card-container">
-        {displayedCharacters
+        {displayedCharacters && displayedCharacters.length > 0
           ? displayedCharacters.map((char, index) => {
               return <ModalTab render="characters" name={char.name} imgSrc={char.image} key={index} cookies={props.cookies} loggedIn={props.loggedIn} setHideNav={props.setHideNav} setShowNav={props.setShowNav} />;
             })
-          : "Fetching Character Data"}
+          : displayedCharacters && displayedCharacters.length === 0 ? <div><h2>No characters found</h2><img className="groot" src={sadGroot}></img></div> : "Fetching Character Data"}
       </div>
       <div className="navigate-buttons">
         <ReactPaginate
