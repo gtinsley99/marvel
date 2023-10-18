@@ -19,13 +19,13 @@ const Home = (props) => {
       {props.loading ? (
         <SplashScreen />
       ) : (
-      <div className="homepage">
+        <div className="homepage">
           <div className="image-container">
             <img src={background} alt="marvel image"></img>
             <div className="image-overlay">
-              <h1 className="title">Title</h1>
-              <Description className="descHome"/>
-            </div>  
+              <h1 className="title">Welcome to the "Marvel Character Encyclopedia"</h1>
+              <Description className="descHome" />
+            </div>
             <div className="button-overlay">
               <Link to="/characters">
                 <button className="home-button">Explore the characters</button>

@@ -6,3 +6,18 @@
   background-color: #dedddd;
   border: 2px solid grey;
 }
+
+.empty-favs {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-favs img {
+  width: 15%;
+}
+
+.favMargin{
+  margin: 50px 0px;
+}

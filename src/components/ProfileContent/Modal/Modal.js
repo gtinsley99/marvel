@@ -211,7 +211,7 @@ const Modal = (props) => {
         <div>
           <h3>Update profile picture</h3>
         </div>
-        <ProfilePicChanger setFile={props.setFile} file={props.file} cookies={props.cookies} setUserPic={props.setUserPic} userPic={props.userPic} />
+        <ProfilePicChanger setModal={props.setShowModal} setFile={props.setFile} file={props.file} cookies={props.cookies} setUserPic={props.setUserPic} userPic={props.userPic} />
         <div className="inputBot">
           <button className="formButton" onClick={handleClick}>Close</button>
           </div>

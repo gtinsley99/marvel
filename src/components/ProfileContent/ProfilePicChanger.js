@@ -29,19 +29,22 @@ function ProfilePicChanger(props) {
       // Now you can set the selectedImage to the parent component
       UpdateProfPic(props.cookies.jwt_token, selectedImage, props.setUserPic);
       props.setFile(selectedImage);
-     
+      props.setModal(false);
     }
   }
 
   return (
     <div className='Picture'>
       <form onSubmit={submitHandler}>
-        <input type="file" accept='image/jpeg' name='avatar' onChange={changeHandler} />
+      <label htmlFor="file-upload" className="formButton" id='fileButton'>
+        Upload jpg file
+      </label>
+        <input type="file" accept='image/jpeg' name='avatar' onChange={changeHandler} id='file-upload' />
         <button className='formButton' type="submit">Upload</button>
       </form>
      
     </div>
   );
-}
+};
 
 export default ProfilePicChanger;
