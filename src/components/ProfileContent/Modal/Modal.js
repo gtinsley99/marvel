@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./modal.css";
 import DelModal from "./DelModal/DelModal";
 import { UpdateUsername, UpdatePassword, UpdateEmail } from "../../utils";
+import ProfilePicChanger from "../ProfilePicChanger"
 
 const Modal = (props) => {
   const [modal, setModal] = useState(false);
@@ -206,8 +207,15 @@ const Modal = (props) => {
           setUserPic={props.setUserPic}
         />
       )}
-
-    
+      {props.form === "updatePic" && <div className="inputForm">
+        <div>
+          <h3>Update profile picture</h3>
+        </div>
+        <ProfilePicChanger setFile={props.setFile} file={props.file} cookies={props.cookies} setUserPic={props.setUserPic} userPic={props.userPic} />
+        <div className="inputBot">
+          <button className="formButton" onClick={handleClick}>Close</button>
+          </div>
+        </div>}
     </div>
   );
 };
