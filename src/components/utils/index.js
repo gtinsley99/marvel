@@ -256,7 +256,6 @@ export const UpdateProfPic = async (jwt_token, picFile, setUserPic) => {
   try {
     const base64 = await fetch(picFile);
     const blob = await base64.blob();
-    console.log(blob);
     const formdata = new FormData();
     formdata.append("blob", blob, "avatar");
     const response = await fetch(`http://localhost:5001/updatepic`, {
@@ -268,7 +267,6 @@ export const UpdateProfPic = async (jwt_token, picFile, setUserPic) => {
     });
     const data = await response.json();
     console.log(data);
-    console.log(data.profilePic);
     let imageData = data.profilePic.data;
     let TYPED_ARRAY = new Uint8Array(imageData);
     const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
