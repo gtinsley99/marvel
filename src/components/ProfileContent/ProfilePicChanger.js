@@ -35,7 +35,7 @@ function ProfilePicChanger(props) {
   return (
     <div className='Picture'>
       <form onSubmit={submitHandler}>
-        <input type="file" name='avatar' onChange={changeHandler} />
+        <input type="file" accept='image/jpeg' name='avatar' onChange={changeHandler} />
         <button type="submit">Upload</button>
       </form>
      
