@@ -96,7 +96,7 @@ const ModalTab = (props) => {
                   </form>
                 </div>
                 <div className="comics">
-                  {comicsFiltered ? (
+                  {comicsFiltered && comicsFiltered.length > 0 ? (
                     comicsFiltered.map((comic, index) => {
                       return (
                         <div className="comics-div" key={index}>
@@ -106,6 +106,7 @@ const ModalTab = (props) => {
                       );
                     })
                   ) : (
+                    comicsFiltered && comicsFiltered.length === 0 ? <p>No comics</p> :
                     <p>Loading comics...</p>
                   )}
                 </div>
