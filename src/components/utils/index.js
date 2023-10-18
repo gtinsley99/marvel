@@ -160,7 +160,7 @@ export const Login = async (
   navigate
 ) => {
   try {
-    const response = await fetch(`http://localhost:5001/login`, {
+    const response = await fetch(`${process.env.REACT_APP_API}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -257,7 +257,7 @@ export const UpdateProfPic = async (jwt_token, picFile, setUserPic) => {
     const blob = await base64.blob();
     const formdata = new FormData();
     formdata.append("blob", blob, "avatar");
-    const response = await fetch(`http://localhost:5001/updatepic`, {
+    const response = await fetch(`${process.env.REACT_APP_API}/updatepic`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${jwt_token}`
