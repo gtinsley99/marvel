@@ -67,9 +67,10 @@ const ModalTab = (props) => {
   };
 
   const isProfile = props.render === "profile";
+  const isCharacters = props.render === "characters";
 
   return (
-    <div className={[isProfile ? "modal-holder-profile" : "modal-holder-characters"]}>
+    <div className={[isProfile ? "modal-holder-profile" : [isCharacters ? "modal-holder-characters" : "modal-holder-profile"]]}>
       <CharcterCard onClick={openModal} name={props.name} imgSrc={props.imgSrc} />
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Example Modal" ariaHideApp={false}>
         {!seeVariants ? (

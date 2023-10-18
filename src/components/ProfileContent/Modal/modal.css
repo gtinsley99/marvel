@@ -66,6 +66,15 @@
   width: 80%;
 }
 
+input[type = "file"]{
+  display: none;
+}
+
+#fileButton{
+  font-size: 13.3333333px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .formButton {
   background-color: rgb(228, 102, 18);
   border: 1px solid grey;

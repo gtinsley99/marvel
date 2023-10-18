@@ -5,7 +5,7 @@ import EmptyFavs from "./EmptyFavs";
 
 const ProfileFavs = (props) => {
   return (
-    <div>
+    <div className="favMargin">
       {props.favs && props.favs.length !== 0 && <h2>Your Favourites</h2>}
       <div className="favorites">
         {props.favs && props.favs.length != 0 ? (

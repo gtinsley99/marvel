@@ -28,39 +28,38 @@ function RegistrationForm(props) {
     <form onSubmit={handleSubmit} className="login-form" style={{backgroundColor: "red", color: "black", marginTop: "25px"}}>
       <h1>Register an account</h1>
       {errors && <h3 className="regErrorMsg">{errors}</h3>}
-      <div>
+     
         <input
           placeholder="Username"
-          className="regBarsLog"
+          className="barsLog"
           type="text"
           id="username"
           name="username"
           value={formData.username}
           onChange={handleChange}
         />
-      </div>
-      <div>
+     
+    
         <input
           placeholder="Email"
-          className="regBarsLog"
+          className="barsLog"
           type="email"
           id="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
         />
-      </div>
-      <div>
+     
         <input
           placeholder="Password"
-          className="regBarsLog"
+          className="barsLog"
           type="password"
           id="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
         />
-      </div>
+  
       <button className="loginBtn" type="submit">
         Register
       </button>

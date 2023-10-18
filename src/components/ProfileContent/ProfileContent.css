@@ -1,5 +1,6 @@
 .Username {
   font-size: 20px;
+  margin-right: 70px;
 }
 
 .profilepicture{
@@ -27,3 +28,10 @@
   transform: translateY(3px);
   box-shadow: none;
 }
+
+.profTop{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

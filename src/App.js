@@ -64,7 +64,7 @@ function App() {
           />
           <Route
             path="/profile"
-            element={<Profile cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} setLoggedIn={setLoggedIn} loggedIn={loggedIn} setHideNav={setHideNav} setShowNav={setShowNav} />}
+            element={<Profile userPic={userPic} cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} setLoggedIn={setLoggedIn} loggedIn={loggedIn} setHideNav={setHideNav} setShowNav={setShowNav} setUserPic={setUserPic} />}
           />
           <Route path="/characters" element={<Characters cookies={cookies} allChar={allChar} loggedIn={loggedIn} setHideNav={setHideNav} setShowNav={setShowNav} />} />
         </Routes>
