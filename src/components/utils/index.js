@@ -161,7 +161,7 @@ export const Login = async (
   navigate
 ) => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_API}/login`, {
+    const response = await fetch(`http://localhost:5001/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -189,7 +189,7 @@ export const Login = async (
       });
       setLoggedIn(true);
       setUser(data.user.username);
-      if (data.profilePic){
+      if (data.user.profilePic){
         let imageData = data.user.profilePic.data;
         let TYPED_ARRAY = new Uint8Array(imageData);
         const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
@@ -256,6 +256,7 @@ export const UpdateProfPic = async (jwt_token, picFile, setUserPic) => {
   try {
     const base64 = await fetch(picFile);
     const blob = await base64.blob();
+    console.log(blob);
     const formdata = new FormData();
     formdata.append("blob", blob, "avatar");
     const response = await fetch(`http://localhost:5001/updatepic`, {
@@ -268,11 +269,11 @@ export const UpdateProfPic = async (jwt_token, picFile, setUserPic) => {
     const data = await response.json();
     console.log(data);
     console.log(data.profilePic);
-    let imageData = data.profilePic.data.data;
+    let imageData = data.profilePic.data;
     let TYPED_ARRAY = new Uint8Array(imageData);
     const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
     let base64String = btoa(STRING_CHAR);
-    let imageUrl = `data:${data.profilePic.mimetype};base64,${base64String}`;
+    let imageUrl = `data:image/jpeg;base64,${base64String}`;
     setUserPic(imageUrl);
   } catch (error) {
     console.error("Error:", error);
