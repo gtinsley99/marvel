@@ -21,7 +21,6 @@ export const AuthCheck = async (jwt_token, setUser, setUserPic, setLoggedIn) => 
       let base64String = btoa(STRING_CHAR);
       let imageUrl = `data:${data.user.profilePic.mimetype};base64,${base64String}`;
       setUserPic(imageUrl);
-      console.log(imageUrl);
     };
     setLoggedIn(true);
     console.log(data);
