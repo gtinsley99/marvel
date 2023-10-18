@@ -4,8 +4,9 @@ import SplashScreen from "../components/HomeComponents/splashScreen";
 import { Link } from "react-router-dom";
 import "../App.css";
 import "../components/HomeComponents/Home.css";
-import background from "../images/background-image2.png";
+import background from "../images/marvel-background.png";
 import NavBar from "../components/NavBar/NavBar";
+import Slideshow from "../components/SlideShow/Slideshow";
 
 const Home = (props) => {
   useEffect(() => {
@@ -20,16 +21,22 @@ const Home = (props) => {
         <SplashScreen />
       ) : (
         <div className="homepage">
-          <div className="image-container">
-            <img src={background} alt="marvel image"></img>
-            <div className="image-overlay">
-              <h1 className="title">Welcome to the "Marvel Character Encyclopedia"</h1>
-              <Description className="descHome" />
-            </div>
-            <div className="button-overlay">
-              <Link to="/characters">
-                <button className="home-button">Explore the characters</button>
-              </Link>
+          <div className="carousel">
+            <Slideshow />
+          </div>
+          <h1 className="title">Welcome to the "Marvel Character Encyclopedia"</h1>
+          <div className="button-overlay">
+            <Link to="/characters">
+              <button className="home-button">Explore the characters</button>
+            </Link>
+            <Link to="/about">
+              <button className="home-button">About us</button>
+            </Link>
+          </div>
+          <div className="img-wrapper">
+            <div className="image-container">
+              <img src={background} alt="marvel image"></img>
+              <div className="image-overlay"></div>
             </div>
           </div>
         </div>

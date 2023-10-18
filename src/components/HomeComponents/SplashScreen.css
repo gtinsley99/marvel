@@ -2,9 +2,37 @@
   position: absolute;
   top: 0;
   z-index: 5;
-  background-image: url(https://wallpapercave.com/dwp1x/wp9212041.jpg);
+  background-image: url("../../images/marvel-loading.png");
   background-size: cover;
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
+}
+
+.slide-container {
+  background-color: rgba(0, 0, 0, 0.817);
+  width: 95%;
+  margin: auto;
+  color: white;
+  padding-top: 10px;
+}
+
+.one-comic {
+  display: flex;
+  justify-content: space-around;
+}
+.comic-image {
+  width: 35%;
+}
+.comic-detail {
+  width: 50%;
+  text-align: left;
+}
+
+.writer {
+  display: flex;
+}
+
+.writer div {
+  margin-right: 80px;
 }

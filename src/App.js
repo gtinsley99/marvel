@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Characters from "./pages/Characters";
 import NavBar from "./components/NavBar/NavBar";
+import About from "./pages/About";
 import { CharDesc, AllChar, CharComics, CharSeries, Marvelapi } from "./components/utils/marvelapi";
 import "./App.css";
 import { useCookies } from "react-cookie";
@@ -21,25 +22,24 @@ function App() {
   const [allChar, setAllChar] = useState(null);
   const [hideNav, setHideNav] = useState(false);
 
-
   // Route to get all characters from backend db- useeffect on load
   AllChar(setAllChar);
 
   // Marvelapi();
 
-    // Show navbar on scrollup, hide on scrolldown
-    let prevScrollPos = window.scrollY;
-    window.onscroll = () => {
-      let currentScrollPos = window.scrollY;
-      if (!hideNav){
-        if (prevScrollPos > currentScrollPos || currentScrollPos < 100) {
-          setShowNav(true);
-        } else {
-          setShowNav(false);
-        }
-      };
-      prevScrollPos = currentScrollPos;
-    };
+  // Show navbar on scrollup, hide on scrolldown
+  let prevScrollPos = window.scrollY;
+  window.onscroll = () => {
+    let currentScrollPos = window.scrollY;
+    if (!hideNav) {
+      if (prevScrollPos > currentScrollPos || currentScrollPos < 100) {
+        setShowNav(true);
+      } else {
+        setShowNav(false);
+      }
+    }
+    prevScrollPos = currentScrollPos;
+  };
 
   const loginWithToken = async () => {
     await AuthCheck(cookies.jwt_token, setUser, setUserPic, setLoggedIn);
@@ -60,13 +60,40 @@ function App() {
           <Route path="/" element={<Home loading={loading} setLoading={setLoading} />} />
           <Route
             path="/login"
-            element={<Login cookie={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} setUserPic={setUserPic} loggedIn={loggedIn} setLoggedIn={setLoggedIn} setRes={setRes} />}
+            element={
+              <Login
+                cookie={cookies}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+                user={user}
+                setUser={setUser}
+                setUserPic={setUserPic}
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
+                setRes={setRes}
+              />
+            }
           />
           <Route
             path="/profile"
-            element={<Profile userPic={userPic} cookies={cookies} setCookie={setCookie} removeCookie={removeCookie} user={user} setUser={setUser} setLoggedIn={setLoggedIn} loggedIn={loggedIn} setHideNav={setHideNav} setShowNav={setShowNav} setUserPic={setUserPic} />}
+            element={
+              <Profile
+                userPic={userPic}
+                cookies={cookies}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+                user={user}
+                setUser={setUser}
+                setLoggedIn={setLoggedIn}
+                loggedIn={loggedIn}
+                setHideNav={setHideNav}
+                setShowNav={setShowNav}
+                setUserPic={setUserPic}
+              />
+            }
           />
           <Route path="/characters" element={<Characters cookies={cookies} allChar={allChar} loggedIn={loggedIn} setHideNav={setHideNav} setShowNav={setShowNav} />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
     </div>
