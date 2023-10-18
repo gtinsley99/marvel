@@ -21,10 +21,23 @@ const slideImages = [
   {
     url: "https://cdn.marvel.com/u/prod/marvel/i/mg/4/e0/65298f319f9d9/clean.jpg",
     caption: "Slide 1",
+    title: "Moon Knight (2021) #28",
+    published: "October 18, 2023",
+    writer: "Jed Mackay",
+    penciler: "Federico Sabbatini",
+    coverArtist: "Stephen Segovia",
+    description: "Moon Knight and his allies race to intercept the Black Spectre before his apocalyptic schemes bear fruit - but the clock is ticking, and a city hangs in the balance.",
   },
   {
     url: "https://cdn.marvel.com/u/prod/marvel/i/mg/3/f0/65298f4e6c035/clean.jpg",
     caption: "Slide 2",
+    title: "Ghost Rider (2022) #19",
+    published: "October 18, 2023",
+    writer: "Benjamin Percy",
+    penciler: "Cory Smith, Brent Peeples",
+    coverArtist: "Bjorn Barends",
+    description:
+      "MOVE OVER, GHOST RIDER! Talia Warroad is one of the most gifted magicians in America. But what happens when the Cult of Mephisto wants a piece of that gift? And what will they do when they find out the Ghost Rider is her partner?",
   },
   {
     url: "https://cdn.marvel.com/u/prod/marvel/i/mg/4/60/65298f345f28e/clean.jpg",
@@ -42,12 +55,11 @@ const slideImages = [
 const Slideshow = () => {
   return (
     <div className="slide-container">
+      <h2>Latest Comic releases</h2>
       <Slide>
         {slideImages.map((slideImage, index) => (
           <div key={index} className="one-comic">
-            <div className="comic-image" style={{ ...divStyle, backgroundImage: `url(${slideImage.url})` }}>
-              <span style={spanStyle}>{slideImage.caption}</span>
-            </div>
+            <div className="comic-image" style={{ ...divStyle, backgroundImage: `url(${slideImage.url})` }}></div>
             <div className="comic-detail">
               <h2>{slideImage.title}</h2>
               <h3>Published</h3>
