@@ -12,10 +12,10 @@ const divStyle = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundSize: "cover",
-  marginTop: "5%",
+  backgroundSize: "contain",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
   width: "30%",
-  height: "450px",
 };
 const slideImages = [
   {
@@ -55,11 +55,13 @@ const slideImages = [
 const Slideshow = () => {
   return (
     <div className="slide-container">
-      <h2>Latest Comic releases</h2>
+      <div className="comicsTitle">
+      <h2 >Latest Comic releases</h2>
+      </div>
       <Slide>
         {slideImages.map((slideImage, index) => (
           <div key={index} className="one-comic">
-            <div className="comic-image" style={{ ...divStyle, backgroundImage: `url(${slideImage.url})` }}></div>
+            <div className="comic-image" style={{ ...divStyle}}><img src={slideImage.url}></img></div>
             <div className="comic-detail">
               <h2>{slideImage.title}</h2>
               <h3>Published</h3>

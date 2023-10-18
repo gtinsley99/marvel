@@ -24,6 +24,16 @@
 .comic-image {
   width: 35%;
 }
+.one-comic img{
+  width: 100%;
+  height: 500px;
+  margin-bottom: 50px;
+}
+
+.comicsTitle {
+  width: 30%;
+  margin: auto;
+}
 .comic-detail {
   width: 50%;
   text-align: left;
