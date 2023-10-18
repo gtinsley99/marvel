@@ -3,7 +3,6 @@ import './ProfileContent.css';
 import Modal from './Modal/Modal';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar} from 'antd';
-import ProfilePicChanger from './ProfilePicChanger';
 
 
 
@@ -23,14 +22,16 @@ const ProfileContent = (props) => {
 
   return (
     <div>
-      <h2 className='Username'>Welcome user: {props.user}</h2>
-      <Avatar className='profilepicture'src={file} size={150} icon={<UserOutlined />} />
-       <ProfilePicChanger setFile={setFile} file={file} />
+      <div className='profTop'>
+        <h2 className='Username'>Welcome user: {props.user}</h2>
+        <Avatar className='profilepicture'src={props.userPic} size={150} icon={<UserOutlined />} />
+      </div>
       <div className='button-holder'>           
         <button value="username" onClick={handleClick} >Update Username</button>
         <button value="password" onClick={handleClick} >Update Password</button>
         <button value="email" onClick={handleClick} >Update Email</button>
         <button value="delete" onClick={handleClick} >Delete account</button>
+        <button value="updatePic" onClick={handleClick} >Update profile pic</button>
       </div>
       {showModal && (
         <Modal
@@ -41,7 +42,11 @@ const ProfileContent = (props) => {
           cookies={props.cookies}
           setCookie={props.setCookie}
           setUser={props.setUser}
+          setUserPic={props.setUserPic}
           setLoggedIn={props.setLoggedIn}
+          setFile={setFile}
+          file={file}
+          userPic={props.userPic}
         />
       )}
 

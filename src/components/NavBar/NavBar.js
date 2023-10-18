@@ -21,7 +21,7 @@ const NavBar = (props) => {
     <div className="nav-wrapper">
       <nav>
         <Link to={props.loggedIn ? "/profile" : "/login"}>
-          {props.userPic === "" ? <AccountCircleIcon className="navbar-icon" /> : <img className="profPic" src="userPic"></img>}
+          {props.userPic === "" ? <AccountCircleIcon className="navbar-icon" /> : <img className="profPic" src={props.userPic}></img>}
         </Link>
         <Link to="/characters">
           <ExploreIcon className="navbar-icon" />

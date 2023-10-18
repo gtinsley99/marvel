@@ -11,9 +11,16 @@ export const AuthCheck = async (jwt_token, setUser, setUserPic, setLoggedIn) => 
       throw new Error(res.statusText);
     }
     const data = await res.json();
+    console.log(data);
     setUser(data.user.username);
-    if (data.user.profilePic !== null){
-    setUserPic(data.user.profilePic);
+    if (data.profilePic !== null){
+      console.log(data.user.profilePic);
+      let imageData = data.user.profilePic.data;
+      let TYPED_ARRAY = new Uint8Array(imageData);
+      const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+      let base64String = btoa(STRING_CHAR);
+      let imageUrl = `data:${data.user.profilePic.mimetype};base64,${base64String}`;
+      setUserPic(imageUrl);
     };
     setLoggedIn(true);
     console.log(data);
@@ -181,8 +188,13 @@ export const Login = async (
       });
       setLoggedIn(true);
       setUser(data.user.username);
-      if (data.user.profilePic !== null){
-        setUserPic(data.user.profilePic);
+      if (data.user.profilePic){
+        let imageData = data.user.profilePic.data;
+        let TYPED_ARRAY = new Uint8Array(imageData);
+        const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+        let base64String = btoa(STRING_CHAR);
+        let imageUrl = `data:${data.user.profilePic.mimetype};base64,${base64String}`;
+        setUserPic(imageUrl);
         };
       navigate("/");
     }
@@ -239,21 +251,27 @@ export const Register = async (
   }
 };
 
-export const UpdateProfPic = async (jwt_token, picUrl, setUserPic) => {
+export const UpdateProfPic = async (jwt_token, picFile, setUserPic) => {
   try {
+    const base64 = await fetch(picFile);
+    const blob = await base64.blob();
+    const formdata = new FormData();
+    formdata.append("blob", blob, "avatar");
     const response = await fetch(`${process.env.REACT_APP_API}/updatepic`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${jwt_token}`
       },
-      body: JSON.stringify({
-        newprofilepic: picUrl,
-      }),
+      body: formdata
     });
     const data = await response.json();
     console.log(data);
-    setUserPic(data.profilePic);
+    let imageData = data.profilePic.data;
+    let TYPED_ARRAY = new Uint8Array(imageData);
+    const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+    let base64String = btoa(STRING_CHAR);
+    let imageUrl = `data:image/jpeg;base64,${base64String}`;
+    setUserPic(imageUrl);
   } catch (error) {
     console.error("Error:", error);
   };

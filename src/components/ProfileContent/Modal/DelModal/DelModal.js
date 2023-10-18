@@ -14,6 +14,7 @@ const DelModal = (props) => {
     if (button === "Close") {
       props.setModal(false);
       props.setUser("");
+      props.setUserPic("");
       navigate("/");
     } else{
     await DeleteAccount(
