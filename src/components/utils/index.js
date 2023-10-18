@@ -17,9 +17,12 @@ export const AuthCheck = async (jwt_token, setUser, setUserPic, setLoggedIn) => 
       console.log(data.user.profilePic);
       let imageData = data.user.profilePic.data;
       let TYPED_ARRAY = new Uint8Array(imageData);
-      const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
-      let base64String = btoa(STRING_CHAR);
-      let imageUrl = `data:${data.user.profilePic.mimetype};base64,${base64String}`;
+      let binary = "";
+      for (let i = 0; i<TYPED_ARRAY.byteLength; i++){
+      binary += String.fromCharCode(TYPED_ARRAY[i]);
+      }
+      let base64String = btoa(binary);
+      let imageUrl = `data:image/jpeg;base64,${base64String}`;
       setUserPic(imageUrl);
     };
     setLoggedIn(true);
@@ -191,9 +194,12 @@ export const Login = async (
       if (data.user.profilePic){
         let imageData = data.user.profilePic.data;
         let TYPED_ARRAY = new Uint8Array(imageData);
-        const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
-        let base64String = btoa(STRING_CHAR);
-        let imageUrl = `data:${data.user.profilePic.mimetype};base64,${base64String}`;
+        let binary = "";
+        for (let i = 0; i<TYPED_ARRAY.byteLength; i++){
+        binary += String.fromCharCode(TYPED_ARRAY[i]);
+        }
+        let base64String = btoa(binary);
+        let imageUrl = `data:image/jpeg;base64,${base64String}`;
         setUserPic(imageUrl);
         };
       navigate("/");
@@ -268,8 +274,11 @@ export const UpdateProfPic = async (jwt_token, picFile, setUserPic) => {
     console.log(data);
     let imageData = data.profilePic.data;
     let TYPED_ARRAY = new Uint8Array(imageData);
-    const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
-    let base64String = btoa(STRING_CHAR);
+    let binary = "";
+    for (let i = 0; i<TYPED_ARRAY.byteLength; i++){
+    binary += String.fromCharCode(TYPED_ARRAY[i]);
+    }
+    let base64String = btoa(binary);
     let imageUrl = `data:image/jpeg;base64,${base64String}`;
     setUserPic(imageUrl);
   } catch (error) {

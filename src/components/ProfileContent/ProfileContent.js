@@ -13,7 +13,6 @@ const ProfileContent = (props) => {
   const [file, setFile] = useState();
 
   const handleClick = (e) => {
-    console.log(file);
     setForm(e.target.value);
     setShowModal(true);
     setRes(null);
