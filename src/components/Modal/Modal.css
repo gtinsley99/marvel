@@ -18,6 +18,10 @@
   width: 26%;
 }
 
+.modal-holder-characters .character-card {
+  height: 400px;
+}
+
 .popup-image-div {
   width: 85%;
 }
