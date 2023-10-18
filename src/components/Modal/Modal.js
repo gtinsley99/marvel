@@ -34,6 +34,7 @@ const ModalTab = (props) => {
 
   function closeModal() {
     setIsOpen(false);
+    setSeeVariants(false);
     props.setShowNav(true);
     props.setHideNav(false);
   }
