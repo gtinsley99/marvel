@@ -11,6 +11,9 @@ const FavoriteIcon = (props) => {
       AddFavChar(props.cookies.jwt_token, props.name);
     } else {
       DeleteFavChar(props.cookies.jwt_token, props.name);
+      if (props.isProfile) {
+        props.closeModal();
+      }
     }
   };
 
