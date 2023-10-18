@@ -6,7 +6,7 @@ import EmptyFavs from "./EmptyFavs";
 const ProfileFavs = (props) => {
   return (
     <div>
-      {props.favs && props.favs.length !== 0 && <h2>Your Favorites</h2>}
+      {props.favs && props.favs.length !== 0 && <h2>Your Favourites</h2>}
       <div className="favorites">
         {props.favs && props.favs.length != 0 ? (
           props.favs.map((char, index) => {
