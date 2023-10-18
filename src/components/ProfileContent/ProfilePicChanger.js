@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./Modal/modal.css"
 import { UpdateProfPic } from '../utils';
 
 function ProfilePicChanger(props) {
@@ -36,7 +37,7 @@ function ProfilePicChanger(props) {
     <div className='Picture'>
       <form onSubmit={submitHandler}>
         <input type="file" accept='image/jpeg' name='avatar' onChange={changeHandler} />
-        <button type="submit">Upload</button>
+        <button className='formButton' type="submit">Upload</button>
       </form>
      
     </div>

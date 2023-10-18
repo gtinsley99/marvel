@@ -5,7 +5,7 @@ import "./ProfileFavs.css";
 const ProfileFavs = (props) => {
   return (
     <div>
-      <h2>Your Favorites</h2>
+      <h2>Your Favourites</h2>
       <div className="favorites">
         {props.favs
           ? props.favs.map((char, index) => {
