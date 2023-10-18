@@ -119,6 +119,8 @@ const ModalTab = (props) => {
                   showToolTip={showToolTip}
                   setShowToolTip={setShowToolTip}
                   name={props.name}
+                  isProfile={isProfile}
+                  closeModal={closeModal}
                 />
                 <button className="variants-button" onClick={() => handleVariants(props.name)}>
                   See Variants
