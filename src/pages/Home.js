@@ -6,6 +6,7 @@ import "../App.css";
 import "../components/HomeComponents/Home.css";
 import background from "../images/background-image2.png";
 import NavBar from "../components/NavBar/NavBar";
+import Slideshow from "../components/SlideShow/Slideshow";
 
 const Home = (props) => {
   useEffect(() => {
@@ -20,6 +21,9 @@ const Home = (props) => {
         <SplashScreen />
       ) : (
         <div className="homepage">
+          <div className="carousel">
+            <Slideshow />
+          </div>
           <div className="image-container">
             <img src={background} alt="marvel image"></img>
             <div className="image-overlay">
