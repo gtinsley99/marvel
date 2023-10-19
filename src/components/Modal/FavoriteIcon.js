@@ -6,6 +6,7 @@ import { AddFavChar, DeleteFavChar } from "../utils/marvelapi";
 const FavoriteIcon = (props) => {
   // function to change the state "iconClicked" when  the icon is clicked
   const handleIconClick = () => {
+    if (props.loggedIn){
     props.setIconClicked(!props.iconClicked);
     if (props.iconClicked) {
       AddFavChar(props.cookies.jwt_token, props.name);
@@ -14,7 +15,7 @@ const FavoriteIcon = (props) => {
       if (props.isProfile) {
         props.closeModal();
       }
-    }
+    }}
   };
 
   const handleMouseEnter = () => {

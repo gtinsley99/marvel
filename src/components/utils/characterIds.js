@@ -28,7 +28,7 @@ export const CharacterIds = {
   "Dragon Man": 233, //does not exist, give Dr Manhattan
   Falcon: 251,
   "Fantastic Four": 260, //given Firestorm
-  "Gertrude Yorkes": 46,
+  "Gertrude Yorkes": 146,
   "Ghost Rider (Johnny Blaze)": 280,
   "Goliath (Bill Foster)": 291,
   "GW Bridge": 307, //given han solo
